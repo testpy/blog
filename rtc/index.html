@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="testpy.org/" type="application/atom+xml" title="testpy ATOM Feed"/>
+    
+            <title>After Romanian Testing Conference 2013 // testpy // Software Testing and more</title>
+    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="testpy.org/theme/pure.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://use.typekit.net/ajf8ggy.js"></script>
+    <script>
+        try { Typekit.load(); } catch (e) {}
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz0M.gif')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                        <h1 class="brand-main"><a href="/">testpy</a></h1>
+                        <p class="tagline">Software Testing and more</p>
+                                                    <p class="links"><a href="testpy.org/about-us.html">About us</a></li>
+                            <p class="links"><a href="http://twitter.com/yuilibrary/">Twitter</a></p>
+                            <p class="links"><a href="http://twitter.com/yuilibrary/">Github</a></p>
+                                                </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <div class="pure-u-3-4">
+    <div class="content">
+        <section class="post">
+            <header class="post-header">
+                <h1>After Romanian Testing Conference 2013</h1>
+                    <p class="post-meta">
+                        By <a class="post-author" href="testpy.org/author/ramona.html">ramona</a> on Mon 04 November 2013
+                        // under                             <a class="post-category" href="testpy.org/tag/rtc.html">rtc</a>
+                                                    <a class="post-category" href="testpy.org/tag/awesome.html">awesome</a>
+                                            </p>
+            </header>
+        </section>
+        <p>It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
+presentation at RTC, but given that this experience has had an impact on our
+testing perspective, we decided to write a few lines on how it was and what it
+meant to us.</p>
+<p>We were pleasantly surprised to see that many colleagues share our opinions on
+software testing and this alone was enough to get us through the emotions we
+had that day, simply because we knew that we were speaking the same language.
+More and more software testers believe in the unity of the team, without the
+need of separating the tester (improperly called QA by many still) and
+developer roles.</p>
+<p>We decided  to talk about “Our experience with BDD in Python”, and throughout
+the presentation, we did exactly that: we talked about BDD as we understood and
+practiced it. We wanted to avoid “best practices” and “how to” terminology,
+because we didn’t want to teach others how to apply this methodology. We simply
+wanted to share our knowledge on the item, how we applied it and what are the
+challenges we are facing with.</p>
+<p>Shortly after the presentation has begun, we understood that this was the
+correct approach. People were drawn to what we had to say and we felt that the
+issues we were exposing were issues they also had encountered.</p>
+<p>I don’t know if we managed to answer all of their questions, but as long as we
+got the audience thinking about our subject and comparing the items we
+presented with the challenges they are facing day to day, then the presentation
+was a success.</p>
+<p>There’s no golden formula which, when applied, it magically solves all issues
+on a project. But as long as everybody has understood our message -
+communication and collaboration is everything  - then we definitely can say we
+are on the right track.</p>
+<p>You can see the presentation here - <a class="reference external" href="http://testers-lab.github.io/testerslab.github.com/#/">http://testers-lab.github.io/testerslab.github.com/#/</a></p>
+
+        <div class="hr"></div>
+        <a href="#" class="go-top">Go Top</a>
+                    <div class="comments">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_identifier = "rtc/";
+                    (function() {
+                        var dsq = document.createElement('script');
+                        dsq.type = 'text/javascript';
+                        dsq.async = true;
+                        dsq.src = 'http://Testerslab2.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view <a href="http://disqus.com/?ref_noscript">comments</a>.</noscript>
+            </div>
+                <footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/danclaudiupop/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+    <p>Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_GB">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
+</footer>    </div>
+</div>
+    </div>
+
+    <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+    <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the sticky footer button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.go-top').fadeIn(200);
+                } else {
+                    $('.go-top').fadeOut(200);
+                }
+            });
+
+            // Animate the scroll to top
+            $('.go-top').click(function(event) {
+                event.preventDefault();
+
+                $('html, body').animate({scrollTop: 0}, 300);
+            })
+        });
+    </script>
+    </body>
+</html>

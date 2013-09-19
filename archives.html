@@ -1,49 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8">
-        <title>A Pelican Blog</title>
-        <link rel="stylesheet" href="/theme/css/main.css">
-                <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
-                
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="testpy.org/" type="application/atom+xml" title="testpy ATOM Feed"/>
+    
+            <title>testpy // Software Testing and more</title>
+    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="testpy.org/theme/pure.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://use.typekit.net/ajf8ggy.js"></script>
+    <script>
+        try { Typekit.load(); } catch (e) {}
+    </script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">A Pelican Blog </a></h1>
-                <nav><ul>
-                                                    <li><a href="/pages/about-us.html">About us</a></li>
-                                                                    <li ><a href="/category/testing.html">testing</a></li>
-                                                </ul></nav>
-        </header><!-- /#banner -->
-        <section id="content" class="body">
-<h1>Archives for A Pelican Blog</h1>
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz0M.gif')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                        <h1 class="brand-main"><a href="/">testpy</a></h1>
+                        <p class="tagline">Software Testing and more</p>
+                                                    <p class="links"><a href="testpy.org/about-us.html">About us</a></li>
+                            <p class="links"><a href="http://twitter.com/yuilibrary/">Twitter</a></p>
+                            <p class="links"><a href="http://twitter.com/yuilibrary/">Github</a></p>
+                                                </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <h1>Archives for testpy</h1>
 
 <dl>
     <dt>Mon 04 November 2013</dt>
-    <dd><a href="/rtc.html">After Romanian Testing Conference 2013</a></dd>
+    <dd><a href="testpy.org/rtc/">After Romanian Testing Conference 2013</a></dd>
 </dl>
-</section>
-        <section id="extras" class="body">
-                                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            
-                                                </ul>
-                </div><!-- /.social -->
-                </section><!-- /#extras -->
+    </div>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+    <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+    <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the sticky footer button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.go-top').fadeIn(200);
+                } else {
+                    $('.go-top').fadeOut(200);
+                }
+            });
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+            // Animate the scroll to top
+            $('.go-top').click(function(event) {
+                event.preventDefault();
 
-</body>
+                $('html, body').animate({scrollTop: 0}, 300);
+            })
+        });
+    </script>
+    </body>
 </html>
