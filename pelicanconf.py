@@ -35,3 +35,9 @@ ARTICLE_URL = '{slug}/'
 ARTICLE_SAVE_AS = '{slug}/index.html'
 
 PAGE_URL = PAGE_SAVE_AS = '{slug}.html'
+
+FILES_TO_COPY = [
+    #('extra/robots.txt', 'robots.txt'),
+    ('extra/CNAME', 'CNAME'),
+    #('extra/favicon.ico', 'favicon.ico'),
+]
