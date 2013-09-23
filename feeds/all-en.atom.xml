@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="http://testpy.org/" rel="alternate"></link><link href="http://testpy.org/feeds/all-en.atom.xml" rel="self"></link><id>http://testpy.org/</id><updated>2013-11-04T10:20:00+01:00</updated><entry><title>After Romanian Testing Conference 2013</title><link href="http://testpy.org/rtc/" rel="alternate"></link><updated>2013-11-04T10:20:00+01:00</updated><author><name>ramona</name></author><id>tag:testpy.org,2013-11-04:rtc/</id><summary type="html">&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
+<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2013-05-24T10:20:00+03:00</updated><entry><title>After Romanian Testing Conference 2013</title><link href="/rtc/" rel="alternate"></link><updated>2013-05-24T10:20:00+03:00</updated><author><name>ramona</name></author><id>tag:,2013-05-24:rtc/</id><summary type="html">&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
 presentation at RTC, but given that this experience has had an impact on our
 testing perspective, we decided to write a few lines on how it was and what it
 meant to us.&lt;/p&gt;
@@ -27,4 +27,4 @@ on a project. But as long as everybody has understood our message -
 communication and collaboration is everything  - then we definitely can say we
 are on the right track.&lt;/p&gt;
 &lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testers-lab.github.io/testerslab.github.com/#/"&gt;http://testers-lab.github.io/testerslab.github.com/#/&lt;/a&gt;&lt;/p&gt;
-</summary><category term="rtc"></category><category term="awesome"></category></entry></feed>
+</summary><category term="rtc"></category><category term="presentation"></category><category term=""></category></entry></feed>

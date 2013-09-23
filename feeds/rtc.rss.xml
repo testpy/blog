@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testpy</title><link>http://testpy.org/</link><description></description><atom:link href="http://testpy.org/feeds/rtc.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 04 Nov 2013 10:20:00 +0100</lastBuildDate><item><title>After Romanian Testing Conference 2013</title><link>http://testpy.org/rtc/</link><description>&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testpy</title><link>/</link><description></description><atom:link href="/feeds/rtc.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 24 May 2013 10:20:00 +0300</lastBuildDate><item><title>After Romanian Testing Conference 2013</title><link>/rtc/</link><description>&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
 presentation at RTC, but given that this experience has had an impact on our
 testing perspective, we decided to write a few lines on how it was and what it
 meant to us.&lt;/p&gt;
@@ -27,4 +27,4 @@ on a project. But as long as everybody has understood our message -
 communication and collaboration is everything  - then we definitely can say we
 are on the right track.&lt;/p&gt;
 &lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testers-lab.github.io/testerslab.github.com/#/"&gt;http://testers-lab.github.io/testerslab.github.com/#/&lt;/a&gt;&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ramona</dc:creator><pubDate>Mon, 04 Nov 2013 10:20:00 +0100</pubDate><guid>tag:testpy.org,2013-11-04:rtc/</guid><category>rtc</category><category>awesome</category></item></channel></rss>
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ramona</dc:creator><pubDate>Fri, 24 May 2013 10:20:00 +0300</pubDate><guid>tag:,2013-05-24:rtc/</guid><category>rtc</category><category>presentation</category><category></category></item></channel></rss>
