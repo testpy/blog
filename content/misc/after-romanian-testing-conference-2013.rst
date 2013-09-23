@@ -1,9 +1,9 @@
 After Romanian Testing Conference 2013
 ######################################
 
-:date: 2013-11-04 10:20
-:tags: rtc, awesome
-:category: testing
+:date: 2013-05-24 10:20
+:tags: rtc, presentation,
+:category: misc
 :slug: rtc
 :author: ramona
 :email: ram.constantinescu@gmail.com
