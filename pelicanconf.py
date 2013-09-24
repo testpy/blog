@@ -26,6 +26,7 @@ COVER_IMG_URL = "https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz
 PLUGIN_PATH = "pelican-plugins/"
 PLUGINS = ['gravatar']
 DISQUS_SITENAME = "testpy"
+GOOGLE_ANALYTICS = "UA-44297043-1"
 
 MENUITEMS = [('About', 'about-us.html'), ]
 SOCIAL = (('Github', 'https://github.com/testpy/'), )
