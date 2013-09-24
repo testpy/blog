@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="/" type="application/atom+xml" title="testpy ATOM Feed"/>
+    
+            <title>Functional tests with django-webtest // testpy // Software Testing and more</title>
+    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="/theme/pure.css">
+    <link rel="stylesheet" href="/theme/pygments.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz0M.gif')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                        <h1 class="brand-main"><a href="/">testpy</a></h1>
+                        <p class="tagline">Software Testing and more</p>
+                                                    <p class="links"><a href="/about-us.html">About</a></li>
+                                                </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <div class="pure-u-3-4">
+    <div class="content">
+        <section class="post">
+            <header class="post-header">
+                <h1>Functional tests with django-webtest</h1>
+                    <p class="post-meta">
+                        By <a class="post-author" href="/author/danu.html">danu</a> on Thu 25 April 2013
+                        // under                             <a class="post-category" href="/tag/functional.html">functional</a>
+                                                    <a class="post-category" href="/tag/django-webtest.html">django-webtest</a>
+                                            </p>
+            </header>
+        </section>
+        <p>I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
+I highly recommend them if you want a deep dive into writing tests with django.
+They outline some very good principles for writing effective and maintainable
+tests. They also highlight a suite of test utilities and frameworks which help
+you in writing better tests. Among the others, Webtest caught my attention via
+<a class="reference external" href="https://github.com/kmike/django-webtest">django-webtest</a> for writing
+integration/functional tests.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">testLoginProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">login</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;auth_login&#39;</span><span class="p">))</span>
+    <span class="n">login</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;danu&#39;</span>
+    <span class="n">login</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s">&#39;password&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;test123&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">login</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s">&#39;Log in&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">follow</span><span class="p">()</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="s">&#39;200 OK&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+    <span class="n">assert_contains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;Welcome danu :]&#39;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">testLoginWithInvalidCredentials</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">login</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;auth_login&#39;</span><span class="p">))</span>
+    <span class="n">login</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;foo&#39;</span>
+    <span class="n">login</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s">&#39;password&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;bar&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">login</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s">&#39;Log in&#39;</span><span class="p">)</span>
+    <span class="n">assert_contains</span><span class="p">(</span>
+        <span class="n">response</span><span class="p">,</span>
+        <span class="s">&#39;Please enter a correct username and password. &#39;</span>
+        <span class="s">&#39;Note that both fields are case-sensitive.&#39;</span><span class="p">,</span>
+        <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span>
+    <span class="p">)</span>
+</pre></div>
+<p><strong>Why you should choose django-webtest instead of django client ?</strong>  Well,
+first of all, it can better capture the user experience mainly because you can
+submit forms and follow links. You are not only testing the views but also the
+template html. Secondly, it will allow you to write more simple and readable
+tests, an important fact when it comes to integration or functional tests.</p>
+<p>It interacts with django via the WSGI interface so ajax, js will not be tested.
+For that purpose you normally use selenium.</p>
+<p>I’ve set up a project on <a class="reference external" href="https://github.com/danclaudiupop/django-lab-tests">github</a> to illustrate some
+automated tests with django-webtest. It uses nose test suite runner since i
+don’t want to to import all my tests into tests/__init__.py and for rest of the
+goodness that nose offers.</p>
+
+        <div class="hr"></div>
+        <a href="#" class="go-top">Go Top</a>
+                    <div class="comments">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_identifier = "functional-tests-with-django-webtest/";
+                    (function() {
+                        var dsq = document.createElement('script');
+                        dsq.type = 'text/javascript';
+                        dsq.async = true;
+                        dsq.src = 'http://testpy.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view <a href="http://disqus.com/?ref_noscript">comments</a>.</noscript>
+            </div>
+                <footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/danclaudiupop/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+    <p>Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_GB">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
+</footer>    </div>
+</div>
+    </div>
+
+    <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+    <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the sticky footer button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.go-top').fadeIn(200);
+                } else {
+                    $('.go-top').fadeOut(200);
+                }
+            });
+
+            // Animate the scroll to top
+            $('.go-top').click(function(event) {
+                event.preventDefault();
+
+                $('html, body').animate({scrollTop: 0}, 300);
+            })
+        });
+    </script>
+    </body>
+</html>

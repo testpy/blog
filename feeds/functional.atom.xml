@@ -1,33 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testpy</title><link>/</link><description></description><atom:link href="/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 24 May 2013 00:00:00 +0300</lastBuildDate><item><title>After Romanian Testing Conference 2013</title><link>/rtc/</link><description>&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
-presentation at RTC, but given that this experience has had an impact on our
-testing perspective, we decided to write a few lines on how it was and what it
-meant to us.&lt;/p&gt;
-&lt;p&gt;We were pleasantly surprised to see that many colleagues share our opinions on
-software testing and this alone was enough to get us through the emotions we
-had that day, simply because we knew that we were speaking the same language.
-More and more software testers believe in the unity of the team, without the
-need of separating the tester (improperly called QA by many still) and
-developer roles.&lt;/p&gt;
-&lt;p&gt;We decided  to talk about “Our experience with BDD in Python”, and throughout
-the presentation, we did exactly that: we talked about BDD as we understood and
-practiced it. We wanted to avoid “best practices” and “how to” terminology,
-because we didn’t want to teach others how to apply this methodology. We simply
-wanted to share our knowledge on the item, how we applied it and what are the
-challenges we are facing with.&lt;/p&gt;
-&lt;p&gt;Shortly after the presentation has begun, we understood that this was the
-correct approach. People were drawn to what we had to say and we felt that the
-issues we were exposing were issues they also had encountered.&lt;/p&gt;
-&lt;p&gt;I don’t know if we managed to answer all of their questions, but as long as we
-got the audience thinking about our subject and comparing the items we
-presented with the challenges they are facing day to day, then the presentation
-was a success.&lt;/p&gt;
-&lt;p&gt;There’s no golden formula which, when applied, it magically solves all issues
-on a project. But as long as everybody has understood our message -
-communication and collaboration is everything  - then we definitely can say we
-are on the right track.&lt;/p&gt;
-&lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testers-lab.github.io/testerslab.github.com/#/"&gt;http://testers-lab.github.io/testerslab.github.com/#/&lt;/a&gt;&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ramona</dc:creator><pubDate>Fri, 24 May 2013 00:00:00 +0300</pubDate><guid>tag:,2013-05-24:rtc/</guid><category>rtc</category><category>presentation</category></item><item><title>Functional tests with django-webtest</title><link>/functional-tests-with-django-webtest/</link><description>&lt;p&gt;I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
+<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="/feeds/functional.atom.xml" rel="self"></link><id>/</id><updated>2013-04-25T00:00:00+03:00</updated><entry><title>Functional tests with django-webtest</title><link href="/functional-tests-with-django-webtest/" rel="alternate"></link><updated>2013-04-25T00:00:00+03:00</updated><author><name>danu</name></author><id>tag:,2013-04-25:functional-tests-with-django-webtest/</id><summary type="html">&lt;p&gt;I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
 I highly recommend them if you want a deep dive into writing tests with django.
 They outline some very good principles for writing effective and maintainable
 tests. They also highlight a suite of test utilities and frameworks which help
@@ -66,45 +38,4 @@ For that purpose you normally use selenium.&lt;/p&gt;
 automated tests with django-webtest. It uses nose test suite runner since i
 don’t want to to import all my tests into tests/__init__.py and for rest of the
 goodness that nose offers.&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">danu</dc:creator><pubDate>Thu, 25 Apr 2013 00:00:00 +0300</pubDate><guid>tag:,2013-04-25:functional-tests-with-django-webtest/</guid><category>functional</category><category>django-webtest</category></item><item><title>Book review: Explore it! by Elisabeth Hendrickson</title><link>/explore-it/</link><description>&lt;p&gt;There are many ways to test a software product. There are many methodologies
-that could help in testing that software product, so that the final release
-contains as less bugs as possible. We are not at the point where we could say
-that we have found the solution for bug free applications. But we are at the
-point where we know that in order to avoid buggy, hard to use, no precise scope
-defined applications, we need an approach that will ensure a higher quality of
-the product. One of these ways could very well be Exploratory Testing, done
-right, done different.  Exploratory Testing is important.  Exploratory Testing
-can be learnt.&lt;/p&gt;
-&lt;p&gt;In my opinion, these are some of the messages that can be heard when
-reading Explore It!, by Elisabeth Hendrickson.&lt;/p&gt;
-&lt;p&gt;As Cem Kaner himself states, Exploratory Testing is a style of software
-testing that emphasizes the personal freedom and responsibility of the
-individual tester to continually optimize the quality of his/her work by
-treating test-related learning, test design, test execution, and test result
-interpretation as mutually supportive activities that run in parallel
-throughout the project.  That’s a pretty accurate definition. But what does
-this mean exactly? How could I learn to be a more creative individual, when all
-around me and my work requires 100% analytical thinking? Do I need to be more
-creative, or to have a better sense of responsibility in order to execute
-exploratory tests that actually find defects and weaknesses?&lt;/p&gt;
-&lt;p&gt;I’ve started looking for some of the answers I need through “Exploratory
-Testing”. I have to say that I found the book incredibly easy to read and
-captivating. The real-world examples were in the right places, and I could
-better visualize the applicability of a concept presented in a specific
-section. However, at some point, I felt that the examples became too detailed
-and a more high-level explanation should have sufficed (but this is maybe a
-singular opinion, I guess it depends on our own perception on exploratory
-testing).  The personas concept is something I have never thought of and it’s
-definitely something I would like to try with my team someday. The idea of role
-playing of well-defined characters, in order to cover more classes of
-vulnerabilities is one of the many out-of-the-box examples and concepts that
-are defined in this book.&lt;/p&gt;
-&lt;p&gt;All in all, I sincerely recommend this book for any tester who would like
-to better themselves. It is suitable not only for functional testers, but it
-also has a few interesting approaches for the non-functional parts of the
-system as well. It has great advices on how to perform a good interview and how
-to do well on an interview, when faced with testing unfamiliar applications.&lt;/p&gt;
-&lt;p&gt;What I realized is that I found a few answers, but I have also discovered
-new questions and for me, this is more important. It means that the book got me
-thinking and questioning - how could I become a better explorer?&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ramona</dc:creator><pubDate>Mon, 07 Jan 2013 10:20:00 +0200</pubDate><guid>tag:,2013-01-07:explore-it/</guid><category>book</category><category>review</category></item></channel></rss>
+</summary><category term="functional"></category><category term="django-webtest"></category></entry></feed>

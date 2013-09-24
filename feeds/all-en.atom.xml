@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2013-05-24T10:20:00+03:00</updated><entry><title>After Romanian Testing Conference 2013</title><link href="/rtc/" rel="alternate"></link><updated>2013-05-24T10:20:00+03:00</updated><author><name>ramona</name></author><id>tag:,2013-05-24:rtc/</id><summary type="html">&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
+<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2013-05-24T00:00:00+03:00</updated><entry><title>After Romanian Testing Conference 2013</title><link href="/rtc/" rel="alternate"></link><updated>2013-05-24T00:00:00+03:00</updated><author><name>ramona</name></author><id>tag:,2013-05-24:rtc/</id><summary type="html">&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
 presentation at RTC, but given that this experience has had an impact on our
 testing perspective, we decided to write a few lines on how it was and what it
 meant to us.&lt;/p&gt;
@@ -27,7 +27,46 @@ on a project. But as long as everybody has understood our message -
 communication and collaboration is everything  - then we definitely can say we
 are on the right track.&lt;/p&gt;
 &lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testers-lab.github.io/testerslab.github.com/#/"&gt;http://testers-lab.github.io/testerslab.github.com/#/&lt;/a&gt;&lt;/p&gt;
-</summary><category term="rtc"></category><category term="presentation"></category></entry><entry><title>Book review: Explore it! by Elisabeth Hendrickson</title><link href="/explore-it/" rel="alternate"></link><updated>2013-01-07T10:20:00+02:00</updated><author><name>ramona</name></author><id>tag:,2013-01-07:explore-it/</id><summary type="html">&lt;p&gt;There are many ways to test a software product. There are many methodologies
+</summary><category term="rtc"></category><category term="presentation"></category></entry><entry><title>Functional tests with django-webtest</title><link href="/functional-tests-with-django-webtest/" rel="alternate"></link><updated>2013-04-25T00:00:00+03:00</updated><author><name>danu</name></author><id>tag:,2013-04-25:functional-tests-with-django-webtest/</id><summary type="html">&lt;p&gt;I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
+I highly recommend them if you want a deep dive into writing tests with django.
+They outline some very good principles for writing effective and maintainable
+tests. They also highlight a suite of test utilities and frameworks which help
+you in writing better tests. Among the others, Webtest caught my attention via
+&lt;a class="reference external" href="https://github.com/kmike/django-webtest"&gt;django-webtest&lt;/a&gt; for writing
+integration/functional tests.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;testLoginProcess&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;login&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth_login&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;username&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;danu&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;test123&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;submit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Log in&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;follow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;assert_equals&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;200 OK&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;assert_contains&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Welcome danu :]&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;testLoginWithInvalidCredentials&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;login&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth_login&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;username&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;submit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Log in&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;assert_contains&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;Please enter a correct username and password. &amp;#39;&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;Note that both fields are case-sensitive.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Why you should choose django-webtest instead of django client ?&lt;/strong&gt;  Well,
+first of all, it can better capture the user experience mainly because you can
+submit forms and follow links. You are not only testing the views but also the
+template html. Secondly, it will allow you to write more simple and readable
+tests, an important fact when it comes to integration or functional tests.&lt;/p&gt;
+&lt;p&gt;It interacts with django via the WSGI interface so ajax, js will not be tested.
+For that purpose you normally use selenium.&lt;/p&gt;
+&lt;p&gt;I’ve set up a project on &lt;a class="reference external" href="https://github.com/danclaudiupop/django-lab-tests"&gt;github&lt;/a&gt; to illustrate some
+automated tests with django-webtest. It uses nose test suite runner since i
+don’t want to to import all my tests into tests/__init__.py and for rest of the
+goodness that nose offers.&lt;/p&gt;
+</summary><category term="functional"></category><category term="django-webtest"></category></entry><entry><title>Book review: Explore it! by Elisabeth Hendrickson</title><link href="/explore-it/" rel="alternate"></link><updated>2013-01-07T10:20:00+02:00</updated><author><name>ramona</name></author><id>tag:,2013-01-07:explore-it/</id><summary type="html">&lt;p&gt;There are many ways to test a software product. There are many methodologies
 that could help in testing that software product, so that the final release
 contains as less bugs as possible. We are not at the point where we could say
 that we have found the solution for bug free applications. But we are at the
