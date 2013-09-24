@@ -14,6 +14,8 @@ presentation at RTC, but given that this experience has had an impact on our
 testing perspective, we decided to write a few lines on how it was and what it
 meant to us.
 
+.. image:: /static/images/rtc_2013.png
+
 We were pleasantly surprised to see that many colleagues share our opinions on
 software testing and this alone was enough to get us through the emotions we
 had that day, simply because we knew that we were speaking the same language.
@@ -42,4 +44,4 @@ on a project. But as long as everybody has understood our message -
 communication and collaboration is everything  - then we definitely can say we
 are on the right track.
 
-You can see the presentation here - http://testers-lab.github.io/testerslab.github.com/#/
+You can see the presentation here - http://testpy.github.io/RTC-presentation/
