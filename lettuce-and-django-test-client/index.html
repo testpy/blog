@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="/" type="application/atom+xml" title="testpy ATOM Feed"/>
+    
+            <title>Lettuce and django test client // testpy // Software Testing and more</title>
+    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="/theme/pure.css">
+    <link rel="stylesheet" href="/theme/pygments.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz0M.gif')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                        <h1 class="brand-main"><a href="/">testpy</a></h1>
+                        <p class="tagline">Software Testing and more</p>
+                                                    <p class="links"><a href="/about-us.html">About</a></li>
+                                                                            <p class="links"><a href="https://github.com/testpy/">Github</a></li>
+                                                </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <div class="pure-u-3-4">
+    <div class="content">
+        <section class="post">
+            <header class="post-header">
+                <h1>Lettuce and django test client</h1>
+                    <p class="post-meta">
+                        By <a class="post-author" href="/author/danu.html">danu</a> on Fri 01 February 2013
+                        // under                             <a class="post-category" href="/tag/functional.html">functional</a>
+                                                    <a class="post-category" href="/tag/lettuce.html">lettuce</a>
+                                                    <a class="post-category" href="/tag/django-test-client.html">django test client</a>
+                                                    <a class="post-category" href="/tag/selenium.html">selenium</a>
+                                            </p>
+            </header>
+        </section>
+        <p>When running a functional test, you fire up “browser” and do the &quot;same&quot; actions
+as a real user (or API client). There are different “browsers” for testing your
+applications, some of them are real, like selenium and some of them are less
+real, like django test client. Depending on the context, each of them has its
+pros and cons.</p>
+<ul class="simple">
+<li>django test client is very fast, since you don’t need a browser engine, real
+http listening and so on, but JavaScript and/or Ajax views are not tested</li>
+<li>selenium is a browser-driving library, opens a real browser and tests
+rendered HTML alongside with behavior of Web pages. Write selenium tests for
+Ajax, other JS/server interactions.</li>
+</ul>
+<p>A complete test suite should contain both test types.</p>
+<div class="section" id="functional-tests-and-django">
+<h2>Functional tests and Django</h2>
+<p>Write functional/integration/system (has more names than it needs) tests for
+views. Unit testing the view is hard because views have many dependencies
+(templates, db, middleware, url routing etc).</p>
+<p>You should definitely have django functional tests but chances are you should
+have fewer than you have now. See the <a class="reference external" href="https://github.com/kmike/django-webtest">software testing pyramid</a> by Alister Scott which provides
+solid approach to automated testing and shows the mix of testing a team should
+aim for.</p>
+<p><strong>Functional tests:</strong></p>
+<ul class="simple">
+<li>test that the whole integrated system works, catch regressions</li>
+<li>they tend to be slow</li>
+<li>will catch bugs that unit tests will not, but it's harder to debug</li>
+<li>write fewer (more unit tests)</li>
+</ul>
+<p><strong>So what can you test with django-test client ?</strong></p>
+<ul class="simple">
+<li>the correct view is executed for a given url</li>
+<li>simulate post, get, head, put etc. requests</li>
+<li>the returned content has the expected values (you can use beautiful soup,
+lxml or html5lib for parsing the content)</li>
+</ul>
+</div>
+<div class="section" id="example">
+<h2>Example</h2>
+<div class="highlight"><pre><span class="n">Feature</span><span class="p">:</span> <span class="n">Register</span>
+    <span class="n">In</span> <span class="n">order</span> <span class="n">to</span> <span class="n">get</span> <span class="n">access</span> <span class="n">to</span> <span class="n">app</span>
+    <span class="n">A</span> <span class="n">user</span> <span class="n">should</span> <span class="n">be</span> <span class="n">able</span> <span class="n">to</span> <span class="n">register</span>
+
+
+<span class="n">Scenario</span><span class="p">:</span> <span class="n">User</span> <span class="n">registers</span>
+    <span class="n">Given</span> <span class="n">I</span> <span class="n">go</span> <span class="n">to</span> <span class="n">the</span> <span class="n">registration</span> <span class="n">page</span>
+    <span class="n">When</span> <span class="n">I</span> <span class="n">fill</span> <span class="n">register</span> <span class="n">form</span> <span class="k">with</span><span class="p">:</span>
+        <span class="o">|</span> <span class="n">username</span> <span class="o">|</span> <span class="n">email</span>       <span class="o">|</span> <span class="n">password1</span> <span class="o">|</span> <span class="n">password2</span> <span class="o">|</span>
+        <span class="o">|</span> <span class="n">danul</span>    <span class="o">|</span> <span class="n">dan</span><span class="nd">@dan.com</span> <span class="o">|</span> <span class="n">test123</span>   <span class="o">|</span> <span class="n">test123</span>   <span class="o">|</span>
+    <span class="n">And</span> <span class="n">I</span> <span class="n">submit</span> <span class="n">the</span> <span class="n">data</span>
+    <span class="n">Then</span> <span class="n">I</span> <span class="n">should</span> <span class="n">see</span> <span class="s">&quot;Check your email&quot;</span>
+    <span class="n">And</span> <span class="n">I</span> <span class="n">should</span> <span class="n">receive</span> <span class="n">an</span> <span class="n">email</span> <span class="n">at</span> <span class="s">&quot;dan@dan.com&quot;</span> <span class="k">with</span> <span class="n">the</span> <span class="n">subject</span> <span class="s">&quot;Activate your djangoproject.com account - you have 7 days!&quot;</span>
+    <span class="n">And</span> <span class="n">I</span> <span class="n">activate</span> <span class="n">the</span> <span class="n">account</span>
+    <span class="n">Then</span> <span class="n">I</span> <span class="n">should</span> <span class="n">see</span> <span class="s">&quot;Congratulations!&quot;</span>
+</pre></div>
+<div class="highlight"><pre><span class="nd">@step</span><span class="p">(</span><span class="s">u&#39;I go to the register page&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">i_go_to_the_register_page</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;registration_register&#39;</span><span class="p">))</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">world</span><span class="o">.</span><span class="n">html</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+
+<span class="nd">@step</span><span class="p">(</span><span class="s">u&#39;When I fill register form with:&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">when_i_fill_in_user_data_with</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">step</span><span class="o">.</span><span class="n">hashes</span><span class="p">:</span>
+        <span class="n">world</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;form&#39;</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="s">&#39;required&#39;</span><span class="p">)),</span> <span class="mi">4</span><span class="p">)</span>
+
+
+<span class="nd">@step</span><span class="p">(</span><span class="s">u&#39;And I submit the data&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">and_i_submit_the_data</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="n">world</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;registration_register&#39;</span><span class="p">),</span>
+        <span class="n">world</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">follow</span><span class="o">=</span><span class="bp">True</span>
+    <span class="p">)</span>
+    <span class="n">assert_equals</span><span class="p">(</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">world</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="bp">True</span>
+    <span class="p">)</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+
+<span class="nd">@step</span><span class="p">(</span><span class="s">u&#39;I should see &quot;(.*)&quot;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">i_should_see</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">expected_response</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">expected_text</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="n">expected_text</span><span class="p">,</span> <span class="n">expected_response</span><span class="p">)</span>
+
+
+<span class="nd">@step</span><span class="p">(</span><span class="s">u&#39;And I should receive an email at &quot;([^&quot;]*)&quot; with the subject &quot;([^&quot;]*)&quot;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">i_should_receive_email_with_subject</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">outbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">address</span><span class="p">)</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">outbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span> <span class="n">subject</span><span class="p">)</span>
+
+
+<span class="nd">@step</span><span class="p">(</span><span class="s">u&#39;And I activate the account&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">and_i_activate_the_account</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="n">activation_url</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span>
+        <span class="s">r&#39;http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+&#39;</span><span class="p">,</span>
+        <span class="n">mail</span><span class="o">.</span><span class="n">outbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">body</span>
+    <span class="p">)</span>
+    <span class="n">world</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">activation_url</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">follow</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">assert_equals</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="what-s-next">
+<h2>What's next ?</h2>
+<p>Well ... WebTest  :) (<a class="reference external" href="http://pyvideo.org/video/699/testing-and-django">http://pyvideo.org/video/699/testing-and-django</a>)</p>
+<p>Be a good person and write functional tests. Functional testing is something
+that every app needs, no testing strategy is complete without high-level tests
+to ensure the entire programming system works together.</p>
+</div>
+
+        <div class="hr"></div>
+        <a href="#" class="go-top">Go Top</a>
+                    <div class="comments">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_identifier = "lettuce-and-django-test-client/";
+                    (function() {
+                        var dsq = document.createElement('script');
+                        dsq.type = 'text/javascript';
+                        dsq.async = true;
+                        dsq.src = 'http://testpy.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view <a href="http://disqus.com/?ref_noscript">comments</a>.</noscript>
+            </div>
+                <footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/danclaudiupop/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+    <p>Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_GB">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
+</footer>    </div>
+</div>
+    </div>
+
+    <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+    <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the sticky footer button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.go-top').fadeIn(200);
+                } else {
+                    $('.go-top').fadeOut(200);
+                }
+            });
+
+            // Animate the scroll to top
+            $('.go-top').click(function(event) {
+                event.preventDefault();
+
+                $('html, body').animate({scrollTop: 0}, 300);
+            })
+        });
+    </script>
+    </body>
+</html>
