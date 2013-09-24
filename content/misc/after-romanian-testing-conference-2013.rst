@@ -1,7 +1,7 @@
 After Romanian Testing Conference 2013
 ######################################
 
-:date: 2013-05-24 10:20
+:date: 2013-05-24
 :tags: rtc, presentation
 :category: misc
 :slug: rtc
