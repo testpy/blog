@@ -3,6 +3,7 @@
 presentation at RTC, but given that this experience has had an impact on our
 testing perspective, we decided to write a few lines on how it was and what it
 meant to us.&lt;/p&gt;
+&lt;img alt="/static/images/rtc_2013.png" src="/static/images/rtc_2013.png" /&gt;
 &lt;p&gt;We were pleasantly surprised to see that many colleagues share our opinions on
 software testing and this alone was enough to get us through the emotions we
 had that day, simply because we knew that we were speaking the same language.
@@ -26,7 +27,7 @@ was a success.&lt;/p&gt;
 on a project. But as long as everybody has understood our message -
 communication and collaboration is everything  - then we definitely can say we
 are on the right track.&lt;/p&gt;
-&lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testers-lab.github.io/testerslab.github.com/#/"&gt;http://testers-lab.github.io/testerslab.github.com/#/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testpy.github.io/RTC-presentation/"&gt;http://testpy.github.io/RTC-presentation/&lt;/a&gt;&lt;/p&gt;
 </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ramona</dc:creator><pubDate>Fri, 24 May 2013 00:00:00 +0300</pubDate><guid>tag:,2013-05-24:rtc/</guid><category>rtc</category><category>presentation</category></item><item><title>Functional tests with django-webtest</title><link>/functional-tests-with-django-webtest/</link><description>&lt;p&gt;I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
 I highly recommend them if you want a deep dive into writing tests with django.
 They outline some very good principles for writing effective and maintainable
