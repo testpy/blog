@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="/" type="application/atom+xml" title="testpy ATOM Feed"/>
+    
+            <title>Writing tests with django and selenium // testpy // Software Testing and more</title>
+    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="/theme/pure.css">
+    <link rel="stylesheet" href="/theme/pygments.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz0M.gif')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                        <h1 class="brand-main"><a href="/">testpy</a></h1>
+                        <p class="tagline">Software Testing and more</p>
+                                                    <p class="links"><a href="/about-us.html">About</a></li>
+                                                                            <p class="links"><a href="https://github.com/testpy/">Github</a></li>
+                                                </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <div class="pure-u-3-4">
+    <div class="content">
+        <section class="post">
+            <header class="post-header">
+                <h1>Writing tests with django and selenium</h1>
+                    <p class="post-meta">
+                        By <a class="post-author" href="/author/ramona.html">ramona</a> on Thu 25 April 2013
+                        // under                             <a class="post-category" href="/tag/functional.html">functional</a>
+                                                    <a class="post-category" href="/tag/django.html">django</a>
+                                                    <a class="post-category" href="/tag/selenium.html">selenium</a>
+                                            </p>
+            </header>
+        </section>
+        <p>Getting our Selenium tests to run faster can be complicated at times, because
+there are a number of factors to be taken into consideration. Debugging these
+tests is time consuming and the end result is almost always the same one - a
+large part of the tests needs to be refactored.</p>
+<p>Luckily, for projects implemented with Django, we have the possibility to
+explore a wide range of testing solutions, backed up by an active internet
+community. Instead of always trying to use Selenium as a standalone solution,
+we could analyze the possibility of having those tests integrated in our Django
+project, and hence, be able to run with a simple command, all tests. By all
+tests, I mean unit tests and functional tests.</p>
+<p>For a practical example, please have a look at this <a class="reference external" href="https://github.com/ramonasuciu/django_selenium_tests">github</a> repo. This is just an
+example of how Selenium tests can be integrated with Django, with the use of
+LiveServerTestCase class. Make sure to run pip install -r requirements.txt in a
+virtualenv and you’re good to go.</p>
+<p>The application used for testing is <a class="reference external" href="https://bitbucket.org/ubernostrum/django-registration/">django-registration</a>, which provides
+enough support for developing functional tests. We inserted a js library
+(password_strength_plugin.js) to better illustrate the need of Selenium
+(JS/CSS/HTML focused) automated tests.</p>
+<p>The advantages of this approach are numerous - you are able to test the
+build as well, not only the deploy. Tests are faster, and, if you decide to
+write your tests using a page object pattern method, then debugging will become
+easier, as you’ll be able to faster track failures and their causes.</p>
+
+        <div class="hr"></div>
+        <a href="#" class="go-top">Go Top</a>
+                    <div class="comments">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_identifier = "writing-tests-with-django-and-selenium/";
+                    (function() {
+                        var dsq = document.createElement('script');
+                        dsq.type = 'text/javascript';
+                        dsq.async = true;
+                        dsq.src = 'http://testpy.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view <a href="http://disqus.com/?ref_noscript">comments</a>.</noscript>
+            </div>
+                <footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/danclaudiupop/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+    <p>Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_GB">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
+</footer>    </div>
+</div>
+    </div>
+
+    <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+    <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the sticky footer button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.go-top').fadeIn(200);
+                } else {
+                    $('.go-top').fadeOut(200);
+                }
+            });
+
+            // Animate the scroll to top
+            $('.go-top').click(function(event) {
+                event.preventDefault();
+
+                $('html, body').animate({scrollTop: 0}, 300);
+            })
+        });
+    </script>
+        <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-44297043-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
