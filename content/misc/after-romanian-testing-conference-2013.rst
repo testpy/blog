@@ -5,8 +5,9 @@ After Romanian Testing Conference 2013
 :tags: rtc, presentation
 :category: misc
 :slug: rtc
-:author: ramona
+:author: Ramona Suciu
 :email: ram.constantinescu@gmail.com
+:summary: Lessons learnt at the Romanian Testing Conference
 
 
 It’s been awhile since myself and my colleague Dan Claudiu Pop have had our

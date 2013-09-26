@@ -5,8 +5,9 @@ Functional tests with django-webtest
 :tags: functional, django-webtest
 :category: python
 :slug: functional-tests-with-django-webtest
-:author: danu
+:author: Dan Claudiu Pop
 :email: danclaudiupop@gmail.com
+:summary: Why you should use django-webtest instead of django test client ?
 
 I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
 I highly recommend them if you want a deep dive into writing tests with django.

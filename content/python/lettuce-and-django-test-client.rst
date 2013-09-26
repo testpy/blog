@@ -5,7 +5,7 @@ Lettuce and django test client
 :tags: functional, lettuce, django test client, selenium
 :category: python
 :slug: lettuce-and-django-test-client
-:author: danu
+:author: Dan Claudiu Pop
 :email: danclaudiupop@gmail.com
 
 

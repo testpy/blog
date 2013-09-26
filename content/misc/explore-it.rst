@@ -5,8 +5,9 @@ Book review: Explore it! by Elisabeth Hendrickson
 :tags: book, review
 :category: misc
 :slug: explore-it
-:author: ramona
+:author: Ramona Suciu
 :email: ram.constantinescu@gmail.com
+:summary: There are many ways to test a software product
 
 
 There are many ways to test a software product. There are many methodologies
