@@ -21,4 +21,4 @@ enough support for developing functional tests. We inserted a js library
 build as well, not only the deploy. Tests are faster, and, if you decide to
 write your tests using a page object pattern method, then debugging will become
 easier, as you’ll be able to faster track failures and their causes.&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ramona</dc:creator><pubDate>Thu, 25 Apr 2013 00:00:00 +0300</pubDate><guid>tag:,2013-04-25:writing-tests-with-django-and-selenium/</guid><category>functional</category><category>django</category><category>selenium</category></item></channel></rss>
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ramona Suciu</dc:creator><pubDate>Thu, 25 Apr 2013 00:00:00 +0300</pubDate><guid>tag:,2013-04-25:writing-tests-with-django-and-selenium/</guid><category>functional</category><category>django</category><category>selenium</category></item></channel></rss>

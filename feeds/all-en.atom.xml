@@ -67,7 +67,7 @@ For that purpose you normally use selenium.&lt;/p&gt;
 automated tests with django-webtest. It uses nose test suite runner since i
 don’t want to to import all my tests into tests/__init__.py and for rest of the
 goodness that nose offers.&lt;/p&gt;
-</summary><category term="functional"></category><category term="django-webtest"></category></entry><entry><title>Writing tests with django and selenium</title><link href="/writing-tests-with-django-and-selenium/" rel="alternate"></link><updated>2013-04-25T00:00:00+03:00</updated><author><name>ramona</name></author><id>tag:,2013-04-25:writing-tests-with-django-and-selenium/</id><summary type="html">&lt;p&gt;Getting our Selenium tests to run faster can be complicated at times, because
+</summary><category term="functional"></category><category term="django-webtest"></category></entry><entry><title>Writing tests with django and selenium</title><link href="/writing-tests-with-django-and-selenium/" rel="alternate"></link><updated>2013-04-25T00:00:00+03:00</updated><author><name>Ramona Suciu</name></author><id>tag:,2013-04-25:writing-tests-with-django-and-selenium/</id><summary type="html">&lt;p&gt;Getting our Selenium tests to run faster can be complicated at times, because
 there are a number of factors to be taken into consideration. Debugging these
 tests is time consuming and the end result is almost always the same one - a
 large part of the tests needs to be refactored.&lt;/p&gt;
