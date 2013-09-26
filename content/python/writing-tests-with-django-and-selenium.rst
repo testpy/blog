@@ -5,7 +5,7 @@ Writing tests with django and selenium
 :tags: functional, django, selenium
 :category: python
 :slug: writing-tests-with-django-and-selenium
-:author: ramona
+:author: Ramona Suciu
 :email: ram.constantinescu@gmail.com
 
 
