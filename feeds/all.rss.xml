@@ -28,7 +28,7 @@ on a project. But as long as everybody has understood our message -
 communication and collaboration is everything  - then we definitely can say we
 are on the right track.&lt;/p&gt;
 &lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testpy.github.io/RTC-presentation/"&gt;http://testpy.github.io/RTC-presentation/&lt;/a&gt;&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ramona</dc:creator><pubDate>Fri, 24 May 2013 00:00:00 +0300</pubDate><guid>tag:,2013-05-24:rtc/</guid><category>rtc</category><category>presentation</category></item><item><title>Functional tests with django-webtest</title><link>/functional-tests-with-django-webtest/</link><description>&lt;p&gt;I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ramona Suciu</dc:creator><pubDate>Fri, 24 May 2013 00:00:00 +0300</pubDate><guid>tag:,2013-05-24:rtc/</guid><category>rtc</category><category>presentation</category></item><item><title>Functional tests with django-webtest</title><link>/functional-tests-with-django-webtest/</link><description>&lt;p&gt;I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
 I highly recommend them if you want a deep dive into writing tests with django.
 They outline some very good principles for writing effective and maintainable
 tests. They also highlight a suite of test utilities and frameworks which help
@@ -67,7 +67,7 @@ For that purpose you normally use selenium.&lt;/p&gt;
 automated tests with django-webtest. It uses nose test suite runner since i
 don’t want to to import all my tests into tests/__init__.py and for rest of the
 goodness that nose offers.&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">danu</dc:creator><pubDate>Thu, 25 Apr 2013 00:00:00 +0300</pubDate><guid>tag:,2013-04-25:functional-tests-with-django-webtest/</guid><category>functional</category><category>django-webtest</category></item><item><title>Writing tests with django and selenium</title><link>/writing-tests-with-django-and-selenium/</link><description>&lt;p&gt;Getting our Selenium tests to run faster can be complicated at times, because
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dan Claudiu Pop</dc:creator><pubDate>Thu, 25 Apr 2013 00:00:00 +0300</pubDate><guid>tag:,2013-04-25:functional-tests-with-django-webtest/</guid><category>functional</category><category>django-webtest</category></item><item><title>Writing tests with django and selenium</title><link>/writing-tests-with-django-and-selenium/</link><description>&lt;p&gt;Getting our Selenium tests to run faster can be complicated at times, because
 there are a number of factors to be taken into consideration. Debugging these
 tests is time consuming and the end result is almost always the same one - a
 large part of the tests needs to be refactored.&lt;/p&gt;
@@ -202,7 +202,7 @@ lxml or html5lib for parsing the content)&lt;/li&gt;
 that every app needs, no testing strategy is complete without high-level tests
 to ensure the entire programming system works together.&lt;/p&gt;
 &lt;/div&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">danu</dc:creator><pubDate>Fri, 01 Feb 2013 00:00:00 +0200</pubDate><guid>tag:,2013-02-01:lettuce-and-django-test-client/</guid><category>functional</category><category>lettuce</category><category>django test client</category><category>selenium</category></item><item><title>Book review: Explore it! by Elisabeth Hendrickson</title><link>/explore-it/</link><description>&lt;p&gt;There are many ways to test a software product. There are many methodologies
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dan Claudiu Pop</dc:creator><pubDate>Fri, 01 Feb 2013 00:00:00 +0200</pubDate><guid>tag:,2013-02-01:lettuce-and-django-test-client/</guid><category>functional</category><category>lettuce</category><category>django test client</category><category>selenium</category></item><item><title>Book review: Explore it! by Elisabeth Hendrickson</title><link>/explore-it/</link><description>&lt;p&gt;There are many ways to test a software product. There are many methodologies
 that could help in testing that software product, so that the final release
 contains as less bugs as possible. We are not at the point where we could say
 that we have found the solution for bug free applications. But we are at the
@@ -243,4 +243,4 @@ to do well on an interview, when faced with testing unfamiliar applications.&lt;
 &lt;p&gt;What I realized is that I found a few answers, but I have also discovered
 new questions and for me, this is more important. It means that the book got me
 thinking and questioning - how could I become a better explorer?&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ramona</dc:creator><pubDate>Mon, 07 Jan 2013 10:20:00 +0200</pubDate><guid>tag:,2013-01-07:explore-it/</guid><category>book</category><category>review</category></item></channel></rss>
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ramona Suciu</dc:creator><pubDate>Mon, 07 Jan 2013 10:20:00 +0200</pubDate><guid>tag:,2013-01-07:explore-it/</guid><category>book</category><category>review</category></item></channel></rss>

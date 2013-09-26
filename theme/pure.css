@@ -25,7 +25,6 @@ pre {
     bottom: 0;
     width: 25%;
     margin-left: -25%;
-    color: #fff;
 }
 
 .cover-img {
@@ -54,6 +53,29 @@ pre {
     background-image: linear-gradient(to top,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);
 }
 
+.brand-title,
+.brand-tagline {
+    margin: 0;
+}
+.brand-title {
+    text-transform: uppercase;
+}
+
+.article-info {
+    padding-top: 15px;
+    clear: right;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    word-wrap: break-word;
+}
+
+.header-article {
+    width: 767px;
+    max-width: 100%;
+    text-align: right;
+    padding-top: 4em;
+}
+
 .header {
     text-align: left;
     width: 767px;
@@ -77,6 +99,7 @@ pre {
     line-height: 0.8em;
     font-size: 80%;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    color: #fff;
 }
 
 .links a {
@@ -88,7 +111,6 @@ pre {
     text-decoration: none;
     color: #fff;
 }
-
 
 .content-subhead {
     text-transform: uppercase;
@@ -206,12 +228,17 @@ pre {
         background-size: cover;
     }
 
+    .post-avatar {
+        float: none;
+    }
+
     .cover-body {
         padding-bottom: 5%;
         padding-top: 0;
     }
 
-    .header {
+    .header,
+    .header-article {
         text-align: center;
         top: auto;
         margin: 3em auto;

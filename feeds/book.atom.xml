@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="/feeds/book.atom.xml" rel="self"></link><id>/</id><updated>2013-01-07T10:20:00+02:00</updated><entry><title>Book review: Explore it! by Elisabeth Hendrickson</title><link href="/explore-it/" rel="alternate"></link><updated>2013-01-07T10:20:00+02:00</updated><author><name>ramona</name></author><id>tag:,2013-01-07:explore-it/</id><summary type="html">&lt;p&gt;There are many ways to test a software product. There are many methodologies
+<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="/feeds/book.atom.xml" rel="self"></link><id>/</id><updated>2013-01-07T10:20:00+02:00</updated><entry><title>Book review: Explore it! by Elisabeth Hendrickson</title><link href="/explore-it/" rel="alternate"></link><updated>2013-01-07T10:20:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:,2013-01-07:explore-it/</id><summary type="html">&lt;p&gt;There are many ways to test a software product. There are many methodologies
 that could help in testing that software product, so that the final release
 contains as less bugs as possible. We are not at the point where we could say
 that we have found the solution for bug free applications. But we are at the

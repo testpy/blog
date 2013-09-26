@@ -38,4 +38,4 @@ For that purpose you normally use selenium.&lt;/p&gt;
 automated tests with django-webtest. It uses nose test suite runner since i
 don’t want to to import all my tests into tests/__init__.py and for rest of the
 goodness that nose offers.&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">danu</dc:creator><pubDate>Thu, 25 Apr 2013 00:00:00 +0300</pubDate><guid>tag:,2013-04-25:functional-tests-with-django-webtest/</guid><category>functional</category><category>django-webtest</category></item></channel></rss>
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dan Claudiu Pop</dc:creator><pubDate>Thu, 25 Apr 2013 00:00:00 +0300</pubDate><guid>tag:,2013-04-25:functional-tests-with-django-webtest/</guid><category>functional</category><category>django-webtest</category></item></channel></rss>
