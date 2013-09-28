@@ -6,6 +6,7 @@ Lettuce and django test client
 :category: python
 :slug: lettuce-and-django-test-client
 :author: Dan Claudiu Pop
+:about_author: Test engineer, currently working @3PillarGlobal, interested in most aspects of software testing.
 :email: danclaudiupop@gmail.com
 
 

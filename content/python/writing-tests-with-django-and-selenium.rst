@@ -6,6 +6,7 @@ Writing tests with django and selenium
 :category: python
 :slug: writing-tests-with-django-and-selenium
 :author: Ramona Suciu
+:about_author: Test lead engineer, wannabe aerobics instructor; i like shoes almost as much as testing.
 :email: ram.constantinescu@gmail.com
 
 

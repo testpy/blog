@@ -7,6 +7,7 @@ After Romanian Testing Conference 2013
 :slug: rtc
 :author: Ramona Suciu
 :email: ram.constantinescu@gmail.com
+:about_author: Test lead engineer, wannabe aerobics instructor; i like shoes almost as much as testing. Currently working @3PillarGlobal, Cluj-Napoca.
 :summary: Lessons learnt at the Romanian Testing Conference
 
 
@@ -15,7 +16,7 @@ presentation at RTC, but given that this experience has had an impact on our
 testing perspective, we decided to write a few lines on how it was and what it
 meant to us.
 
-.. image:: /static/images/rtc_2013.png
+.. image:: /images/rtc_2013.png
 
 We were pleasantly surprised to see that many colleagues share our opinions on
 software testing and this alone was enough to get us through the emotions we
