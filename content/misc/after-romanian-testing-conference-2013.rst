@@ -17,6 +17,7 @@ testing perspective, we decided to write a few lines on how it was and what it
 meant to us.
 
 .. image:: /images/rtc_2013.png
+    :alt: Romanian Testing Conference 2013
 
 We were pleasantly surprised to see that many colleagues share our opinions on
 software testing and this alone was enough to get us through the emotions we
