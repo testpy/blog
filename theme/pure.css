@@ -77,6 +77,16 @@ pre {
     word-wrap: break-word;
 }
 
+.about-author {
+    margin-left: 3px;
+}
+    hr {
+        border: 1px solid #f2f2f0;
+        width: 10%;
+        margin-top: 20px;
+        margin-right: 0px;
+    }
+
 .header-article {
     width: 767px;
     max-width: 100%;
@@ -197,11 +207,6 @@ pre {
     right: 0;
 }
 
-.hr {
-    border-bottom: 1px solid #f2f2f0;
-    margin-bottom: 30px;
-}
-
 .go-top {
     position: fixed;
     bottom: 2em;
@@ -228,7 +233,7 @@ pre {
         width: 100%;
         position: relative;
         margin: 0;
-        height: 400px;
+        height: 425px;
     }
 
     .cover-img {
@@ -250,8 +255,13 @@ pre {
     .header-article {
         text-align: center;
         top: auto;
-        margin: 3em auto;
         position: static;
+    }
+
+    hr {
+        border: 1px solid #f2f2f0;
+        width: 100%;
+        margin: 25px auto;
     }
 
     #layout {
