@@ -14,7 +14,6 @@ a:focus {
 }
 
 .banner {
-    background: transparent url('https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz0M.gif') 0 0 no-repeat fixed;
     background-position: center;
     background-size: cover;
     height: 300px;
