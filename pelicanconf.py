@@ -19,7 +19,7 @@ TAG_FEED_ATOM = "feeds/%s.atom.xml"
 
 DEFAULT_PAGINATION = 5
 
-STATIC_PATHS = ['images', ]
+STATIC_PATHS = ['images', 'extra/CNAME']
 
 THEME = "theme/pure/"
 COVER_IMG_URL = "https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz0M.gif"
@@ -37,8 +37,6 @@ ARTICLE_SAVE_AS = '{slug}/index.html'
 
 PAGE_URL = PAGE_SAVE_AS = '{slug}.html'
 
-FILES_TO_COPY = [
-    #('extra/robots.txt', 'robots.txt'),
-    ('extra/CNAME', 'CNAME'),
-    #('extra/favicon.ico', 'favicon.ico'),
-]
+EXTRA_PATH_METADATA = {
+    'extra/CNAME': {'path': 'CNAME'},
+}
