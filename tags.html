@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="/" type="application/atom+xml" title="testpy ATOM Feed"/>
+
+        <title>testpy - Tags</title>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="/theme/pure.css">
+    <link rel="stylesheet" href="/theme/pygments.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Tags for testpy</h1>        <li><a href="/tag/book.html">book</a> (1)</li>
+        <li><a href="/tag/django.html">django</a> (1)</li>
+        <li><a href="/tag/django-test-client.html">django test client</a> (1)</li>
+        <li><a href="/tag/django-webtest.html">django-webtest</a> (1)</li>
+        <li><a href="/tag/functional.html">functional</a> (3)</li>
+        <li><a href="/tag/lettuce.html">lettuce</a> (1)</li>
+        <li><a href="/tag/presentation.html">presentation</a> (1)</li>
+        <li><a href="/tag/review.html">review</a> (1)</li>
+        <li><a href="/tag/rtc.html">rtc</a> (1)</li>
+        <li><a href="/tag/selenium.html">selenium</a> (2)</li>
+    </div>
+
+    <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+    <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the sticky footer button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.go-top').fadeIn(200);
+                } else {
+                    $('.go-top').fadeOut(200);
+                }
+            });
+
+            // Animate the scroll to top
+            $('.go-top').click(function(event) {
+                event.preventDefault();
+
+                $('html, body').animate({scrollTop: 0}, 300);
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-44297043-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
