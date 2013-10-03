@@ -8,7 +8,7 @@ Using tail to explore logs
 :author: Dan Claudiu Pop
 :email: danclaudiupop@gmail.com
 :about_author: Test engineer, currently working @3PillarGlobal, interested in most aspects of software testing.
-:summary: Using tail to explore logs
+:summary: tail -f vs tailf
 
 
 When I am testing, I always keep an eye on the logs because they are a valuable
