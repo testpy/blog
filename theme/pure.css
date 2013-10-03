@@ -13,6 +13,10 @@ a:focus {
     text-decoration: underline;
 }
 
+.comments {
+    padding: 50px 0 0;
+}
+
 .banner {
     background-position: center;
     background-size: cover;
