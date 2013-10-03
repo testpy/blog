@@ -11,8 +11,8 @@ project, and hence, be able to run with a simple command, all tests. By all
 tests, I mean unit tests and functional tests.&lt;/p&gt;
 &lt;p&gt;For a practical example, please have a look at this &lt;a class="reference external" href="https://github.com/ramonasuciu/django_selenium_tests"&gt;github&lt;/a&gt; repo. This is just an
 example of how Selenium tests can be integrated with Django, with the use of
-LiveServerTestCase class. Make sure to run pip install -r requirements.txt in a
-virtualenv and you’re good to go.&lt;/p&gt;
+&lt;tt class="docutils literal"&gt;LiveServerTestCase&lt;/tt&gt; class. Make sure to run &lt;tt class="docutils literal"&gt;pip install &lt;span class="pre"&gt;-r&lt;/span&gt;
+requirements.txt&lt;/tt&gt; in a virtualenv and you’re good to go.&lt;/p&gt;
 &lt;p&gt;The application used for testing is &lt;a class="reference external" href="https://bitbucket.org/ubernostrum/django-registration/"&gt;django-registration&lt;/a&gt;, which provides
 enough support for developing functional tests. We inserted a js library
 (password_strength_plugin.js) to better illustrate the need of Selenium
