@@ -7,7 +7,7 @@ Book review: Explore it! by Elisabeth Hendrickson
 :slug: explore-it
 :author: Ramona Suciu
 :email: ram.constantinescu@gmail.com
-:about_author: Test lead engineer, wannabe aerobics instructor; i like shoes almost as much as testing. Currently working @3PillarGlobal, Cluj-Napoca.
+:about_author: Test lead engineer, wannabe aerobics instructor; I like shoes almost as much as testing. Currently working @3PillarGlobal, Cluj-Napoca.
 :summary: There are many ways to test a software product
 
 

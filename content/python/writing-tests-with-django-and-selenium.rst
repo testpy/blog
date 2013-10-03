@@ -6,7 +6,7 @@ Writing tests with django and selenium
 :category: python
 :slug: writing-tests-with-django-and-selenium
 :author: Ramona Suciu
-:about_author: Test lead engineer, wannabe aerobics instructor; i like shoes almost as much as testing.
+:about_author: Test lead engineer, wannabe aerobics instructor; I like shoes almost as much as testing. Currently working @3PillarGlobal, Cluj-Napoca.
 :email: ram.constantinescu@gmail.com
 
 
@@ -25,8 +25,8 @@ tests, I mean unit tests and functional tests.
 For a practical example, please have a look at this `github
 <https://github.com/ramonasuciu/django_selenium_tests>`_ repo. This is just an
 example of how Selenium tests can be integrated with Django, with the use of
-LiveServerTestCase class. Make sure to run pip install -r requirements.txt in a
-virtualenv and you’re good to go.
+``LiveServerTestCase`` class. Make sure to run ``pip install -r
+requirements.txt`` in a virtualenv and you’re good to go.
 
 The application used for testing is `django-registration
 <https://bitbucket.org/ubernostrum/django-registration/>`_, which provides
