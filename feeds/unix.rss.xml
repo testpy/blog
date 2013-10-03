@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testpy</title><link>/</link><description></description><atom:link href="/feeds/unix.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 03 Oct 2013 12:30:00 +0300</lastBuildDate><item><title>Using tail to explore logs</title><link>/using-tail-to-explore-logs/</link><description>&lt;p&gt;When I am testing, I always keep an eye on the logs because they are a valuable
+resource for finding problems on the system. They can act as an early warning
+system. The &lt;tt class="docutils literal"&gt;tail&lt;/tt&gt; commnand alongside with &lt;tt class="docutils literal"&gt;view&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;vim&lt;/tt&gt; are great ways
+to explore big log entries.&lt;/p&gt;
+&lt;p&gt;There is a slightly difference between the &lt;tt class="docutils literal"&gt;tail &lt;span class="pre"&gt;-f&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;tailf&lt;/tt&gt; commands.
+With &lt;tt class="docutils literal"&gt;tail &lt;span class="pre"&gt;-f&lt;/span&gt;&lt;/tt&gt; you can basically do multitail like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;web_app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;while &lt;tt class="docutils literal"&gt;tailf&lt;/tt&gt; does not allow you to do multitail.&lt;/p&gt;
+&lt;p&gt;Ofcourse when there is too much noise you can pipe the output.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;web_app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="n"&gt;ERROR&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dan Claudiu Pop</dc:creator><pubDate>Thu, 03 Oct 2013 12:30:00 +0300</pubDate><guid>tag:,2013-10-03:using-tail-to-explore-logs/</guid><category>unix</category></item></channel></rss>
