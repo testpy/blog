@@ -13,6 +13,10 @@ a:focus {
     text-decoration: underline;
 }
 
+.comments {
+    padding: 50px 0 0;
+}
+
 .banner {
     background-position: center;
     background-size: cover;
@@ -77,7 +81,11 @@ pre {
 }
 
 .about-author {
-    margin-left: 3px;
+    display: block;
+    width: 65%;
+    padding: 0 0px;
+    float: right;
+    margin-bottom: 35px;
 }
     hr {
         border: 1px solid #f2f2f0;
@@ -91,6 +99,10 @@ pre {
     max-width: 100%;
     text-align: right;
     padding-top: 4em;
+}
+
+.header-article h5 {
+    clear: both;
 }
 
 .header {
@@ -243,6 +255,10 @@ pre {
     .post-avatar {
         margin-top: 15px;
         float: none;
+    }
+
+    .about-author {
+        width: 100%;
     }
 
     .cover-body {
