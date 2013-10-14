@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testpy</title><link>/</link><description></description><atom:link href="/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 03 Oct 2013 12:30:00 +0300</lastBuildDate><item><title>Using tail to explore logs</title><link>/using-tail-to-explore-logs/</link><description>&lt;p&gt;When I am testing, I always keep an eye on the logs because they are a valuable
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testpy</title><link>/</link><description></description><atom:link href="/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 03 Oct 2013 12:30:00 +0300</lastBuildDate><item><title>Command line JSON parser via jq</title><link>/command-line-json-parser-via-jq/</link><description>&lt;p&gt;A command-line JSON parser can be handy when you test or debug JSON web
+services. Unfortunately inspecting JSON responses via command line are hard to
+read and not easy to manipulate with traditional Unix utilities.&lt;/p&gt;
+&lt;p&gt;Today I stumbled on &lt;a class="reference external" href="http://stedolan.github.io/jq/"&gt;jq&lt;/a&gt;, via &lt;a class="reference external" href="https://github.com/limpangel"&gt;Angel Ramboi&lt;/a&gt;. &lt;tt class="docutils literal"&gt;jq&lt;/tt&gt; is a lightweight and flexible
+command-line JSON processor.&lt;/p&gt;
+&lt;p&gt;Download the desired binary and then &lt;tt class="docutils literal"&gt;chmod +x ./jq&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;I've prepared a sample json so we can see how easily it is to inspect and
+manipulate JSON strings.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt;
+
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;last&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;sex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;M&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;registered&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;interests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Reading&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Mountain Biking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hacking&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;favorites&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Blue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;sport&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Soccer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;food&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Spaghetti&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;skills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GO&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;84&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Simple filtering:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.skills&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.category&amp;#39;&lt;/span&gt;
+
+&lt;span class="err"&gt;Python&lt;/span&gt;
+&lt;span class="err"&gt;Go&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Filtering with index:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;skills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;.name,&lt;/span&gt; &lt;span class="err"&gt;.score&amp;#39;&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
+&lt;span class="mi"&gt;96&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;...or a different flavour:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.skills&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;.tests&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;.name,&lt;/span&gt; &lt;span class="err"&gt;.score&amp;#39;&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
+&lt;span class="mi"&gt;96&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Built-in operators:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.interests&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;length&amp;#39;&lt;/span&gt;
+
+&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Manipulate JSON string:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;if&lt;/span&gt; &lt;span class="err"&gt;.registered&lt;/span&gt; &lt;span class="err"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="err"&gt;then&lt;/span&gt; &lt;span class="err"&gt;.skills&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.tests&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.score&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="err"&gt;else&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt; &lt;span class="err"&gt;end&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;new_sample.json&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Head on and read the &lt;a class="reference external" href="http://stedolan.github.io/jq/manual/"&gt;jq manual&lt;/a&gt; if you
+want to include it in your tester toolbox.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dan Claudiu Pop</dc:creator><pubDate>Thu, 03 Oct 2013 12:30:00 +0300</pubDate><guid>tag:,2013-10-03:command-line-json-parser-via-jq/</guid><category>unix</category></item><item><title>Using tail to explore logs</title><link>/using-tail-to-explore-logs/</link><description>&lt;p&gt;When I am testing, I always keep an eye on the logs because they are a valuable
 resource for finding problems on the system. They can act as an early warning
 system. The &lt;tt class="docutils literal"&gt;tail&lt;/tt&gt; commnand alongside with &lt;tt class="docutils literal"&gt;view&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;vim&lt;/tt&gt; are great ways
 to explore big log entries.&lt;/p&gt;

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="/" type="application/atom+xml" title="testpy ATOM Feed"/>
+
+        <title>Command line JSON parser via jq // testpy // Software Testing and more</title>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="/theme/pure.css">
+    <link rel="stylesheet" href="/theme/pygments.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
+                    <img class="post-avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab" height="100" width="100">
+                </a>
+                <h2 class="article-info">Dan Claudiu Pop</h2>
+                <small class="about-author"><i>Test engineer, currently working @3PillarGlobal, interested in most aspects of software testing.</i></small>
+                <h5>Published</h5>
+                <p>Thu 03 October 2013</p>
+                <a href="/">&larr;Home</a>
+                <hr>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u-3-4">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Command line JSON parser via jq</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="/tag/unix.html">unix</a>
+                        </p>
+                </header>
+            </section>
+            <p>A command-line JSON parser can be handy when you test or debug JSON web
+services. Unfortunately inspecting JSON responses via command line are hard to
+read and not easy to manipulate with traditional Unix utilities.</p>
+<p>Today I stumbled on <a class="reference external" href="http://stedolan.github.io/jq/">jq</a>, via <a class="reference external" href="https://github.com/limpangel">Angel Ramboi</a>. <tt class="docutils literal">jq</tt> is a lightweight and flexible
+command-line JSON processor.</p>
+<p>Download the desired binary and then <tt class="docutils literal">chmod +x ./jq</tt>.</p>
+<p>I've prepared a sample json so we can see how easily it is to inspect and
+manipulate JSON strings.</p>
+<div class="highlight"><pre><span class="err">&gt;&gt;</span> <span class="err">cat</span> <span class="err">sample.json</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;first&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;last&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="mi">27</span><span class="p">,</span>
+    <span class="nt">&quot;sex&quot;</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;registered&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;interests&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;Reading&quot;</span><span class="p">,</span> <span class="s2">&quot;Mountain Biking&quot;</span><span class="p">,</span> <span class="s2">&quot;Hacking&quot;</span> <span class="p">],</span>
+    <span class="nt">&quot;favorites&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;sport&quot;</span><span class="p">:</span> <span class="s2">&quot;Soccer&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;food&quot;</span><span class="p">:</span> <span class="s2">&quot;Spaghetti&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;skills&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;Python&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tests&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;One&quot;</span><span class="p">,</span> <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">90</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Two&quot;</span><span class="p">,</span> <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">96</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;GO&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tests&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;One&quot;</span><span class="p">,</span> <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">32</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Two&quot;</span><span class="p">,</span> <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">84</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>Simple filtering:</p>
+<div class="highlight"><pre><span class="err">&gt;&gt;</span> <span class="err">cat</span> <span class="err">sample.json</span> <span class="err">|</span> <span class="err">jq</span> <span class="err">&#39;.skills</span><span class="p">[]</span><span class="err">.category&#39;</span>
+
+<span class="err">Python</span>
+<span class="err">Go</span>
+</pre></div>
+<p>Filtering with index:</p>
+<div class="highlight"><pre><span class="err">&gt;&gt;</span> <span class="err">cat</span> <span class="err">sample.json</span> <span class="err">|</span> <span class="err">./jq</span> <span class="err">&#39;.</span><span class="p">[</span><span class="s2">&quot;skills&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;tests&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="err">|</span> <span class="err">.name,</span> <span class="err">.score&#39;</span>
+
+<span class="s2">&quot;Two&quot;</span>
+<span class="mi">96</span>
+</pre></div>
+<p>...or a different flavour:</p>
+<div class="highlight"><pre><span class="err">&gt;&gt;</span> <span class="err">cat</span> <span class="err">sample.json</span> <span class="err">|</span> <span class="err">./jq</span> <span class="err">&#39;.skills</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="err">.tests</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="err">|</span> <span class="err">.name,</span> <span class="err">.score&#39;</span>
+
+<span class="s2">&quot;Two&quot;</span>
+<span class="mi">96</span>
+</pre></div>
+<p>Built-in operators:</p>
+<div class="highlight"><pre><span class="err">&gt;&gt;</span> <span class="err">cat</span> <span class="err">sample.json</span> <span class="err">|</span> <span class="err">./jq</span> <span class="err">&#39;.interests</span> <span class="err">|</span> <span class="err">length&#39;</span>
+
+<span class="mi">3</span>
+</pre></div>
+<p>Manipulate JSON string:</p>
+<div class="highlight"><pre><span class="err">&gt;&gt;</span> <span class="err">cat</span> <span class="err">sample.json</span> <span class="err">|</span> <span class="err">./jq</span> <span class="err">&#39;if</span> <span class="err">.registered</span> <span class="err">==</span> <span class="kc">true</span> <span class="err">then</span> <span class="err">.skills</span><span class="p">[]</span><span class="err">.tests</span><span class="p">[]</span><span class="err">.score</span> <span class="err">=</span> <span class="mi">1000</span> <span class="err">else</span> <span class="kc">null</span> <span class="err">end&#39;</span> <span class="err">&gt;</span> <span class="err">new_sample.json</span>
+</pre></div>
+<p>Head on and read the <a class="reference external" href="http://stedolan.github.io/jq/manual/">jq manual</a> if you
+want to include it in your tester toolbox.</p>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_identifier = "command-line-json-parser-via-jq/";
+                        (function() {
+                            var dsq = document.createElement('script');
+                            dsq.type = 'text/javascript';
+                            dsq.async = true;
+                            dsq.src = 'http://testpy.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view <a href="http://disqus.com/?ref_noscript">comments</a>.</noscript>
+                </div>
+<footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/danclaudiupop/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+    <p>Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_GB">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
+</footer>        </div>
+    </div>
+</div>
+    </div>
+
+    <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+    <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the sticky footer button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.go-top').fadeIn(200);
+                } else {
+                    $('.go-top').fadeOut(200);
+                }
+            });
+
+            // Animate the scroll to top
+            $('.go-top').click(function(event) {
+                event.preventDefault();
+
+                $('html, body').animate({scrollTop: 0}, 300);
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-44297043-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
