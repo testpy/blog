@@ -1,7 +1,7 @@
 Command line JSON parser via jq
 ###############################
 
-:date: 2013-10-03 12:30
+:date: 2013-10-14 22:30
 :tags: unix
 :category: misc
 :slug: command-line-json-parser-via-jq
