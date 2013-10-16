@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="/" type="application/atom+xml" title="testpy ATOM Feed"/>
+
+        <title>Stop treating testers as failed developers // testpy // Software Testing and more</title>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="/theme/pure.css">
+    <link rel="stylesheet" href="/theme/pygments.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
+                    <img class="post-avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab" height="100" width="100">
+                </a>
+                <h2 class="article-info">Dan Claudiu Pop</h2>
+                <small class="about-author">Test engineer, currently working @3PillarGlobal, interested in most aspects of software testing.</small>
+                <h5>Published</h5>
+                <p>Wed 16 October 2013</p>
+                <a href="/">&larr;Home</a>
+                <hr>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u-3-4">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Stop treating testers as failed developers</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="/tag/tester.html">tester</a>
+                                <a class="post-category" href="/tag/developer.html">developer</a>
+                        </p>
+                </header>
+            </section>
+            <p><em>&quot;Stop treating testers as failed developers when developers are failed
+testers&quot;</em></p>
+<p>Thanks to <a class="reference external" href="https://github.com/limpangel">Angel Ramboi</a> who took the picture
+at PyCon Ireland 2013. This is <a class="reference external" href="https://github.com/AutomatedTester">David Burns</a>' keynote.</p>
+<a href="http://www.flickr.com/photos/105549603@N05/10305606266/"><img src="http://farm8.staticflickr.com/7411/10305606266_3138beee0d_b.jpg" width="1024" height="768" alt="IMG_20131013_130435"></a>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_identifier = "stop-treating-testers-as-failed-developers/";
+                        (function() {
+                            var dsq = document.createElement('script');
+                            dsq.type = 'text/javascript';
+                            dsq.async = true;
+                            dsq.src = 'http://testpy.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view <a href="http://disqus.com/?ref_noscript">comments</a>.</noscript>
+                </div>
+<footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/danclaudiupop/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+    <p>Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_GB">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
+</footer>        </div>
+    </div>
+</div>
+    </div>
+
+    <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+    <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the sticky footer button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.go-top').fadeIn(200);
+                } else {
+                    $('.go-top').fadeOut(200);
+                }
+            });
+
+            // Animate the scroll to top
+            $('.go-top').click(function(event) {
+                event.preventDefault();
+
+                $('html, body').animate({scrollTop: 0}, 300);
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-44297043-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>

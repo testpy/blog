@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="/feeds/developer.atom.xml" rel="self"></link><id>/</id><updated>2013-10-16T11:30:00+03:00</updated><entry><title>Stop treating testers as failed developers</title><link href="/stop-treating-testers-as-failed-developers/" rel="alternate"></link><updated>2013-10-16T11:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:,2013-10-16:stop-treating-testers-as-failed-developers/</id><summary type="html">&lt;p&gt;&lt;em&gt;&amp;quot;Stop treating testers as failed developers when developers are failed
+testers&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a class="reference external" href="https://github.com/limpangel"&gt;Angel Ramboi&lt;/a&gt; who took the picture
+at PyCon Ireland 2013. This is &lt;a class="reference external" href="https://github.com/AutomatedTester"&gt;David Burns&lt;/a&gt;' keynote.&lt;/p&gt;
+&lt;a href="http://www.flickr.com/photos/105549603@N05/10305606266/"&gt;&lt;img src="http://farm8.staticflickr.com/7411/10305606266_3138beee0d_b.jpg" width="1024" height="768" alt="IMG_20131013_130435"&gt;&lt;/a&gt;</summary><category term="tester"></category><category term="developer"></category></entry></feed>
