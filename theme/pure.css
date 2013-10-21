@@ -13,6 +13,7 @@ a:focus {
     text-decoration: underline;
 }
 
+
 .comments {
     padding: 50px 0 0;
 }
@@ -184,6 +185,24 @@ pre {
     color: #fff;
     background: #999;
     font-size: 90%;
+}
+
+.arhive-item {
+    padding: 0.9em 1em;
+    border-left: 6px solid #ddd;
+}
+
+.arhive-date {
+    margin: 0;
+}
+
+.arhive-avatar {
+    border-radius: 3px;
+    margin-right: 0.5em;
+}
+
+.arhive-post {
+    padding-top: 8px;
 }
 
 .footer {
