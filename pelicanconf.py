@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'testpy team'
 SITENAME = u'testpy'
-SITEURL = 'http://localhost:8000/'
+SITEURL = 'http://localhost:8000'
 TAGLINE = 'Software Testing and more'
 
 TIMEZONE = 'Europe/Bucharest'
