@@ -30,3 +30,9 @@ Ofcourse when there is too much noise you can pipe the output.
 .. sourcecode:: python
 
     >> tail -f web_app.log import.log | grep ERROR
+
+... or get and read log from remote host
+
+.. sourcecode:: python
+
+    >> ssh remoteUser@remoteHost "tail -f /var/log/app/app.log" | tee local.log
