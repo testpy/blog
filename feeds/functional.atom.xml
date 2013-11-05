@@ -168,8 +168,8 @@ lxml or html5lib for parsing the content)&lt;/li&gt;
 &lt;/div&gt;
 &lt;div class="section" id="what-s-next"&gt;
 &lt;h2&gt;What's next ?&lt;/h2&gt;
-&lt;p&gt;Well ... WebTest  :) (&lt;a class="reference external" href="http://pyvideo.org/video/699/testing-and-django"&gt;http://pyvideo.org/video/699/testing-and-django&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;Be a good person and write functional tests. Functional testing is something
+&lt;p&gt;Well ... WebTest  :)&lt;/p&gt;
+&lt;iframe width="420" height="315" src="//www.youtube.com/embed/ickNQcNXiS4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;p&gt;Be a good person and write functional tests. Functional testing is something
 that every app needs, no testing strategy is complete without high-level tests
 to ensure the entire programming system works together.&lt;/p&gt;
 &lt;/div&gt;
