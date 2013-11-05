@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testpy</title><link>/</link><description></description><atom:link href="/feeds/talks.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 05 Nov 2013 00:00:00 +0200</lastBuildDate><item><title>10 pragmatic guidelines to maximize test usefulness</title><link>/10-pragmatic-guidelines-to-maximize-test-usefulness/</link><description>&lt;iframe width="420" height="315" src="//www.youtube.com/embed/91-LiEb3sPE" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;div class="section" id="abstract"&gt;
+&lt;h2&gt;ABSTRACT&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;WHAT MAKES GOOD TESTS?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Tests should be as simple as possible.&lt;/li&gt;
+&lt;li&gt;Tests should run as quickly as possible.&lt;/li&gt;
+&lt;li&gt;Tests should avoid coupling with other tests.&lt;/li&gt;
+&lt;li&gt;Tests should communicate intent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;CANONICAL FORM OF A TEST&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Setup pre-conditions.&lt;/li&gt;
+&lt;li&gt;Perform operation under test.&lt;/li&gt;
+&lt;li&gt;Make assertions.&lt;/li&gt;
+&lt;li&gt;Benefits of following canonical form.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;TESTING TOOLS&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Factories (instead of fixtures).&lt;/li&gt;
+&lt;li&gt;Coverage.py&lt;/li&gt;
+&lt;li&gt;django-nose + multiprocess&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;GUIDELINES&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Tests should be as simple as possible.&lt;/li&gt;
+&lt;li&gt;Each test method tests one thing, and one thing only.&lt;/li&gt;
+&lt;li&gt;Only set up the minimum needed pre-conditions for your test.&lt;/li&gt;
+&lt;li&gt;Create your pre-conditions explicitly - don't use shared helper methods outside your module.&lt;/li&gt;
+&lt;li&gt;Name your TestCase methods to indicate what they actually test.&lt;/li&gt;
+&lt;li&gt;Use factories, not fixtures.&lt;/li&gt;
+&lt;li&gt;Use django.tests.TestCase instead of unittest2.TestCase&lt;/li&gt;
+&lt;li&gt;Create mixins, not shared TestCases.&lt;/li&gt;
+&lt;li&gt;Segment your tests.&lt;/li&gt;
+&lt;li&gt;Don't use setupClass() or tearDownClass()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dan Claudiu Pop</dc:creator><pubDate>Tue, 05 Nov 2013 00:00:00 +0200</pubDate><guid>tag:,2013-11-05:10-pragmatic-guidelines-to-maximize-test-usefulness/</guid><category>django</category><category>talks</category></item></channel></rss>

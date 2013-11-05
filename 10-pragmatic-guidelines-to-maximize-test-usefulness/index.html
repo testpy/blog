@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+    <link rel="alternate" href="/" type="application/atom+xml" title="testpy ATOM Feed"/>
+
+        <title>10 pragmatic guidelines to maximize test usefulness // testpy // Software Testing and more</title>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/theme/js/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
+                    <img class="post-avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab" height="100" width="100">
+                </a>
+                <h2 class="article-info">Dan Claudiu Pop</h2>
+                <small class="about-author">Test engineer, currently working @3PillarGlobal, interested in most aspects of software testing.</small>
+                <h5>Published</h5>
+                <p>Tue 05 November 2013</p>
+                <a href="/">&larr;Home</a>
+                <hr>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u-3-4">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>10 pragmatic guidelines to maximize test usefulness</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="/tag/django.html">django</a>
+                                <a class="post-category" href="/tag/talks.html">talks</a>
+                        </p>
+                </header>
+            </section>
+            <iframe width="420" height="315" src="//www.youtube.com/embed/91-LiEb3sPE" frameborder="0" allowfullscreen></iframe><div class="section" id="abstract">
+<h2>ABSTRACT</h2>
+<p><strong>WHAT MAKES GOOD TESTS?</strong></p>
+<ul class="simple">
+<li>Tests should be as simple as possible.</li>
+<li>Tests should run as quickly as possible.</li>
+<li>Tests should avoid coupling with other tests.</li>
+<li>Tests should communicate intent.</li>
+</ul>
+<p><strong>CANONICAL FORM OF A TEST</strong></p>
+<ul class="simple">
+<li>Setup pre-conditions.</li>
+<li>Perform operation under test.</li>
+<li>Make assertions.</li>
+<li>Benefits of following canonical form.</li>
+</ul>
+<p><strong>TESTING TOOLS</strong></p>
+<ul class="simple">
+<li>Factories (instead of fixtures).</li>
+<li>Coverage.py</li>
+<li>django-nose + multiprocess</li>
+</ul>
+<p><strong>GUIDELINES</strong></p>
+<ul class="simple">
+<li>Tests should be as simple as possible.</li>
+<li>Each test method tests one thing, and one thing only.</li>
+<li>Only set up the minimum needed pre-conditions for your test.</li>
+<li>Create your pre-conditions explicitly - don't use shared helper methods outside your module.</li>
+<li>Name your TestCase methods to indicate what they actually test.</li>
+<li>Use factories, not fixtures.</li>
+<li>Use django.tests.TestCase instead of unittest2.TestCase</li>
+<li>Create mixins, not shared TestCases.</li>
+<li>Segment your tests.</li>
+<li>Don't use setupClass() or tearDownClass()</li>
+</ul>
+</div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_identifier = "10-pragmatic-guidelines-to-maximize-test-usefulness/";
+                        (function() {
+                            var dsq = document.createElement('script');
+                            dsq.type = 'text/javascript';
+                            dsq.async = true;
+                            dsq.src = 'http://testpy.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view <a href="http://disqus.com/?ref_noscript">comments</a>.</noscript>
+                </div>
+<footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/danclaudiupop/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+    <p>Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_GB">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-44297043-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
