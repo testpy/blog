@@ -128,7 +128,11 @@ Example
 What's next ?
 =============
 
-Well ... WebTest  :) (http://pyvideo.org/video/699/testing-and-django)
+Well ... WebTest  :)
+
+.. raw:: html
+
+    <iframe width="420" height="315" src="//www.youtube.com/embed/ickNQcNXiS4" frameborder="0" allowfullscreen></iframe>
 
 Be a good person and write functional tests. Functional testing is something
 that every app needs, no testing strategy is complete without high-level tests
