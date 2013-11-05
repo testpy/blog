@@ -299,6 +299,19 @@ pre {
     }
 }
 
+@media (min-width: 768px) {
+    .highlight pre {
+        width: 100%;
+    }
+
+    .highlight pre:hover {
+        width: 130%;
+        background: #2d2d2d;
+        transition: width .5s ease;
+        -webkit-transition: width .5s ease;
+    }
+}
+
 @media (max-width: 480px) {
     .cover-img {
         background-position: 0;
