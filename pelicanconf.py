@@ -11,12 +11,6 @@ TIMEZONE = 'Europe/Bucharest'
 
 DEFAULT_LANG = u'en'
 
-FEED_ALL_RSS = "feeds/all.rss.xml"
-TAG_FEED_RSS = "feeds/%s.rss.xml"
-
-FEED_ALL_ATOM = "feeds/all.atom.xml"
-TAG_FEED_ATOM = "feeds/%s.atom.xml"
-
 DEFAULT_PAGINATION = 5
 
 STATIC_PATHS = ['images', 'extra/CNAME']
