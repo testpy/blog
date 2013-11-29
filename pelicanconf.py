@@ -11,7 +11,7 @@ TIMEZONE = 'Europe/Bucharest'
 
 DEFAULT_LANG = u'en'
 
-DEFAULT_PAGINATION = 5
+DEFAULT_PAGINATION = 10
 
 STATIC_PATHS = ['images', 'extra/CNAME']
 
