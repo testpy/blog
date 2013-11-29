@@ -7,7 +7,7 @@
 
         <link rel="alternate"  href="/feeds/all.atom.xml" type="application/atom+xml" title="testpy Full Atom Feed"/>
 
-        <title>Using tail to explore logs // testpy // Software Testing and more</title>
+        <title>Headless selenium tests in django with xvfbwrapper // testpy // Software Testing and more</title>
 
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="/theme/css/pure.css">
@@ -33,7 +33,7 @@
                 <h2 class="article-info">Dan Claudiu Pop</h2>
                 <small class="about-author">Test engineer, currently working @3PillarGlobal, interested in most aspects of software testing.</small>
                 <h5>Published</h5>
-                <p>Thu 03 October 2013</p>
+                <p>Fri 29 November 2013</p>
                 <a href="/">&larr;Home</a>
                 <hr>
             </hgroup>
@@ -43,26 +43,41 @@
         <div class="content">
             <section class="post">
                 <header class="post-header">
-                    <h1>Using tail to explore logs</h1>
+                    <h1>Headless selenium tests in django with xvfbwrapper</h1>
                         <p class="post-meta">
-                            // under                                 <a class="post-category" href="/tag/unix.html">unix</a>
+                            // under                                 <a class="post-category" href="/tag/functional.html">functional</a>
+                                <a class="post-category" href="/tag/django.html">django</a>
+                                <a class="post-category" href="/tag/headless.html">headless</a>
+                                <a class="post-category" href="/tag/xvfb.html">xvfb</a>
+                                <a class="post-category" href="/tag/selenium.html">selenium</a>
                         </p>
                 </header>
             </section>
-            <p>When I am testing, I always keep an eye on the logs because they are a valuable
-resource for finding problems on the system. They can act as an early warning
-system. The <tt class="docutils literal">tail</tt> commnand alongside with <tt class="docutils literal">view</tt> or <tt class="docutils literal">vim</tt> are great ways
-to explore big log entries.</p>
-<p>There is a slightly difference between the <tt class="docutils literal">tail <span class="pre">-f</span></tt> and <tt class="docutils literal">tailf</tt> commands.
-With <tt class="docutils literal">tail <span class="pre">-f</span></tt> you can basically do multitail like this:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;</span> <span class="n">tail</span> <span class="o">-</span><span class="n">f</span> <span class="n">web_app</span><span class="o">.</span><span class="n">log</span> <span class="n">import</span><span class="o">.</span><span class="n">log</span>
-</pre></div>
-<p>while <tt class="docutils literal">tailf</tt> does not allow you to do multitail.</p>
-<p>Ofcourse when there is too much noise you can pipe the output.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;</span> <span class="n">tail</span> <span class="o">-</span><span class="n">f</span> <span class="n">web_app</span><span class="o">.</span><span class="n">log</span> <span class="n">import</span><span class="o">.</span><span class="n">log</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">ERROR</span>
-</pre></div>
-<p>... or get and read log from remote host</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;</span> <span class="n">ssh</span> <span class="n">remoteUser</span><span class="nd">@remoteHost</span> <span class="s">&quot;tail -f /var/log/app/app.log&quot;</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">local</span><span class="o">.</span><span class="n">log</span>
+            <p>Install dependencies:</p>
+<ul class="simple">
+<li><tt class="docutils literal">sudo <span class="pre">apt-get</span> install xvfb</tt></li>
+<li><tt class="docutils literal">pip install xvfbwrapper</tt></li>
+</ul>
+<p>This code uses selenium and xvfbwrapper to run tests with Firefox inside a
+headless display.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">LiveServerTestCase</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.firefox.webdriver</span> <span class="kn">import</span> <span class="n">WebDriver</span>
+<span class="kn">from</span> <span class="nn">xvfbwrapper</span> <span class="kn">import</span> <span class="n">Xvfb</span>
+
+<span class="k">class</span> <span class="nc">SeleniumTestCase</span><span class="p">(</span><span class="n">LiveServerTestCase</span><span class="p">):</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">setUpClass</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">xvfb</span> <span class="o">=</span> <span class="n">Xvfb</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1280</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">720</span><span class="p">)</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">xvfb</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">wd</span> <span class="o">=</span> <span class="n">WebDriver</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SeleniumTestPasswordStrength</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">setUpClass</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">tearDownClass</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">wd</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SeleniumTestPasswordStrength</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">tearDownClass</span><span class="p">()</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">xvfb</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 
             <div class="hr"></div>
@@ -70,7 +85,7 @@ With <tt class="docutils literal">tail <span class="pre">-f</span></tt> you can 
                 <div class="comments">
                     <div id="disqus_thread"></div>
                     <script type="text/javascript">
-                        var disqus_identifier = "using-tail-to-explore-logs/";
+                        var disqus_identifier = "headless-selenium-tests-in-django-with-xvfbwrapper/";
                         (function() {
                             var dsq = document.createElement('script');
                             dsq.type = 'text/javascript';
