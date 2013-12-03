@@ -71,12 +71,12 @@ headless display.</p>
         <span class="n">cls</span><span class="o">.</span><span class="n">xvfb</span> <span class="o">=</span> <span class="n">Xvfb</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1280</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">720</span><span class="p">)</span>
         <span class="n">cls</span><span class="o">.</span><span class="n">xvfb</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="n">cls</span><span class="o">.</span><span class="n">wd</span> <span class="o">=</span> <span class="n">WebDriver</span><span class="p">()</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SeleniumTestPasswordStrength</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">setUpClass</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SeleniumTestCase</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">setUpClass</span><span class="p">()</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">tearDownClass</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
         <span class="n">cls</span><span class="o">.</span><span class="n">wd</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SeleniumTestPasswordStrength</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">tearDownClass</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SeleniumTestCase</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">tearDownClass</span><span class="p">()</span>
         <span class="n">cls</span><span class="o">.</span><span class="n">xvfb</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 
