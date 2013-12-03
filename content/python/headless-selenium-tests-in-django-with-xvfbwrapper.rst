@@ -33,10 +33,10 @@ headless display.
             cls.xvfb = Xvfb(width=1280, height=720)
             cls.xvfb.start()
             cls.wd = WebDriver()
-            super(SeleniumTestPasswordStrength, cls).setUpClass()
+            super(SeleniumTestCase, cls).setUpClass()
 
         @classmethod
         def tearDownClass(cls):
             cls.wd.quit()
-            super(SeleniumTestPasswordStrength, cls).tearDownClass()
+            super(SeleniumTestCase, cls).tearDownClass()
             cls.xvfb.stop()
