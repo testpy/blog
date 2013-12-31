@@ -187,27 +187,28 @@ pre {
     font-size: 90%;
 }
 
-.arhive-item {
-    padding: 0.3em;
+.archive-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #f2f2f0;
 }
 
-.arhive-date {
+.archive-date {
     margin: 0;
 }
 
-.arhive-post {
+.archive-post {
     line-height: 130%;
 }
 
-.arhive-avatar {
+.archive-avatar {
     float: right;
     border-radius: 50px;
 }
 
-.arhive-meta {
+.archive-meta {
     color: #999;
     font-size: 80%;
-    margin-top: 2px;
+    margin: -1px 0 0 0;
 }
 
 .footer {
