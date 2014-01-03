@@ -16,7 +16,7 @@ DEFAULT_PAGINATION = 10
 STATIC_PATHS = ['images', 'extra/CNAME']
 
 THEME = "theme/pure/"
-COVER_IMG_URL = "https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*QSJkV5TP-AvgBz0M.gif"
+COVER_IMG_URL = "http://i.imgur.com/rdpkAUi.jpg"
 PLUGIN_PATH = "pelican-plugins/"
 PLUGINS = ['gravatar']
 DISQUS_SITENAME = "testpy"
