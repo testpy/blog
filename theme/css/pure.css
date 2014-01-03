@@ -259,6 +259,10 @@ pre {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
+.highlight pre {
+    font-size: 75%;
+}
+
 /* LAYOUT CSS */
 #layout {
     padding-left: 25%; /* "left col (nav + list)" width */
@@ -273,7 +277,7 @@ pre {
     }
 
     .cover-img {
-        background-position: 0 -80px;
+        background-position: 0;
         background-size: cover;
     }
 
@@ -306,19 +310,6 @@ pre {
 
     #layout {
         padding: 0;
-    }
-}
-
-@media (min-width: 768px) {
-    .highlight pre {
-        width: 100%;
-    }
-
-    .highlight pre:hover {
-        width: 130%;
-        background: #2d2d2d;
-        transition: width .5s ease;
-        -webkit-transition: width .5s ease;
     }
 }
 
