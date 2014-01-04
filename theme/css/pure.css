@@ -60,7 +60,7 @@ pre {
     position: absolute;
     bottom: 0;
     max-width: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 0;
     padding-top: 100px;
     background-image: linear-gradient(to top,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);
 }
@@ -128,6 +128,17 @@ pre {
     margin-top: -15px;
     line-height: 0.8em;
     font-size: 80%;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    color: #fff;
+}
+
+.social {
+    display: inline-block;
+}
+.social a {
+    text-decoration: none;
+    margin-left: 15px;
+    margin-right: 15px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     color: #fff;
 }
