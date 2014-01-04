@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = u'testpy team'
 SITENAME = u'testpy'
-SITEURL = 'http://localhost:8000'
+#SITEURL = 'http://localhost:8000'
+SITEURL = 'http://testpy.org'
 TAGLINE = 'Software Testing and more'
 
 TIMEZONE = 'Europe/Bucharest'
@@ -23,7 +24,11 @@ DISQUS_SITENAME = "testpy"
 GOOGLE_ANALYTICS = "UA-44297043-1"
 
 MENUITEMS = [('Archive', 'archives.html'), ('About', 'about-us.html'), ]
-SOCIAL = (('Github', 'https://github.com/testpy/'), )
+SOCIAL = (
+    ('github', 'https://github.com/testpy/'),
+    ('twitter-square', 'https://twitter.com/danclaudiupop'),
+    ('rss', 'http://testpy.org/feeds/all.atom.xml'),
+)
 DISPLAY_PAGES_ON_MENU = False
 
 ARTICLE_URL = '{slug}/'
@@ -34,3 +39,5 @@ PAGE_URL = PAGE_SAVE_AS = '{slug}.html'
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
 }
+
+RELATIVE_URLS = False
