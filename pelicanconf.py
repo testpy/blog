@@ -6,6 +6,7 @@ AUTHOR = u'testpy team'
 SITENAME = u'testpy'
 #SITEURL = 'http://localhost:8000'
 SITEURL = 'http://testpy.org'
+FEED_DOMAIN = SITEURL
 TAGLINE = 'Software Testing and more'
 
 TIMEZONE = 'Europe/Bucharest'
