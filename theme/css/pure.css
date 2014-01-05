@@ -178,6 +178,7 @@ pre {
     color: #333332;
     letter-spacing: -1px;
 }
+.article-avatar,
 .post-avatar {
     border-radius: 50px;
     float: right;
@@ -291,6 +292,9 @@ pre {
         background-size: cover;
     }
 
+    .article-avatar {
+        float: none
+    }
     .post-avatar {
         margin-top: 10px;
     }
