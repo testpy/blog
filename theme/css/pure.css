@@ -1,4 +1,4 @@
-* {
+ {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -81,9 +81,23 @@ pre {
     word-wrap: break-word;
 }
 
+.article-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    float: right;
+    margin-left: 1em;
+    border: 3px solid #fff;
+    z-index: 500;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
 .about-author {
     display: block;
-    width: 65%;
+    width: 85%;
     padding: 0 0px;
     float: right;
     margin-bottom: 35px;
@@ -164,6 +178,7 @@ pre {
 
 .content {
     padding: 2em 3em 0;
+    max-width: 800px;
     font-size: 110%;
     line-height: 1.45;
     color: #333332;
@@ -177,12 +192,6 @@ pre {
     font-size: 1.5em;
     color: #333332;
     letter-spacing: -1px;
-}
-.article-avatar,
-.post-avatar {
-    border-radius: 50px;
-    float: right;
-    margin-left: 1em;
 }
 .post-meta {
     color: #999;
@@ -211,9 +220,13 @@ pre {
     line-height: 130%;
 }
 
-.archive-avatar {
+.avatar {
     float: right;
     border-radius: 50px;
+    margin-left: 16px;
+    margin-top: 7px;
+    width: 70px;
+    height: 70px;
 }
 
 .archive-meta {
@@ -286,21 +299,28 @@ pre {
         margin: 0;
         height: 425px;
     }
+    .content {
+        padding: 1em 1.5em 0;
+        font-size: 80%;
+    }
 
     .cover-img {
         background-position: 0;
         background-size: cover;
     }
 
+    .avatar {
+        width: 45px;
+        height: 45px;
+    }
+
     .article-avatar {
         float: none
-    }
-    .post-avatar {
-        margin-top: 10px;
     }
 
     .about-author {
         width: 100%;
+        padding: 0 10px;
     }
 
     .cover-body {
