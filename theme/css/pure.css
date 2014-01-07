@@ -81,34 +81,6 @@ pre {
     word-wrap: break-word;
 }
 
-.article-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 60px;
-    float: right;
-    margin-left: 1em;
-    border: 3px solid #fff;
-    z-index: 500;
-    background-color: #fff;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
-}
-
-.about-author {
-    display: block;
-    width: 85%;
-    padding: 0 0px;
-    float: right;
-    margin-bottom: 35px;
-}
-    hr {
-        border: 1px solid #f2f2f0;
-        width: 10%;
-        margin-top: 20px;
-        margin-right: 0px;
-    }
-
 .header-article {
     width: 767px;
     max-width: 100%;
@@ -140,7 +112,7 @@ pre {
 .tagline {
     margin-left: 15px;
     margin-top: -15px;
-    line-height: 0.8em;
+    line-height: 15px;
     font-size: 80%;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     color: #fff;
@@ -218,15 +190,6 @@ pre {
 
 .archive-post {
     line-height: 130%;
-}
-
-.avatar {
-    float: right;
-    border-radius: 50px;
-    margin-left: 16px;
-    margin-top: 7px;
-    width: 70px;
-    height: 70px;
 }
 
 .archive-meta {
@@ -307,20 +270,6 @@ pre {
     .cover-img {
         background-position: 0;
         background-size: cover;
-    }
-
-    .avatar {
-        width: 45px;
-        height: 45px;
-    }
-
-    .article-avatar {
-        float: none
-    }
-
-    .about-author {
-        width: 100%;
-        padding: 0 10px;
     }
 
     .cover-body {
