@@ -297,8 +297,14 @@ pre {
         width: 100%;
         position: relative;
         margin: 0;
-        height: 425px;
+        height: 325px;
     }
+    .sidebar.sidebar-article {
+        height: auto;
+        border-bottom: 1px #dededc solid;
+        padding-bottom: 35px;
+    }
+
     .content {
         padding: 1em 1.5em 0;
         font-size: 85%;
@@ -320,7 +326,7 @@ pre {
 
     .about-author {
         width: 100%;
-        padding: 0 10px;
+        padding: 0 100px;
     }
 
     .cover-body {
