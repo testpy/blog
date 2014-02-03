@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="http://testpy.org/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2013-10-16T11:30:00+03:00</updated><entry><title>Stop treating testers as failed developers</title><link href="/stop-treating-testers-as-failed-developers/" rel="alternate"></link><updated>2013-10-16T11:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:,2013-10-16:stop-treating-testers-as-failed-developers/</id><summary type="html">&lt;p&gt;&lt;em&gt;&amp;quot;Stop treating testers as failed developers when developers are failed
+<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="/" rel="alternate"></link><link href="http://testpy.org/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2014-01-31T00:00:00+02:00</updated><entry><title>On creativity</title><link href="/on-creativity/" rel="alternate"></link><updated>2014-01-31T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:,2014-01-31:on-creativity/</id><summary type="html">&lt;p&gt;We all know that if we organize our work, things would go smoother and we would
+gain more time to focus on more important items, such as automation or load
+testing.  Or is it? Think about it… Everything is organized, everyone follows
+the rules, the project management team couldn’t be happier. But what about
+creativity? When do we have time to be creative and innovate? To change the
+course of the project by implementing an idea seemingly so crazy at first, that
+no one thought it could be a success.&lt;/p&gt;
+&lt;p&gt;Where would all major software companies be today, if they would have devoted
+their time to rewriting and implementing the rules, just to make sure
+everything goes as planned? Instead of thinking of new approaches, of how we
+could revolutionize the work we are doing, we spent a large part of our time
+following the same old rules, which do not benefit neither the project, nor the
+people working on the project.&lt;/p&gt;
+&lt;p&gt;Let’s take for example test cases management tools. I understand that they are
+able to provide reports, and colored graphs (really difficult to understand at
+times), and we all know managers do like graphs. But are these reports useful
+to someone (at least in agile environments)? Is someone actually spending time
+to look at the reports and analyze them? I doubt it. Managers are interested in
+results. And while they like to see some reports from time to time, I think
+they would be more happy knowing the product is well tested, regardless of the
+test cases management tool used.&lt;/p&gt;
+&lt;p&gt;Instead of this very watterfall-ish approach, I would suggest investing more
+time in automation testing and documenting the scripts, so that everyone
+involved in the project, including non-technical people, knows what is being
+tested. BDD-like tools provide this functionality out of the box, via Gherkin
+language. As for other tools, make sure to document the scripts so they can
+serve as a living documentation.&lt;/p&gt;
+&lt;p&gt;Let’s step out of the line from time to time, and embrace creativity more!&lt;/p&gt;
+</summary><category term="agile"></category></entry><entry><title>Stop treating testers as failed developers</title><link href="/stop-treating-testers-as-failed-developers/" rel="alternate"></link><updated>2013-10-16T11:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:,2013-10-16:stop-treating-testers-as-failed-developers/</id><summary type="html">&lt;p&gt;&lt;em&gt;&amp;quot;Stop treating testers as failed developers when developers are failed
 testers&amp;quot;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Thanks to &lt;a class="reference external" href="https://github.com/limpangel"&gt;Angel Ramboi&lt;/a&gt; who took the picture
 at PyCon Ireland 2013. This is &lt;a class="reference external" href="https://github.com/AutomatedTester"&gt;David Burns&lt;/a&gt;' keynote.&lt;/p&gt;

@@ -7,7 +7,7 @@
 
         <link rel="alternate"  href="http://testpy.org/feeds/all.atom.xml" type="application/atom+xml" title="testpy Full Atom Feed"/>
 
-        <title>After Romanian Testing Conference 2013 // testpy // Software Testing and more</title>
+        <title>Autospeccing your mocks // testpy // Software Testing and more</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -28,13 +28,13 @@
     <div class="sidebar sidebar-article pure-u">
         <header class="header-article">
             <hgroup>
-                <a href="/author/ramona-suciu.html" title="See posts by Ramona Suciu">
-                    <img class="article-avatar" alt="Ramona Suciu" src="http://www.gravatar.com/avatar/9fb7512a5c3ffdd048b2d926e68b0300">
+                <a href="/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
+                    <img class="article-avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
                 </a>
-                <h2 class="article-info">Ramona Suciu</h2>
-                <small class="about-author">Test lead engineer, wannabe aerobics instructor; I like shoes almost as much as testing. Currently working @3PillarGlobal, Cluj-Napoca.</small>
+                <h2 class="article-info">Dan Claudiu Pop</h2>
+                <small class="about-author">Test engineer, currently working @3PillarGlobal, interested in most aspects of software testing.</small>
                 <h5>Published</h5>
-                <p>Fri 24 May 2013</p>
+                <p>Mon 03 February 2014</p>
                 <a href="/">&larr;Home</a>
             </hgroup>
         </header>
@@ -43,42 +43,41 @@
         <div class="content">
             <section class="post">
                 <header class="post-header">
-                    <h1>After Romanian Testing Conference 2013</h1>
+                    <h1>Autospeccing your mocks</h1>
                         <p class="post-meta">
-                            // under                                 <a class="post-category" href="/tag/rtc.html">rtc</a>
-                                <a class="post-category" href="/tag/presentation.html">presentation</a>
+                            // under                                 <a class="post-category" href="/tag/mock.html">mock</a>
+                                <a class="post-category" href="/tag/unittest.html">unittest</a>
                         </p>
                 </header>
             </section>
-            <p>It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
-presentation at RTC, but given that this experience has had an impact on our
-testing perspective, we decided to write a few lines on how it was and what it
-meant to us.</p>
-<img alt="Romanian Testing Conference 2013" src="/images/rtc_2013.png" />
-<p>We were pleasantly surprised to see that many colleagues share our opinions on
-software testing and this alone was enough to get us through the emotions we
-had that day, simply because we knew that we were speaking the same language.
-More and more software testers believe in the unity of the team, without the
-need of separating the tester (improperly called QA by many still) and
-developer roles.</p>
-<p>We decided  to talk about “Our experience with BDD in Python”, and throughout
-the presentation, we did exactly that: we talked about BDD as we understood and
-practiced it. We wanted to avoid “best practices” and “how to” terminology,
-because we didn’t want to teach others how to apply this methodology. We simply
-wanted to share our knowledge on the item, how we applied it and what are the
-challenges we are facing with.</p>
-<p>Shortly after the presentation has begun, we understood that this was the
-correct approach. People were drawn to what we had to say and we felt that the
-issues we were exposing were issues they also had encountered.</p>
-<p>I don’t know if we managed to answer all of their questions, but as long as we
-got the audience thinking about our subject and comparing the items we
-presented with the challenges they are facing day to day, then the presentation
-was a success.</p>
-<p>There’s no golden formula which, when applied, it magically solves all issues
-on a project. But as long as everybody has understood our message -
-communication and collaboration is everything  - then we definitely can say we
-are on the right track.</p>
-<p>You can see the presentation here - <a class="reference external" href="http://testpy.github.io/RTC-presentation/">http://testpy.github.io/RTC-presentation/</a></p>
+            <p>Auto-speccing can be done through the <cite>autospec</cite> argument to patch, or the
+<cite>create_autospec</cite> function. Auto-speccing creates mock objects that have the
+same attributes and methods as the objects they are replacing, and any
+functions and methods (including constructors) have the same call signature as
+the real object.</p>
+<p>Given that, if your mock is used in illegal ways, for e.g a mock method is
+called with incorrect number of arguments, an exception will be thrown.  When
+refactoring is happening and your tests still serve as living documentation,
+tests that are using mocks without autospeccing flag will continue to pass.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">create_autospec</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">FooTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_foo_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">mock</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+        <span class="n">mock</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">mock</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mock</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">mock</span><span class="p">,</span> <span class="s">&#39;only_one_arg&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
 
             <div class="hr"></div>
             <a href="#" class="go-top">Go Top</a>
