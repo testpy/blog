@@ -10,6 +10,9 @@ The automation paradox
 :about_author: Test lead engineer, wannabe aerobics instructor; I like shoes almost as much as testing. Currently working @3PillarGlobal, Cluj-Napoca.
 :summary: Or simply put, it seems everyone wants to automate stuff, but there’s never enough time for it
 
+**Or simply put, it seems everyone wants to automate stuff, but there’s never
+enough time for it**
+
 One of the things I enjoy most is to establish the automation framework on a
 new project, from simple setup on a local machine, until integration with a CI
 server. In my opinion, this is often one of the most challenging parts, and
@@ -57,3 +60,6 @@ confidence that no regressions have been introduced and that the application
 behaves well from functional point of view, while you are free to
 automate/explore new features, is priceless when you try to make your product
 successful.
+
+To conclude, we all want automation testing, because it is soooo great, but we
+just don’t have time for it right now :)
