@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="http://testpy.org/" rel="alternate"></link><link href="http://localhost:8000/feeds/all-en.atom.xml" rel="self"></link><id>http://testpy.org/</id><updated>2014-02-14T00:00:00+02:00</updated><entry><title>The automation paradox</title><link href="http://testpy.org/automation-paradox/" rel="alternate"></link><updated>2014-02-14T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-02-14:automation-paradox/</id><summary type="html">&lt;p&gt;One of the things I enjoy most is to establish the automation framework on a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="http://testpy.org/" rel="alternate"></link><link href="http://localhost:8000/feeds/all-en.atom.xml" rel="self"></link><id>http://testpy.org/</id><updated>2014-02-14T00:00:00+02:00</updated><entry><title>The automation paradox</title><link href="http://testpy.org/automation-paradox/" rel="alternate"></link><updated>2014-02-14T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-02-14:automation-paradox/</id><summary type="html">&lt;p&gt;&lt;strong&gt;Or simply put, it seems everyone wants to automate stuff, but there’s never
+enough time for it&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One of the things I enjoy most is to establish the automation framework on a
 new project, from simple setup on a local machine, until integration with a CI
 server. In my opinion, this is often one of the most challenging parts, and
 what follows afterwards, writing and maintaining the tests, is simply the fun
@@ -44,6 +46,8 @@ confidence that no regressions have been introduced and that the application
 behaves well from functional point of view, while you are free to
 automate/explore new features, is priceless when you try to make your product
 successful.&lt;/p&gt;
+&lt;p&gt;To conclude, we all want automation testing, because it is soooo great, but we
+just don’t have time for it right now :)&lt;/p&gt;
 </summary><category term="agile"></category><category term="automation"></category></entry><entry><title>Circular foreign key with factory_boy</title><link href="http://testpy.org/circular-foreign-key-factory-boy/" rel="alternate"></link><updated>2014-02-09T00:00:00+02:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2014-02-09:circular-foreign-key-factory-boy/</id><summary type="html">&lt;p&gt;Given the following state:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Album&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;thumb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ForeignKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;

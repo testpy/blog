@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="http://testpy.org/" rel="alternate"></link><link href="http://localhost:8000/feeds/misc.atom.xml" rel="self"></link><id>http://testpy.org/</id><updated>2014-02-14T00:00:00+02:00</updated><entry><title>The automation paradox</title><link href="http://testpy.org/automation-paradox/" rel="alternate"></link><updated>2014-02-14T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-02-14:automation-paradox/</id><summary type="html">&lt;p&gt;One of the things I enjoy most is to establish the automation framework on a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="http://testpy.org/" rel="alternate"></link><link href="http://localhost:8000/feeds/misc.atom.xml" rel="self"></link><id>http://testpy.org/</id><updated>2014-02-14T00:00:00+02:00</updated><entry><title>The automation paradox</title><link href="http://testpy.org/automation-paradox/" rel="alternate"></link><updated>2014-02-14T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-02-14:automation-paradox/</id><summary type="html">&lt;p&gt;&lt;strong&gt;Or simply put, it seems everyone wants to automate stuff, but there’s never
+enough time for it&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One of the things I enjoy most is to establish the automation framework on a
 new project, from simple setup on a local machine, until integration with a CI
 server. In my opinion, this is often one of the most challenging parts, and
 what follows afterwards, writing and maintaining the tests, is simply the fun
@@ -44,6 +46,8 @@ confidence that no regressions have been introduced and that the application
 behaves well from functional point of view, while you are free to
 automate/explore new features, is priceless when you try to make your product
 successful.&lt;/p&gt;
+&lt;p&gt;To conclude, we all want automation testing, because it is soooo great, but we
+just don’t have time for it right now :)&lt;/p&gt;
 </summary><category term="agile"></category><category term="automation"></category></entry><entry><title>On creativity</title><link href="http://testpy.org/on-creativity/" rel="alternate"></link><updated>2014-01-31T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-01-31:on-creativity/</id><summary type="html">&lt;p&gt;We all know that if we organize our work, things would go smoother and we would
 gain more time to focus on more important items, such as automation or load
 testing.  Or is it? Think about it… Everything is organized, everyone follows
