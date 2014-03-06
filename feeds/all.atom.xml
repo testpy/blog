@@ -17,7 +17,7 @@ web server. You should be able to type &lt;cite&gt;fab runserver&lt;/cite&gt; an
 &lt;/div&gt;
 &lt;div class="section" id="laying-the-testing-ground"&gt;
 &lt;h2&gt;Laying the testing ground&lt;/h2&gt;
-&lt;p&gt;We'll use django test client. It will suit perfectly for out testing type.
+&lt;p&gt;Django test client is a good approach when it comes to these types of tests.
 Let's create a simple test:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.test&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TestCase&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.test.client&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;
