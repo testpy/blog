@@ -37,7 +37,7 @@ http://127.0.0.1:8000/. You should see a list a musicians.
 Laying the testing ground
 -------------------------
 
-We'll use django test client. It will suit perfectly for out testing type.
+Django test client is a good approach when it comes to these types of tests.
 Let's create a simple test:
 
 
