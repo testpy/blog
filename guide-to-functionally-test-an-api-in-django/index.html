@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+
+        <link rel="alternate"  href="http://localhost:8000/feeds/all.atom.xml" type="application/atom+xml" title="testpy Full Atom Feed"/>
+
+        <title>Beginners guide to functionally test an API in Django // testpy // Software Testing and more</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://testpy.org/theme/css/pure.css">
+    <link rel="stylesheet" href="http://testpy.org/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
+                    <img class="article-avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
+                </a>
+                <h2 class="article-info">Dan Claudiu Pop</h2>
+                <small class="about-author">Test engineer, currently working @3PillarGlobal, interested in most aspects of software testing.</small>
+                <h5>Published</h5>
+                <p>Thu 06 March 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Beginners guide to functionally test an API in Django</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://testpy.org/tag/django.html">django</a>
+                                <a class="post-category" href="http://testpy.org/tag/functional.html">functional</a>
+                                <a class="post-category" href="http://testpy.org/tag/api.html">api</a>
+                        </p>
+                </header>
+            </section>
+            <div class="section" id="bootstrapping">
+<h2>Bootstrapping</h2>
+<p>To set up our django development environment, we'll start by creating a
+virtual environment. Execute the following commands in the terminal:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">virtualenv</span> <span class="n">temp</span>
+<span class="err">$</span> <span class="n">source</span> <span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+<p>I've created a repo with a dummy app which exposes an api that contains a list
+of musicians with albums, to serve as our testing ground. I used django rest
+framework, dig into their <a class="reference external" href="http://www.django-rest-framework.org/">documentation</a> if you want to build API's for your
+application. <a class="reference external" href="https://github.com/danclaudiupop/beginners-guide-to-functionally-test-an-api-in-django">Clone the repository</a>
+and then run <cite>pip install -r requirements.txt</cite> to install all dependencies.
+With all of the dependencies set up, we're ready to move on and start the local
+web server. You should be able to type <cite>fab runserver</cite> and browse to
+<a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>. You should see a list a musicians.</p>
+</div>
+<div class="section" id="laying-the-testing-ground">
+<h2>Laying the testing ground</h2>
+<p>We'll use django test client. It will suit perfectly for out testing type.
+Let's create a simple test:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">django.test.client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+
+
+<span class="k">class</span> <span class="nc">EndpointsTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_musician_with_albums_list_endpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;musician-list&#39;</span><span class="p">)</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+<p>As we can see, no data is exposed when going to <cite>/musicians/</cite>. Let's create
+a musician with some albums in <cite>setUp</cite>:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">django.test.client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+
+
+<span class="k">class</span> <span class="nc">EndpointsTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">test_musician</span> <span class="o">=</span> <span class="n">Musician</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Foo&#39;</span><span class="p">,</span>
+            <span class="n">last</span><span class="o">=</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Bar&#39;</span><span class="p">,</span>
+            <span class="n">instrument</span><span class="o">=</span><span class="s">&#39;guitar&#39;</span>
+        <span class="p">)</span>
+        <span class="n">album1</span> <span class="o">=</span> <span class="n">Album</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">musician</span><span class="o">=</span><span class="n">test_musician</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s">&#39;Album1&#39;</span><span class="p">,</span>
+            <span class="n">release_date</span><span class="o">=</span><span class="s">&#39;2011-01-01&#39;</span><span class="p">,</span>
+            <span class="n">num_stars</span><span class="o">=</span><span class="mi">5</span>
+        <span class="p">)</span>
+        <span class="n">album2</span> <span class="o">=</span> <span class="n">Album</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">musician</span><span class="o">=</span><span class="n">test_musician</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s">&#39;Album2&#39;</span><span class="p">,</span>
+            <span class="n">release_date</span><span class="o">=</span><span class="s">&#39;2012-02-02&#39;</span><span class="p">,</span>
+            <span class="n">num_stars</span><span class="o">=</span><span class="mi">4</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_musician_with_albums_list_endpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;musician-list&#39;</span><span class="p">)</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+<p>Now we have some data displayed in api. We can start to make some assertions.
+But when we fetch the response body, it returns a string. We decode the json
+document using <cite>json.loads</cite>. Create a helper function fetch_url which will
+return a dictionary. We should now be able to loop through the results. The
+code should look like this:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">test_musician_with_albums_list_endpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;musician-list&#39;</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">&#39;albums&#39;</span><span class="p">]),</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="factories">
+<h2>Factories</h2>
+<p>Before we move on, let's take a look at the models. We will need to create
+programmatically objects in database for testing when querying the endpoints.
+You can use <a class="reference external" href="https://factoryboy.readthedocs.org/en/latest/">factory_boy</a>
+library (fixtures replacement), or any other library for that matter, but we'll
+stick with a more raw approach, yet powerful enough to cover our needs. Back to
+models relationships, everything looks straightforward, we can see the album
+model has a field called musician, which is a foreign key to the musician
+model. Let's create factory.py and map the models relationship into a factory
+design:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">albumreview.models</span> <span class="kn">import</span> <span class="n">Musician</span><span class="p">,</span> <span class="n">Album</span>
+
+
+<span class="k">class</span> <span class="nc">MusicianFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">first_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">first_name</span> <span class="o">=</span> <span class="s">&#39;Foo</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span>
+        <span class="k">if</span> <span class="n">last_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">last_name</span> <span class="o">=</span> <span class="s">&#39;Bar</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span>
+        <span class="k">if</span> <span class="n">instrument</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">instrument</span> <span class="o">=</span> <span class="s">&#39;Blowfish</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span>
+
+        <span class="n">musician</span> <span class="o">=</span> <span class="n">Musician</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">first_name</span><span class="o">=</span><span class="n">first_name</span><span class="p">,</span>
+            <span class="n">last_name</span><span class="o">=</span><span class="n">last_name</span><span class="p">,</span>
+            <span class="n">instrument</span><span class="o">=</span><span class="n">instrument</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="n">musician</span>
+
+
+<span class="k">class</span> <span class="nc">AlbumFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">musician</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">release_date</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">num_stars</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Album</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span>
+        <span class="k">if</span> <span class="n">release_date</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">release_date</span> <span class="o">=</span> <span class="s">&#39;2014-03-03&#39;</span>
+        <span class="k">if</span> <span class="n">num_stars</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">num_stars</span> <span class="o">=</span> <span class="mi">5</span>
+
+        <span class="n">album</span> <span class="o">=</span> <span class="n">Album</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">musician</span><span class="o">=</span><span class="n">musician</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">release_date</span><span class="o">=</span><span class="n">release_date</span><span class="p">,</span>
+            <span class="n">num_stars</span><span class="o">=</span><span class="n">num_stars</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">album</span>
+</pre></div>
+<p>When creating records in db for testing, we can write in <cite>setUp</cite> something as:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">musician</span> <span class="o">=</span> <span class="n">MusicianFactory</span><span class="p">()</span>
+    <span class="n">album</span> <span class="o">=</span> <span class="n">AlbumFactory</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">album</span><span class="p">(</span><span class="n">musician</span><span class="o">=</span><span class="n">musician</span><span class="p">())</span>
+</pre></div>
+<p>This approach will bring us a few benefits, such as:</p>
+<ul class="simple">
+<li>creating objects with default data</li>
+<li>creating sequence of objects</li>
+<li>focus on tests not on creating records in db</li>
+</ul>
+<p>At any time, you can override the default data with data specific to your
+testing context:</p>
+<div class="highlight"><pre><span class="n">musician</span> <span class="o">=</span> <span class="n">MusicianFactory</span><span class="p">()</span>
+<span class="n">musician</span> <span class="o">=</span> <span class="n">musician</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&#39;y&#39;</span><span class="p">)</span>
+</pre></div>
+<p>After completing this tutorial, we have a good foundation to go and start
+testing an API from a functional point of view.</p>
+</div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "testpy"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-44297043-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
