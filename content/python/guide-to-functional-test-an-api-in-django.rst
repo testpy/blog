@@ -111,7 +111,7 @@ code should look like this:
 
     def test_musician_with_albums_list_endpoint(self):
         url = reverse('musician-list')
-        response = client.fetch_url(url)
+        response = fetch_url(url)
         self.assertEqual(len(response[0]['albums']), 3)
 
 
@@ -203,3 +203,72 @@ testing context:
 
 After completing this tutorial, we have a good foundation to go and start
 testing an API from a functional point of view.
+
+Refactoring the factories
+-------------------------
+
+One thing you'll notice using the above examples will be the repeatable code
+for each model when creating a factory. We can see a pattern, so let's try to
+refactor a little bit the factory and create a more generic one:
+
+.. sourcecode:: python
+
+    class ModelFactory(object):
+
+        def __init__(self, model, **fields):
+            self._model = model
+            self._fields = fields
+            self._counter = 1
+
+        def __call__(self, **kwargs):
+            fields = dict(self._fields)
+            fields.update(kwargs)
+            f = {}
+            for k, v in fields.items():
+                if callable(v):
+                    new_v = v
+                try:
+                    new_v = v % self._counter
+                except TypeError:
+                    new_v = v
+                f[k] = new_v
+            self._counter += 1
+            return self._model.objects.create(**f)
+
+Now it't more simpler and easier to create factories
+
+.. sourcecode:: python
+
+    musician = ModelFactory(
+        Musician, first_name='Foo', last_name='Bar', instrument='blowfish'
+    )
+    album = ModelFactory(
+        Album,
+        musician=musician(),
+        name='Album%s',
+        release_date='2014-02-02',
+        num_stars='%s'
+    )
+    for x in range(3):
+        album()
+
+This will create a musician with 3 albums
+
+.. sourcecode:: python
+
+    [{u'albums': [{u'id': 1,
+                u'name': u'Album1',
+                u'num_stars': 1,
+                u'release_date': u'2014-02-02'},
+                {u'id': 2,
+                u'name': u'Album2',
+                u'num_stars': 2,
+                u'release_date': u'2014-02-02'},
+                {u'id': 3,
+                u'name': u'Album3',
+                u'num_stars': 3,
+                u'release_date': u'2014-02-02'}],
+    u'first_name': u'Foo',
+    u'id': 1,
+    u'instrument': u'blowfish',
+    u'last_name': u'Bar'}]
