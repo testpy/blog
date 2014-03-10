@@ -132,7 +132,7 @@ code should look like this:</p>
 
 <span class="k">def</span> <span class="nf">test_musician_with_albums_list_endpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;musician-list&#39;</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">&#39;albums&#39;</span><span class="p">]),</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -212,6 +212,66 @@ testing context:</p>
 </pre></div>
 <p>After completing this tutorial, we have a good foundation to go and start
 testing an API from a functional point of view.</p>
+</div>
+<div class="section" id="refactoring-the-factories">
+<h2>Refactoring the factories</h2>
+<p>One thing you'll notice using the above examples will be the repeatable code
+for each model when creating a factory. We can see a pattern, so let's try to
+refactor a little bit the factory and create a more generic one:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">ModelFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="n">fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">)</span>
+        <span class="n">fields</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+                <span class="n">new_v</span> <span class="o">=</span> <span class="n">v</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">new_v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="n">new_v</span> <span class="o">=</span> <span class="n">v</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_v</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+<p>Now it't more simpler and easier to create factories</p>
+<div class="highlight"><pre><span class="n">musician</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="p">(</span>
+    <span class="n">Musician</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Foo&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Bar&#39;</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="s">&#39;blowfish&#39;</span>
+<span class="p">)</span>
+<span class="n">album</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="p">(</span>
+    <span class="n">Album</span><span class="p">,</span>
+    <span class="n">musician</span><span class="o">=</span><span class="n">musician</span><span class="p">(),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s">&#39;Album</span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span>
+    <span class="n">release_date</span><span class="o">=</span><span class="s">&#39;2014-02-02&#39;</span><span class="p">,</span>
+    <span class="n">num_stars</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">album</span><span class="p">()</span>
+</pre></div>
+<p>This will create a musician with 3 albums</p>
+<div class="highlight"><pre><span class="p">[{</span><span class="s">u&#39;albums&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&#39;Album1&#39;</span><span class="p">,</span>
+            <span class="s">u&#39;num_stars&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">u&#39;release_date&#39;</span><span class="p">:</span> <span class="s">u&#39;2014-02-02&#39;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&#39;Album2&#39;</span><span class="p">,</span>
+            <span class="s">u&#39;num_stars&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s">u&#39;release_date&#39;</span><span class="p">:</span> <span class="s">u&#39;2014-02-02&#39;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&#39;Album3&#39;</span><span class="p">,</span>
+            <span class="s">u&#39;num_stars&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s">u&#39;release_date&#39;</span><span class="p">:</span> <span class="s">u&#39;2014-02-02&#39;</span><span class="p">}],</span>
+<span class="s">u&#39;first_name&#39;</span><span class="p">:</span> <span class="s">u&#39;Foo&#39;</span><span class="p">,</span>
+<span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="s">u&#39;instrument&#39;</span><span class="p">:</span> <span class="s">u&#39;blowfish&#39;</span><span class="p">,</span>
+<span class="s">u&#39;last_name&#39;</span><span class="p">:</span> <span class="s">u&#39;Bar&#39;</span><span class="p">}]</span>
+</pre></div>
 </div>
 
             <div class="hr"></div>
