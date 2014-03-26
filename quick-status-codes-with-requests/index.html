@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="testpy, Software Testing and more">
+
+        <link rel="alternate"  href="http://localhost:8000/feeds/all.atom.xml" type="application/atom+xml" title="testpy Full Atom Feed"/>
+
+        <title>Quick status over sites pages using requests library // testpy // Software Testing and more</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://testpy.org/theme/css/pure.css">
+    <link rel="stylesheet" href="http://testpy.org/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="http://testpy.org/author/bianca-pirte.html" title="See posts by Bianca Pirte">
+                    <img class="article-avatar" alt="Bianca Pirte" src="http://www.gravatar.com/avatar/ffb86a478b1077621953fec7379066df">
+                </a>
+                <h2 class="article-info">Bianca Pirte</h2>
+                <small class="about-author">Test engineer</small>
+                <h5>Published</h5>
+                <p>Mon 24 March 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Quick status over sites pages using requests library</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://testpy.org/tag/requests.html">requests</a>
+                                <a class="post-category" href="http://testpy.org/tag/functional.html">functional</a>
+                                <a class="post-category" href="http://testpy.org/tag/yaml.html">yaml</a>
+                                <a class="post-category" href="http://testpy.org/tag/bs4.html">bs4</a>
+                        </p>
+                </header>
+            </section>
+            <div class="section" id="prerequisites">
+<h2>Prerequisites</h2>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">PyYAML</span>
+<span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">requests</span>
+<span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">BeautifulSoup4</span>
+</pre></div>
+<p>Let's start with a yaml config where we store data we will use in this script:</p>
+<div class="highlight"><pre><span class="o">---</span>
+<span class="n">url</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">explorerproducer</span><span class="o">.</span><span class="n">lunchbox</span><span class="o">.</span><span class="n">pbs</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">home</span><span class="o">/</span>
+<span class="n">title</span><span class="p">:</span> <span class="n">Home</span> <span class="o">|</span> <span class="n">explorerproducer</span><span class="o">.</span><span class="n">lunchbox</span><span class="o">.</span><span class="n">pbs</span><span class="o">.</span><span class="n">org</span> <span class="o">|</span> <span class="n">PBS</span>
+<span class="n">status_code</span><span class="p">:</span> <span class="mi">200</span>
+<span class="o">---</span>
+
+<span class="n">url</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">explorerproducer</span><span class="o">.</span><span class="n">lunchbox</span><span class="o">.</span><span class="n">pbs</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">video</span><span class="o">/</span>
+<span class="n">status_code</span><span class="p">:</span> <span class="mi">200</span>
+<span class="n">title</span><span class="p">:</span> <span class="n">Video</span> <span class="o">|</span> <span class="n">explorerproducer</span><span class="o">.</span><span class="n">lunchbox</span><span class="o">.</span><span class="n">pbs</span><span class="o">.</span><span class="n">org</span> <span class="o">|</span> <span class="n">PBS</span>
+<span class="n">mandatory_text</span><span class="p">:</span> <span class="s">&quot;some text existent in this page you can verify&quot;</span>
+<span class="o">---</span>
+
+<span class="n">url</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">explorerproducer</span><span class="o">.</span><span class="n">lunchbox</span><span class="o">.</span><span class="n">pbs</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">page_does_not_exist</span><span class="o">/</span>
+<span class="n">status_code</span><span class="p">:</span> <span class="mi">404</span>
+<span class="n">title</span><span class="p">:</span> <span class="n">wrong</span> <span class="n">title</span> <span class="n">page</span>
+<span class="n">mandatory_text</span><span class="p">:</span> <span class="s">&quot;All it takes is one bad page. Click one of the good pages below to return to our content.&quot;</span>
+<span class="o">---</span>
+
+<span class="n">url</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">explorerproducer</span><span class="o">.</span><span class="n">lunchbox</span><span class="o">.</span><span class="n">pbs</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">celerity</span><span class="o">/</span>
+<span class="n">title</span><span class="p">:</span> <span class="n">Celerity</span> <span class="o">|</span> <span class="n">explorerproducer</span><span class="o">.</span><span class="n">lunchbox</span><span class="o">.</span><span class="n">pbs</span><span class="o">.</span><span class="n">org</span> <span class="o">|</span> <span class="n">PBS</span>
+<span class="n">status_code</span><span class="p">:</span> <span class="mi">200</span>
+</pre></div>
+<p>...feel free to add/remove any fields you consider important to receive quick
+status. (this are my first checkpoints)</p>
+</div>
+<div class="section" id="response-status-code-succes-error-forward-and-redirection">
+<h2>1. response.status_code (Succes, Error, Forward and redirection ..)</h2>
+<p>When testing/automating a web app one of the first things you do is typeing the
+url in a browser or perform a get(&quot;url&quot;) using any open source tool for testing
+web app.  What is the first response the server sends for your request? Why
+don't we use this basic information - the status codes, as a first checkpoint?
+(status_code from requests API offers us the integer code of responded HTTP
+Status, e.g. 404 or 200.) First, let's  create the response object based on
+each page url stored in the yaml and than we use <cite>status_code</cite> that will return
+an integer code of responded HTTP status, e.g. 404 or 200.</p>
+<div class="highlight"><pre><span class="n">my_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+<span class="k">print</span> <span class="n">my_response</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+<p>As you can see the output is an integer code of responded HTTP Status. You can
+now play with it, add different error messages for server errors or redirects
+and so on.</p>
+<p>We can validate against data from yaml config, or just log information in the
+txt file and than review. (you decide which is more valuable for you)</p>
+<p>Ok, now we have first status server responses with but let's try gather some
+more information.</p>
+</div>
+<div class="section" id="verify-page-content">
+<h2>2. Verify page content</h2>
+<p>Verify title is the one you expected or verify some text is displayed in the
+page content (of course this will not guarantee the display is proper, this
+type of testing is covered by other tools). For pulling data out of HTML
+response content we will use <a class="reference external" href="http://www.crummy.com/software/BeautifulSoup/">Beautiful Soup</a>.</p>
+<p>First we create the method for extracting the title</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_page_title</span><span class="p">(</span><span class="n">html</span><span class="p">):</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">soup</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">string</span>
+</pre></div>
+<p>and now use the method to validate the title is the one we expected.</p>
+<div class="highlight"><pre><span class="n">my_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+<span class="c"># now we need the html content -&gt; my_response.content</span>
+<span class="k">print</span> <span class="n">get_page_title</span><span class="p">(</span><span class="n">my_response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+<p>Again, feel free to display what information you need and how you need it.
+Maybe there is some text that if not displayed the test should stop. Maybe you
+want to log the text that was verified and received successful...</p>
+</div>
+<div class="section" id="time-statistics">
+<h2>3. Time statistics</h2>
+<p>How about some statistics about the amount of time elapsed between sending the
+request and the arrival of the response?</p>
+<p>Many servers will accept a connection and then hold it until it is ready to
+process. This backlog of requests can slow down the response time. If logging
+this statistics for each build of your web app you can easily see if new
+features have impact over the performance of your time to load page by
+comparing the results in time.</p>
+<p>The amount of time elapsed between sending the request and the arrival of the
+response as a timedelta is not the same with the time to load a page, it is
+only a part of it, the one related to server processing the requests. If
+elapsed time is more than a few hundred milliseconds, you may have investigate
+if you have some bottlenecks on your server.</p>
+<p>Let's gather some time statistics too in order to have comparison metrics too:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+
+<span class="k">def</span> <span class="nf">get_page_title</span><span class="p">(</span><span class="n">html</span><span class="p">):</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">soup</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">string</span>
+
+<span class="k">def</span> <span class="nf">get_page_status</span><span class="p">():</span>
+    <span class="n">site_page_url_list</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load_all</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;config.yml&quot;</span><span class="p">,</span><span class="s">&quot;r&quot;</span><span class="p">))</span>
+    <span class="n">input_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">site_page_url_list</span><span class="p">:</span>
+        <span class="n">input_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;site_pages_status.txt&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">page_info</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">:</span>
+        <span class="n">my_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">GET </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Status code </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Done in </span><span class="si">%s</span><span class="s">  &quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span> <span class="n">my_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">my_response</span><span class="o">.</span><span class="n">elapsed</span><span class="p">))</span>
+        <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">GET </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Status code </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Done in </span><span class="si">%s</span><span class="s">  &quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span> <span class="n">my_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">my_response</span><span class="o">.</span><span class="n">elapsed</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="n">get_page_title</span><span class="p">(</span><span class="n">my_response</span><span class="o">.</span><span class="n">content</span><span class="p">)):</span>
+            <span class="k">print</span> <span class="s">&quot;Faill- check page title for -  </span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span><span class="p">(</span> <span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Faill- check page title for -  </span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span><span class="p">(</span> <span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">my_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">page_info</span><span class="p">[</span><span class="s">&#39;status_code&#39;</span><span class="p">]):</span>
+            <span class="k">print</span> <span class="s">&quot;Error -check page </span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span><span class="p">(</span> <span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Error -check page </span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span><span class="p">(</span> <span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]))</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">get_page_status</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+<p>Remember this is the output I considered contains important data necessary for
+my web app. You can configure the py  script / yaml different in order to
+obtain valuable data for your web app. We only used three from many others
+methods requests library offers Take a look at <a class="reference external" href="http://docs.python-requests.org/en/latest/api/">requests</a> api and play with it in
+order to add new, more complex or simple test scenarios.</p>
+</div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "testpy"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; testpy &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-44297043-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
