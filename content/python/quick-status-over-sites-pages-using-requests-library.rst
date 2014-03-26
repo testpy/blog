@@ -134,7 +134,6 @@ Let's gather some time statistics too in order to have comparison metrics too:
 .. sourcecode:: python
 
     import requests
-    import time
     import yaml
     from bs4 import BeautifulSoup
 
@@ -148,23 +147,29 @@ Let's gather some time statistics too in order to have comparison metrics too:
         input_list = []
         for e in site_page_url_list:
             input_list.append(e)
+
         fp = open('site_pages_status.txt', 'a')
         for page_info in input_list:
             my_response = requests.get(page_info['url'])
-            fp.write("\nGET %s \n Status code %s \n Done in %s  " %(page_info['url'], my_response.status_code, my_response.elapsed))
-            print "\nGET %s \n Status code %s \n Done in %s  " %(page_info['url'], my_response.status_code, my_response.elapsed)
-            if not (page_info['title'] ==  get_page_title(my_response.content)):
-                print "Faill- check page title for -  %s " %( page_info['url'])
-                fp.write("Faill- check page title for -  %s " %( page_info['url']))
-            if not (my_response.status_code == page_info['status_code']):
-                print "Error -check page %s " %( page_info['url'])
-                fp.write("Error -check page %s " %( page_info['url']))
-        fp.close()
+            fp.write(
+                "\nGET %s \n Status code %s \n Done in %s  " % (page_info['url'],
+                my_response.status_code, my_response.elapsed)
+            )
+            print "\nGET %s \n Status code %s \n Done in %s" % (
+                page_info['url'], my_response.status_code, my_response.elapsed
+            )
 
+            if not (page_info['title'] == get_page_title(my_response.content)):
+                print "Fail - check page title for -  %s" % (page_info['url'])
+                fp.write("Fail - check page title for - %s " % (page_info['url']))
+
+            if not (my_response.status_code == page_info['status_code']):
+                print "Error - check page %s" % ( page_info['url'])
+                fp.write("Error - check page %s" % ( page_info['url']))
+        fp.close()
 
     def main():
         get_page_status()
-
 
     if __name__ == '__main__':
         main()
