@@ -143,7 +143,7 @@ Let's gather some time statistics too in order to have comparison metrics too:
         return soup.title.string
 
     def get_page_status():
-        site_page_url_list = yaml.load_all(open("config.yml","r"))
+        site_page_url_list = yaml.load_all(open('config.yml','r'))
         input_list = []
         for e in site_page_url_list:
             input_list.append(e)
@@ -152,7 +152,7 @@ Let's gather some time statistics too in order to have comparison metrics too:
         for page_info in input_list:
             my_response = requests.get(page_info['url'])
             fp.write(
-                "\nGET %s \n Status code %s \n Done in %s  " % (page_info['url'],
+                "\nGET %s \n Status code %s \n Done in %s" % (page_info['url'],
                 my_response.status_code, my_response.elapsed)
             )
             print "\nGET %s \n Status code %s \n Done in %s" % (
@@ -160,12 +160,12 @@ Let's gather some time statistics too in order to have comparison metrics too:
             )
 
             if not (page_info['title'] == get_page_title(my_response.content)):
-                print "Fail - check page title for -  %s" % (page_info['url'])
-                fp.write("Fail - check page title for - %s " % (page_info['url']))
+                print "Fail - check page title for - %s" % (page_info['url'])
+                fp.write("Fail - check page title for - %s" % (page_info['url']))
 
             if not (my_response.status_code == page_info['status_code']):
-                print "Error - check page %s" % ( page_info['url'])
-                fp.write("Error - check page %s" % ( page_info['url']))
+                print "Error - check page %s" % (page_info['url'])
+                fp.write("Error - check page %s" % (page_info['url']))
         fp.close()
 
     def main():
@@ -177,6 +177,6 @@ Let's gather some time statistics too in order to have comparison metrics too:
 Remember this is the output I considered contains important data necessary for
 my web app. You can configure the py  script / yaml different in order to
 obtain valuable data for your web app. We only used three from many others
-methods requests library offers Take a look at `requests
+methods requests library offers. Take a look at `requests
 <http://docs.python-requests.org/en/latest/api/>`_ api and play with it in
 order to add new, more complex or simple test scenarios.
