@@ -150,7 +150,7 @@ if you have some bottlenecks on your server.</p>
     <span class="k">return</span> <span class="n">soup</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">string</span>
 
 <span class="k">def</span> <span class="nf">get_page_status</span><span class="p">():</span>
-    <span class="n">site_page_url_list</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load_all</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;config.yml&quot;</span><span class="p">,</span><span class="s">&quot;r&quot;</span><span class="p">))</span>
+    <span class="n">site_page_url_list</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load_all</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;config.yml&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">))</span>
     <span class="n">input_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">site_page_url_list</span><span class="p">:</span>
         <span class="n">input_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -159,7 +159,7 @@ if you have some bottlenecks on your server.</p>
     <span class="k">for</span> <span class="n">page_info</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">:</span>
         <span class="n">my_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
         <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-            <span class="s">&quot;</span><span class="se">\n</span><span class="s">GET </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Status code </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Done in </span><span class="si">%s</span><span class="s">  &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span>
+            <span class="s">&quot;</span><span class="se">\n</span><span class="s">GET </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Status code </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Done in </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span>
             <span class="n">my_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">my_response</span><span class="o">.</span><span class="n">elapsed</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">GET </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Status code </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="s"> Done in </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span>
@@ -167,12 +167,12 @@ if you have some bottlenecks on your server.</p>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">get_page_title</span><span class="p">(</span><span class="n">my_response</span><span class="o">.</span><span class="n">content</span><span class="p">)):</span>
-            <span class="k">print</span> <span class="s">&quot;Fail - check page title for -  </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
-            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Fail - check page title for - </span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]))</span>
+            <span class="k">print</span> <span class="s">&quot;Fail - check page title for - </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Fail - check page title for - </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]))</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">my_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">page_info</span><span class="p">[</span><span class="s">&#39;status_code&#39;</span><span class="p">]):</span>
-            <span class="k">print</span> <span class="s">&quot;Error - check page </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
-            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Error - check page </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]))</span>
+            <span class="k">print</span> <span class="s">&quot;Error - check page </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Error - check page </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">page_info</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]))</span>
     <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
@@ -184,7 +184,7 @@ if you have some bottlenecks on your server.</p>
 <p>Remember this is the output I considered contains important data necessary for
 my web app. You can configure the py  script / yaml different in order to
 obtain valuable data for your web app. We only used three from many others
-methods requests library offers Take a look at <a class="reference external" href="http://docs.python-requests.org/en/latest/api/">requests</a> api and play with it in
+methods requests library offers. Take a look at <a class="reference external" href="http://docs.python-requests.org/en/latest/api/">requests</a> api and play with it in
 order to add new, more complex or simple test scenarios.</p>
 </div>
 
