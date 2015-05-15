@@ -1,235 +1,117 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="testpy, Software Testing and more">
+    <title>blog.danclaudiupop | Software Testing and more</title>
+    <meta name="description" content="blog.danclaudiupop, Software Testing and more">
+    <meta name="author" content="danclaudiupop">
 
-        <link rel="alternate"  href="http://localhost:8000/feeds/all.atom.xml" type="application/atom+xml" title="testpy Full Atom Feed"/>
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>all posts // testpy // Software Testing and more</title>
+    <!-- Feeds
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="alternate" href="http://localhost:8000/feeds/all.atom.xml" type="application/atom+xml" title="blog.danclaudiupop Atom Feed" />
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://testpy.org/theme/css/pure.css">
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata">
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/theme/css/custom.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <!-- Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="theme/js/site.js"></script>
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="../../dist/images/favicon.png">
+
 </head>
-
 <body>
-<div class="pure-g-r" id="layout">
-<div class="sidebar pure-u">
-    <div class="cover-img" style="background-image: url('http://i.imgur.com/rdpkAUi.jpg')">
-        <div class="cover-body">
-            <header class="header">
-                <hgroup>
-                    <h1 class="brand-main"><a href="/">testpy</a></h1>
-                    <p class="tagline">Software Testing and more</p>
-                    <p class="links"><a href="http://testpy.org/archives.html">Archive</a></p>
-                    <p class="links"><a href="http://testpy.org/about-us.html">About</a></p>
-                    <p class="social">
-                        <a href="https://github.com/testpy/">
-                            <i class="fa fa-github fa-3x"></i>
+
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+        <section class="header">
+            <img src="/theme/assets/stewie.jpg" class="logo">
+        </section>
+    </div>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container">
+                <ul class="navbar-list">
+                    <li class="navbar-item"><a href="http://blog.danclaudiupop.com/" class="navbar-link">Posts</a></li>
+                    <li class="navbar-item"><a href="http://blog.danclaudiupop.com/about-us.html" class="navbar-link">About</a></li>
+                    <li class="navbar-icon">
+                        <a href="http://blog.danclaudiupop.com/feeds/all.atom.xml">
+                            <i class="fa fa-rss fa-fw fa-2x"></i>
                         </a>
+                    </li>
+                    <li class="navbar-icon">
+                        <a href="https://github.com/danclaudiupop/">
+                            <i class="fa fa-github fa-fw fa-2x"></i>
+                        </a>
+                    </li>
+                    <li class="navbar-icon">
                         <a href="https://twitter.com/danclaudiupop">
-                            <i class="fa fa-twitter-square fa-3x"></i>
+                            <i class="fa fa-twitter fa-fw fa-2x"></i>
                         </a>
-                        <a href="http://testpy.org/feeds/all.atom.xml">
-                            <i class="fa fa-rss fa-3x"></i>
-                        </a>
-                    <p>
-                </hgroup>
-            </header>
-        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
-</div>    <div class="pure-u-1">
-        <div class="content">
-            <h1 class="content-subhead">All posts</h1>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/bianca-pirte.html" title="See posts by Bianca Pirte">
-                        <img class="avatar" alt="Bianca Pirte" src="http://www.gravatar.com/avatar/ffb86a478b1077621953fec7379066df">
-                    </a>
-                    <h5 class="archive-date">2014</h5>
-                    <h4 class="archive-date">24 March</h4>
-                    <div class="archive-post"><a href="quick-status-codes-with-requests/">Quick status over sites pages using requests library</a></div>
-                    <p class="archive-meta">Bianca Pirte in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2014</h5>
-                    <h4 class="archive-date">06 March</h4>
-                    <div class="archive-post"><a href="guide-to-functionally-test-an-api-in-django/">Beginners guide to functionally test an API in Django</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/ramona-suciu.html" title="See posts by Ramona Suciu">
-                        <img class="avatar" alt="Ramona Suciu" src="http://www.gravatar.com/avatar/9fb7512a5c3ffdd048b2d926e68b0300">
-                    </a>
-                    <h5 class="archive-date">2014</h5>
-                    <h4 class="archive-date">14 February</h4>
-                    <div class="archive-post"><a href="automation-paradox/">The automation paradox</a></div>
-                    <p class="archive-meta">Ramona Suciu in <a href="http://testpy.org/category/misc.html">misc</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2014</h5>
-                    <h4 class="archive-date">09 February</h4>
-                    <div class="archive-post"><a href="circular-foreign-key-factory-boy/">Circular foreign key with factory_boy</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2014</h5>
-                    <h4 class="archive-date">03 February</h4>
-                    <div class="archive-post"><a href="auto-speccing/">Autospeccing your mocks</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/ramona-suciu.html" title="See posts by Ramona Suciu">
-                        <img class="avatar" alt="Ramona Suciu" src="http://www.gravatar.com/avatar/9fb7512a5c3ffdd048b2d926e68b0300">
-                    </a>
-                    <h5 class="archive-date">2014</h5>
-                    <h4 class="archive-date">31 January</h4>
-                    <div class="archive-post"><a href="on-creativity/">On creativity</a></div>
-                    <p class="archive-meta">Ramona Suciu in <a href="http://testpy.org/category/misc.html">misc</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">29 November</h4>
-                    <div class="archive-post"><a href="headless-selenium-tests-in-django-with-xvfbwrapper/">Headless selenium tests in django with xvfbwrapper</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">05 November</h4>
-                    <div class="archive-post"><a href="10-pragmatic-guidelines-to-maximize-test-usefulness/">10 pragmatic guidelines to maximize test usefulness</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">16 October</h4>
-                    <div class="archive-post"><a href="stop-treating-testers-as-failed-developers/">Stop treating testers as failed developers</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/misc.html">misc</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">14 October</h4>
-                    <div class="archive-post"><a href="command-line-json-parser-via-jq/">Command line JSON parser via jq</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/misc.html">misc</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">03 October</h4>
-                    <div class="archive-post"><a href="using-tail-to-explore-logs/">Using tail to explore logs</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/misc.html">misc</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/ramona-suciu.html" title="See posts by Ramona Suciu">
-                        <img class="avatar" alt="Ramona Suciu" src="http://www.gravatar.com/avatar/9fb7512a5c3ffdd048b2d926e68b0300">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">24 May</h4>
-                    <div class="archive-post"><a href="rtc/">After Romanian Testing Conference 2013</a></div>
-                    <p class="archive-meta">Ramona Suciu in <a href="http://testpy.org/category/misc.html">misc</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">25 April</h4>
-                    <div class="archive-post"><a href="functional-tests-with-django-webtest/">Functional tests with django-webtest</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/ramona-suciu.html" title="See posts by Ramona Suciu">
-                        <img class="avatar" alt="Ramona Suciu" src="http://www.gravatar.com/avatar/9fb7512a5c3ffdd048b2d926e68b0300">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">25 April</h4>
-                    <div class="archive-post"><a href="writing-tests-with-django-and-selenium/">Writing tests with django and selenium</a></div>
-                    <p class="archive-meta">Ramona Suciu in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/dan-claudiu-pop.html" title="See posts by Dan Claudiu Pop">
-                        <img class="avatar" alt="Dan Claudiu Pop" src="http://www.gravatar.com/avatar/13bb92ec1bdd207f60e3ccd1835550ab">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">01 February</h4>
-                    <div class="archive-post"><a href="lettuce-and-django-test-client/">Lettuce and django test client</a></div>
-                    <p class="archive-meta">Dan Claudiu Pop in <a href="http://testpy.org/category/python.html">python</a></p>
-                </div>
-                <div class="archive-item">
-                    <a href="http://testpy.org/author/ramona-suciu.html" title="See posts by Ramona Suciu">
-                        <img class="avatar" alt="Ramona Suciu" src="http://www.gravatar.com/avatar/9fb7512a5c3ffdd048b2d926e68b0300">
-                    </a>
-                    <h5 class="archive-date">2013</h5>
-                    <h4 class="archive-date">07 January</h4>
-                    <div class="archive-post"><a href="explore-it/">Book review: Explore it! by Elisabeth Hendrickson</a></div>
-                    <p class="archive-meta">Ramona Suciu in <a href="http://testpy.org/category/misc.html">misc</a></p>
-                </div>
-        </div>
-    </div>
-</div>
-<footer class="footer">
-    <p>&copy; testpy &ndash;
-        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
-    </p>
-</footer>    <script>
-        var $top = $('.go-top');
+<h1>Archives for blog.danclaudiupop</h1>
 
-        // Show or hide the sticky footer button
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 200) {
-                $top.fadeIn(200);
-            } else {
-                $top.fadeOut(200);
-            }
-        });
+<dl>
+    <dt>Jo 06 martie 2014</dt>
+    <dd><a href="http://blog.danclaudiupop.com/guide-to-functionally-test-an-api-in-django/">Beginners guide to functionally test an API in Django</a></dd>
+    <dt>Du 09 februarie 2014</dt>
+    <dd><a href="http://blog.danclaudiupop.com/circular-foreign-key-factory-boy/">Circular foreign key with factory_boy</a></dd>
+    <dt>Lu 03 februarie 2014</dt>
+    <dd><a href="http://blog.danclaudiupop.com/auto-speccing/">Autospeccing your mocks</a></dd>
+    <dt>Vi 29 noiembrie 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/headless-selenium-tests-in-django-with-xvfbwrapper/">Headless selenium tests in django with xvfbwrapper</a></dd>
+    <dt>Ma 05 noiembrie 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/10-pragmatic-guidelines-to-maximize-test-usefulness/">10 pragmatic guidelines to maximize test usefulness</a></dd>
+    <dt>Mi 16 octombrie 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/stop-treating-testers-as-failed-developers/">Stop treating testers as failed developers</a></dd>
+    <dt>Lu 14 octombrie 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/command-line-json-parser-via-jq/">Command line JSON parser via jq</a></dd>
+    <dt>Jo 03 octombrie 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/using-tail-to-explore-logs/">Using tail to explore logs</a></dd>
+    <dt>Vi 24 mai 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/rtc/">After Romanian Testing Conference 2013</a></dd>
+    <dt>Jo 25 aprilie 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/functional-tests-with-django-webtest/">Functional tests with django-webtest</a></dd>
+    <dt>Vi 01 februarie 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/lettuce-and-django-test-client/">Lettuce and django test client</a></dd>
+    <dt>Lu 07 ianuarie 2013</dt>
+    <dd><a href="http://blog.danclaudiupop.com/explore-it/">Book review: Explore it! by Elisabeth Hendrickson</a></dd>
+</dl>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        // Animate the scroll to top
-        $top.click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, 300);
-        })
+  ga('create', 'UA-62968573-1', 'auto');
+  ga('send', 'pageview');
 
-        // Makes sure that the href="#" attached to the <a> elements
-        // don't scroll you back up the page.
-        $('body').on('click', 'a[href="#"]', function(event) {
-            event.preventDefault();
-        });
-    </script>
-    <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-        try {
-            var pageTracker = _gat._getTracker("UA-44297043-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-    </script>
+</script>
+    <!-- End Document
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>

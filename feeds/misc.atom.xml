@@ -1,86 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="http://testpy.org/" rel="alternate"></link><link href="http://localhost:8000/feeds/misc.atom.xml" rel="self"></link><id>http://testpy.org/</id><updated>2014-02-14T00:00:00+02:00</updated><entry><title>The automation paradox</title><link href="http://testpy.org/automation-paradox/" rel="alternate"></link><updated>2014-02-14T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-02-14:automation-paradox/</id><summary type="html">&lt;p&gt;&lt;strong&gt;Or simply put, it seems everyone wants to automate stuff, but there’s never
-enough time for it&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;One of the things I enjoy most is to establish the automation framework on a
-new project, from simple setup on a local machine, until integration with a CI
-server. In my opinion, this is often one of the most challenging parts, and
-what follows afterwards, writing and maintaining the tests, is simply the fun
-part :)&lt;/p&gt;
-&lt;p&gt;But what many do not seem to understand is that this is a time consuming
-operation, especially when working on products already available on the market,
-with legacy features still tested manually. In order for automation to succeed
-on a project, my philosophy can be summed up to a few important action items:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;make everyone understand the importance and advantages brought by automation
-testing&lt;/li&gt;
-&lt;li&gt;evangelize these advantages as much as you can with managers (so that you
-have their full support) and the clients&lt;/li&gt;
-&lt;li&gt;not everyone is suited for automation testing. Some testers do a better job
-at exploratory or performance testing. And this is perfectly ok. Testers
-should be encouraged to specialize in the testing area they like the most, in
-order for them to do their job with passion and enthusiasm (but that’s
-another discussion, for another time :) ).&lt;/li&gt;
-&lt;li&gt;you need a tester with a technical background, and very passionate about
-what’s new. Automation testers who keep themselves up to date tend to write
-less brittle tests, by trying to incorporate various tips&amp;amp;tricks into their
-tests.&lt;/li&gt;
-&lt;li&gt;with the risk of repeating myself, use (at least in the beginning) just one
-or two automation testers, with experience on this area, until the automation
-framework is in place and fully running. Afterwards, it will be easier to
-increase the automation team, by cultivating such skills to other members of
-the team. As I also said above, writing and maintaining tests is a very fun
-job, once you got it going.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Unfortunately, although everybody is aware of the advantages, it seems that
-more often than not, managers and clients prefer manual testing to investing
-time and effort into automation. I believe this is because manual testing (for
-new features) is faster, the testers doing this job know the product well and
-can quickly assert the level of quality for new functionalities, and in such
-cases, fast, high-level testing is preferred to long term testing, with a
-larger coverage on the product’s features.&lt;/p&gt;
-&lt;p&gt;I am not saying that manual testing should be eliminated, because that is not
-possible. Many times, it is more worth to manually test something, rather than
-trying to automate that specific feature. However, what many do not seem to
-take into account is the long-term advantages of automation testing. The
-confidence that no regressions have been introduced and that the application
-behaves well from functional point of view, while you are free to
-automate/explore new features, is priceless when you try to make your product
-successful.&lt;/p&gt;
-&lt;p&gt;To conclude, we all want automation testing, because it is soooo great, but we
-just don’t have time for it right now :)&lt;/p&gt;
-</summary><category term="agile"></category><category term="automation"></category></entry><entry><title>On creativity</title><link href="http://testpy.org/on-creativity/" rel="alternate"></link><updated>2014-01-31T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-01-31:on-creativity/</id><summary type="html">&lt;p&gt;We all know that if we organize our work, things would go smoother and we would
-gain more time to focus on more important items, such as automation or load
-testing.  Or is it? Think about it… Everything is organized, everyone follows
-the rules, the project management team couldn’t be happier. But what about
-creativity? When do we have time to be creative and innovate? To change the
-course of the project by implementing an idea seemingly so crazy at first, that
-no one thought it could be a success.&lt;/p&gt;
-&lt;p&gt;Where would all major software companies be today, if they would have devoted
-their time to rewriting and implementing the rules, just to make sure
-everything goes as planned? Instead of thinking of new approaches, of how we
-could revolutionize the work we are doing, we spent a large part of our time
-following the same old rules, which do not benefit neither the project, nor the
-people working on the project.&lt;/p&gt;
-&lt;p&gt;Let’s take for example test cases management tools. I understand that they are
-able to provide reports, and colored graphs (really difficult to understand at
-times), and we all know managers do like graphs. But are these reports useful
-to someone (at least in agile environments)? Is someone actually spending time
-to look at the reports and analyze them? I doubt it. Managers are interested in
-results. And while they like to see some reports from time to time, I think
-they would be more happy knowing the product is well tested, regardless of the
-test cases management tool used.&lt;/p&gt;
-&lt;p&gt;Instead of this very watterfall-ish approach, I would suggest investing more
-time in automation testing and documenting the scripts, so that everyone
-involved in the project, including non-technical people, knows what is being
-tested. BDD-like tools provide this functionality out of the box, via Gherkin
-language. As for other tools, make sure to document the scripts so they can
-serve as a living documentation.&lt;/p&gt;
-&lt;p&gt;Let’s step out of the line from time to time, and embrace creativity more!&lt;/p&gt;
-</summary><category term="agile"></category></entry><entry><title>Stop treating testers as failed developers</title><link href="http://testpy.org/stop-treating-testers-as-failed-developers/" rel="alternate"></link><updated>2013-10-16T11:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-10-16:stop-treating-testers-as-failed-developers/</id><summary type="html">&lt;p&gt;&lt;em&gt;&amp;quot;Stop treating testers as failed developers when developers are failed
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.danclaudiupop</title><link href="http://blog.danclaudiupop.com/" rel="alternate"></link><link href="http://localhost:8000/feeds/misc.atom.xml" rel="self"></link><id>http://blog.danclaudiupop.com/</id><updated>2013-10-16T11:30:00+03:00</updated><entry><title>Stop treating testers as failed developers</title><link href="http://blog.danclaudiupop.com/stop-treating-testers-as-failed-developers/" rel="alternate"></link><updated>2013-10-16T11:30:00+03:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-10-16:stop-treating-testers-as-failed-developers/</id><summary type="html">&lt;p&gt;&lt;em&gt;&amp;quot;Stop treating testers as failed developers when developers are failed
 testers&amp;quot;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Thanks to &lt;a class="reference external" href="https://github.com/limpangel"&gt;Angel Ramboi&lt;/a&gt; who took the picture
 at PyCon Ireland 2013. This is &lt;a class="reference external" href="https://github.com/AutomatedTester"&gt;David Burns&lt;/a&gt;' keynote.&lt;/p&gt;
-&lt;a href="http://www.flickr.com/photos/105549603@N05/10305606266/"&gt;&lt;img src="http://farm8.staticflickr.com/7411/10305606266_3138beee0d_b.jpg" width="1024" height="768" alt="IMG_20131013_130435"&gt;&lt;/a&gt;</summary><category term="tester"></category><category term="developer"></category></entry><entry><title>Command line JSON parser via jq</title><link href="http://testpy.org/command-line-json-parser-via-jq/" rel="alternate"></link><updated>2013-10-14T22:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-10-14:command-line-json-parser-via-jq/</id><summary type="html">&lt;p&gt;A command-line JSON parser can be handy when you test or debug JSON web
+&lt;a href="http://www.flickr.com/photos/105549603@N05/10305606266/"&gt;&lt;img src="http://farm8.staticflickr.com/7411/10305606266_3138beee0d_b.jpg" alt="IMG_20131013_130435"&gt;&lt;/a&gt;</summary><category term="tester"></category><category term="developer"></category></entry><entry><title>Command line JSON parser via jq</title><link href="http://blog.danclaudiupop.com/command-line-json-parser-via-jq/" rel="alternate"></link><updated>2013-10-14T22:30:00+03:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-10-14:command-line-json-parser-via-jq/</id><summary type="html">&lt;p&gt;A command-line JSON parser can be handy when you test or debug JSON web
 services. Unfortunately inspecting JSON responses via command line are hard to
 read and not easy to manipulate with traditional Unix utilities.&lt;/p&gt;
 &lt;p&gt;Today I stumbled on &lt;a class="reference external" href="http://stedolan.github.io/jq/"&gt;jq&lt;/a&gt;, via &lt;a class="reference external" href="https://github.com/limpangel"&gt;Angel Ramboi&lt;/a&gt;. &lt;tt class="docutils literal"&gt;jq&lt;/tt&gt; is a lightweight and flexible
@@ -88,82 +11,85 @@ command-line JSON processor.&lt;/p&gt;
 &lt;p&gt;Download the desired binary and then &lt;tt class="docutils literal"&gt;chmod +x ./jq&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;I've prepared a sample json so we can see how easily it is to inspect and
 manipulate JSON strings.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;
 
 &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;last&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;sex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;M&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;registered&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;interests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Reading&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Mountain Biking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hacking&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;favorites&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Blue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;quot;sport&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Soccer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;quot;food&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Spaghetti&amp;quot;&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;last&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;sex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;M&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;registered&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;interests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Reading&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Mountain Biking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hacking&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;favorites&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Blue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;sport&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Soccer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;food&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Spaghetti&amp;quot;&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;skills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;skills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
         &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
             &lt;span class="p"&gt;]&lt;/span&gt;
         &lt;span class="p"&gt;},&lt;/span&gt;
         &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GO&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;84&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;GO&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;84&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
             &lt;span class="p"&gt;]&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Simple filtering:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.skills&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.category&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.skills[].category&amp;#39;&lt;/span&gt;
 
-&lt;span class="err"&gt;Python&lt;/span&gt;
-&lt;span class="err"&gt;Go&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt;
+&lt;span class="n"&gt;Go&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Filtering with index:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;skills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;.name,&lt;/span&gt; &lt;span class="err"&gt;.score&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.[&amp;quot;skills&amp;quot;][0][&amp;quot;tests&amp;quot;][1] | .name, .score&amp;#39;&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
 &lt;span class="mi"&gt;96&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;...or a different flavour:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.skills&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;.tests&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;.name,&lt;/span&gt; &lt;span class="err"&gt;.score&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.skills[0].tests[1] | .name, .score&amp;#39;&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
 &lt;span class="mi"&gt;96&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Built-in operators:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.interests&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;length&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.interests | length&amp;#39;&lt;/span&gt;
 
 &lt;span class="mi"&gt;3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Manipulate JSON string:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;if&lt;/span&gt; &lt;span class="err"&gt;.registered&lt;/span&gt; &lt;span class="err"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="err"&gt;then&lt;/span&gt; &lt;span class="err"&gt;.skills&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.tests&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.score&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="err"&gt;else&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt; &lt;span class="err"&gt;end&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;new_sample.json&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;if .registered == true then .skills[].tests[].score = 1000 else null end&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;new_sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Head on and read the &lt;a class="reference external" href="http://stedolan.github.io/jq/manual/"&gt;jq manual&lt;/a&gt; if you
 want to include it in your tester toolbox.&lt;/p&gt;
-</summary><category term="unix"></category></entry><entry><title>Using tail to explore logs</title><link href="http://testpy.org/using-tail-to-explore-logs/" rel="alternate"></link><updated>2013-10-03T12:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-10-03:using-tail-to-explore-logs/</id><summary type="html">&lt;p&gt;When I am testing, I always keep an eye on the logs because they are a valuable
+</summary><category term="unix"></category></entry><entry><title>Using tail to explore logs</title><link href="http://blog.danclaudiupop.com/using-tail-to-explore-logs/" rel="alternate"></link><updated>2013-10-03T12:30:00+03:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-10-03:using-tail-to-explore-logs/</id><summary type="html">&lt;p&gt;When I am testing, I always keep an eye on the logs because they are a valuable
 resource for finding problems on the system. They can act as an early warning
 system. The &lt;tt class="docutils literal"&gt;tail&lt;/tt&gt; commnand alongside with &lt;tt class="docutils literal"&gt;view&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;vim&lt;/tt&gt; are great ways
 to explore big log entries.&lt;/p&gt;
-&lt;p&gt;There is a slightly difference between the &lt;tt class="docutils literal"&gt;tail &lt;span class="pre"&gt;-f&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;tailf&lt;/tt&gt; commands.
-With &lt;tt class="docutils literal"&gt;tail &lt;span class="pre"&gt;-f&lt;/span&gt;&lt;/tt&gt; you can basically do multitail like this:&lt;/p&gt;
+&lt;p&gt;Some simple examples:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;web_app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;*.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;while &lt;tt class="docutils literal"&gt;tailf&lt;/tt&gt; does not allow you to do multitail.&lt;/p&gt;
-&lt;p&gt;Ofcourse when there is too much noise you can pipe the output.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;web_app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="n"&gt;ERROR&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;... or get and read log from remote host&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;remoteUser&lt;/span&gt;&lt;span class="nd"&gt;@remoteHost&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;tail -f /var/log/app/app.log&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;tee&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</summary><category term="unix"></category></entry><entry><title>After Romanian Testing Conference 2013</title><link href="http://testpy.org/rtc/" rel="alternate"></link><updated>2013-05-24T00:00:00+03:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2013-05-24:rtc/</id><summary type="html">&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
+&lt;p&gt;&lt;em&gt;less is more&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;More convenient way to monitor logs is by using less. &lt;tt class="docutils literal"&gt;less + F app.log&lt;/tt&gt;
+allows you to switch between watch mode and navigation mode with &lt;tt class="docutils literal"&gt;ctrl+c&lt;/tt&gt; and
+back to watching mode with &lt;tt class="docutils literal"&gt;F&lt;/tt&gt;. Very helpul when you need to search, find
+occurrences, create marks etc.&lt;/p&gt;
+</summary><category term="unix"></category></entry><entry><title>After Romanian Testing Conference 2013</title><link href="http://blog.danclaudiupop.com/rtc/" rel="alternate"></link><updated>2013-05-24T00:00:00+03:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-05-24:rtc/</id><summary type="html">&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
 presentation at RTC, but given that this experience has had an impact on our
 testing perspective, we decided to write a few lines on how it was and what it
 meant to us.&lt;/p&gt;
@@ -192,7 +118,7 @@ on a project. But as long as everybody has understood our message -
 communication and collaboration is everything  - then we definitely can say we
 are on the right track.&lt;/p&gt;
 &lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testpy.github.io/RTC-presentation/"&gt;http://testpy.github.io/RTC-presentation/&lt;/a&gt;&lt;/p&gt;
-</summary><category term="rtc"></category><category term="presentation"></category></entry><entry><title>Book review: Explore it! by Elisabeth Hendrickson</title><link href="http://testpy.org/explore-it/" rel="alternate"></link><updated>2013-01-07T10:20:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2013-01-07:explore-it/</id><summary type="html">&lt;p&gt;There are many ways to test a software product. There are many methodologies
+</summary><category term="rtc"></category><category term="presentation"></category></entry><entry><title>Book review: Explore it! by Elisabeth Hendrickson</title><link href="http://blog.danclaudiupop.com/explore-it/" rel="alternate"></link><updated>2013-01-07T10:20:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:blog.danclaudiupop.com,2013-01-07:explore-it/</id><summary type="html">&lt;p&gt;There are many ways to test a software product. There are many methodologies
 that could help in testing that software product, so that the final release
 contains as less bugs as possible. We are not at the point where we could say
 that we have found the solution for bug free applications. But we are at the

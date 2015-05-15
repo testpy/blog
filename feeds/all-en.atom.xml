@@ -1,142 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>testpy</title><link href="http://testpy.org/" rel="alternate"></link><link href="http://localhost:8000/feeds/all-en.atom.xml" rel="self"></link><id>http://testpy.org/</id><updated>2014-03-24T00:00:00+02:00</updated><entry><title>Quick status over sites pages using requests library</title><link href="http://testpy.org/quick-status-codes-with-requests/" rel="alternate"></link><updated>2014-03-24T00:00:00+02:00</updated><author><name>Bianca Pirte</name></author><id>tag:testpy.org,2014-03-24:quick-status-codes-with-requests/</id><summary type="html">&lt;div class="section" id="prerequisites"&gt;
-&lt;h2&gt;Prerequisites&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;PyYAML&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup4&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Let's start with a yaml config where we store data we will use in this script:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;---&lt;/span&gt;
-&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;explorerproducer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lunchbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pbs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Home&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;explorerproducer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lunchbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pbs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;PBS&lt;/span&gt;
-&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;
-&lt;span class="o"&gt;---&lt;/span&gt;
-
-&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;explorerproducer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lunchbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pbs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;
-&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Video&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;explorerproducer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lunchbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pbs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;PBS&lt;/span&gt;
-&lt;span class="n"&gt;mandatory_text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;some text existent in this page you can verify&amp;quot;&lt;/span&gt;
-&lt;span class="o"&gt;---&lt;/span&gt;
-
-&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;explorerproducer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lunchbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pbs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;page_does_not_exist&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;404&lt;/span&gt;
-&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;wrong&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;
-&lt;span class="n"&gt;mandatory_text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;All it takes is one bad page. Click one of the good pages below to return to our content.&amp;quot;&lt;/span&gt;
-&lt;span class="o"&gt;---&lt;/span&gt;
-
-&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;explorerproducer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lunchbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pbs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;celerity&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Celerity&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;explorerproducer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lunchbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pbs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;PBS&lt;/span&gt;
-&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;...feel free to add/remove any fields you consider important to receive quick
-status. (this are my first checkpoints)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="response-status-code-succes-error-forward-and-redirection"&gt;
-&lt;h2&gt;1. response.status_code (Succes, Error, Forward and redirection ..)&lt;/h2&gt;
-&lt;p&gt;When testing/automating a web app one of the first things you do is typeing the
-url in a browser or perform a get(&amp;quot;url&amp;quot;) using any open source tool for testing
-web app.  What is the first response the server sends for your request? Why
-don't we use this basic information - the status codes, as a first checkpoint?
-(status_code from requests API offers us the integer code of responded HTTP
-Status, e.g. 404 or 200.) First, let's  create the response object based on
-each page url stored in the yaml and than we use &lt;cite&gt;status_code&lt;/cite&gt; that will return
-an integer code of responded HTTP status, e.g. 404 or 200.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;my_response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;my_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;As you can see the output is an integer code of responded HTTP Status. You can
-now play with it, add different error messages for server errors or redirects
-and so on.&lt;/p&gt;
-&lt;p&gt;We can validate against data from yaml config, or just log information in the
-txt file and than review. (you decide which is more valuable for you)&lt;/p&gt;
-&lt;p&gt;Ok, now we have first status server responses with but let's try gather some
-more information.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="verify-page-content"&gt;
-&lt;h2&gt;2. Verify page content&lt;/h2&gt;
-&lt;p&gt;Verify title is the one you expected or verify some text is displayed in the
-page content (of course this will not guarantee the display is proper, this
-type of testing is covered by other tools). For pulling data out of HTML
-response content we will use &lt;a class="reference external" href="http://www.crummy.com/software/BeautifulSoup/"&gt;Beautiful Soup&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;First we create the method for extracting the title&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_page_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;soup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;soup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;and now use the method to validate the title is the one we expected.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;my_response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="c"&gt;# now we need the html content -&amp;gt; my_response.content&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;get_page_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Again, feel free to display what information you need and how you need it.
-Maybe there is some text that if not displayed the test should stop. Maybe you
-want to log the text that was verified and received successful...&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="time-statistics"&gt;
-&lt;h2&gt;3. Time statistics&lt;/h2&gt;
-&lt;p&gt;How about some statistics about the amount of time elapsed between sending the
-request and the arrival of the response?&lt;/p&gt;
-&lt;p&gt;Many servers will accept a connection and then hold it until it is ready to
-process. This backlog of requests can slow down the response time. If logging
-this statistics for each build of your web app you can easily see if new
-features have impact over the performance of your time to load page by
-comparing the results in time.&lt;/p&gt;
-&lt;p&gt;The amount of time elapsed between sending the request and the arrival of the
-response as a timedelta is not the same with the time to load a page, it is
-only a part of it, the one related to server processing the requests. If
-elapsed time is more than a few hundred milliseconds, you may have investigate
-if you have some bottlenecks on your server.&lt;/p&gt;
-&lt;p&gt;Let's gather some time statistics too in order to have comparison metrics too:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;yaml&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bs4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_page_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;soup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;soup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_page_status&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="n"&gt;site_page_url_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;yaml&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;config.yml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;input_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;site_page_url_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;input_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="n"&gt;fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;site_pages_status.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;page_info&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;input_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;my_response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-        &lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-            &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;GET &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; Status code &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; Done in &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-            &lt;span class="n"&gt;my_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;my_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elapsed&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;GET &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; Status code &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; Done in &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-            &lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;my_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;my_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elapsed&lt;/span&gt;
-        &lt;span class="p"&gt;)&lt;/span&gt;
-
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;get_page_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Fail - check page title for - &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-            &lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Fail - check page title for - &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
-
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;status_code&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Error - check page &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-            &lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Error - check page &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_info&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
-    &lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="n"&gt;get_page_status&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Remember this is the output I considered contains important data necessary for
-my web app. You can configure the py  script / yaml different in order to
-obtain valuable data for your web app. We only used three from many others
-methods requests library offers. Take a look at &lt;a class="reference external" href="http://docs.python-requests.org/en/latest/api/"&gt;requests&lt;/a&gt; api and play with it in
-order to add new, more complex or simple test scenarios.&lt;/p&gt;
-&lt;/div&gt;
-</summary><category term="requests"></category><category term="functional"></category><category term="yaml"></category><category term="bs4"></category></entry><entry><title>Beginners guide to functionally test an API in Django</title><link href="http://testpy.org/guide-to-functionally-test-an-api-in-django/" rel="alternate"></link><updated>2014-03-06T00:00:00+02:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2014-03-06:guide-to-functionally-test-an-api-in-django/</id><summary type="html">&lt;div class="section" id="bootstrapping"&gt;
-&lt;h2&gt;Bootstrapping&lt;/h2&gt;
-&lt;p&gt;To set up our django development environment, we'll start by creating a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.danclaudiupop</title><link href="http://blog.danclaudiupop.com/" rel="alternate"></link><link href="http://localhost:8000/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.danclaudiupop.com/</id><updated>2014-03-06T00:00:00+02:00</updated><entry><title>Beginners guide to functionally test an API in Django</title><link href="http://blog.danclaudiupop.com/guide-to-functionally-test-an-api-in-django/" rel="alternate"></link><updated>2014-03-06T00:00:00+02:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2014-03-06:guide-to-functionally-test-an-api-in-django/</id><summary type="html">&lt;p&gt;To set up our django development environment, we'll start by creating a
 virtual environment. Execute the following commands in the terminal:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt; &lt;span class="n"&gt;temp&lt;/span&gt;
 &lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="nb"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;activate&lt;/span&gt;
@@ -149,9 +12,6 @@ and then run &lt;cite&gt;pip install -r requirements.txt&lt;/cite&gt; to install
 With all of the dependencies set up, we're ready to move on and start the local
 web server. You should be able to type &lt;cite&gt;fab runserver&lt;/cite&gt; and browse to
 &lt;a class="reference external" href="http://127.0.0.1:8000/"&gt;http://127.0.0.1:8000/&lt;/a&gt;. You should see a list a musicians.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="laying-the-testing-ground"&gt;
-&lt;h2&gt;Laying the testing ground&lt;/h2&gt;
 &lt;p&gt;Django test client is a good approach when it comes to these types of tests.
 Let's create a simple test:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.test&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TestCase&lt;/span&gt;
@@ -218,9 +78,6 @@ code should look like this:&lt;/p&gt;
     &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fetch_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;albums&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="factories"&gt;
-&lt;h2&gt;Factories&lt;/h2&gt;
 &lt;p&gt;Before we move on, let's take a look at the models. We will need to create
 programmatically objects in database for testing when querying the endpoints.
 You can use &lt;a class="reference external" href="https://factoryboy.readthedocs.org/en/latest/"&gt;factory_boy&lt;/a&gt;
@@ -295,9 +152,6 @@ testing context:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After completing this tutorial, we have a good foundation to go and start
 testing an API from a functional point of view.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="refactoring-the-factories"&gt;
-&lt;h2&gt;Refactoring the factories&lt;/h2&gt;
 &lt;p&gt;One thing you'll notice using the above examples will be the repeatable code
 for each model when creating a factory. We can see a pattern, so let's try to
 refactor a little bit the factory and create a more generic one:&lt;/p&gt;
@@ -355,57 +209,7 @@ refactor a little bit the factory and create a more generic one:&lt;/p&gt;
 &lt;span class="s"&gt;u&amp;#39;instrument&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;blowfish&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="s"&gt;u&amp;#39;last_name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;Bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-</summary><category term="django"></category><category term="functional"></category><category term="api"></category></entry><entry><title>The automation paradox</title><link href="http://testpy.org/automation-paradox/" rel="alternate"></link><updated>2014-02-14T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-02-14:automation-paradox/</id><summary type="html">&lt;p&gt;&lt;strong&gt;Or simply put, it seems everyone wants to automate stuff, but there’s never
-enough time for it&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;One of the things I enjoy most is to establish the automation framework on a
-new project, from simple setup on a local machine, until integration with a CI
-server. In my opinion, this is often one of the most challenging parts, and
-what follows afterwards, writing and maintaining the tests, is simply the fun
-part :)&lt;/p&gt;
-&lt;p&gt;But what many do not seem to understand is that this is a time consuming
-operation, especially when working on products already available on the market,
-with legacy features still tested manually. In order for automation to succeed
-on a project, my philosophy can be summed up to a few important action items:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;make everyone understand the importance and advantages brought by automation
-testing&lt;/li&gt;
-&lt;li&gt;evangelize these advantages as much as you can with managers (so that you
-have their full support) and the clients&lt;/li&gt;
-&lt;li&gt;not everyone is suited for automation testing. Some testers do a better job
-at exploratory or performance testing. And this is perfectly ok. Testers
-should be encouraged to specialize in the testing area they like the most, in
-order for them to do their job with passion and enthusiasm (but that’s
-another discussion, for another time :) ).&lt;/li&gt;
-&lt;li&gt;you need a tester with a technical background, and very passionate about
-what’s new. Automation testers who keep themselves up to date tend to write
-less brittle tests, by trying to incorporate various tips&amp;amp;tricks into their
-tests.&lt;/li&gt;
-&lt;li&gt;with the risk of repeating myself, use (at least in the beginning) just one
-or two automation testers, with experience on this area, until the automation
-framework is in place and fully running. Afterwards, it will be easier to
-increase the automation team, by cultivating such skills to other members of
-the team. As I also said above, writing and maintaining tests is a very fun
-job, once you got it going.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Unfortunately, although everybody is aware of the advantages, it seems that
-more often than not, managers and clients prefer manual testing to investing
-time and effort into automation. I believe this is because manual testing (for
-new features) is faster, the testers doing this job know the product well and
-can quickly assert the level of quality for new functionalities, and in such
-cases, fast, high-level testing is preferred to long term testing, with a
-larger coverage on the product’s features.&lt;/p&gt;
-&lt;p&gt;I am not saying that manual testing should be eliminated, because that is not
-possible. Many times, it is more worth to manually test something, rather than
-trying to automate that specific feature. However, what many do not seem to
-take into account is the long-term advantages of automation testing. The
-confidence that no regressions have been introduced and that the application
-behaves well from functional point of view, while you are free to
-automate/explore new features, is priceless when you try to make your product
-successful.&lt;/p&gt;
-&lt;p&gt;To conclude, we all want automation testing, because it is soooo great, but we
-just don’t have time for it right now :)&lt;/p&gt;
-</summary><category term="agile"></category><category term="automation"></category></entry><entry><title>Circular foreign key with factory_boy</title><link href="http://testpy.org/circular-foreign-key-factory-boy/" rel="alternate"></link><updated>2014-02-09T00:00:00+02:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2014-02-09:circular-foreign-key-factory-boy/</id><summary type="html">&lt;p&gt;Given the following state:&lt;/p&gt;
+</summary><category term="django"></category><category term="functional"></category><category term="api"></category></entry><entry><title>Circular foreign key with factory_boy</title><link href="http://blog.danclaudiupop.com/circular-foreign-key-factory-boy/" rel="alternate"></link><updated>2014-02-09T00:00:00+02:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2014-02-09:circular-foreign-key-factory-boy/</id><summary type="html">&lt;p&gt;Given the following state:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Album&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;thumb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ForeignKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -425,7 +229,7 @@ just don’t have time for it right now :)&lt;/p&gt;
 
     &lt;span class="n"&gt;album&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RelatedFactory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AlbumFactory&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;thumb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</summary><category term="factory_boy"></category><category term="unittest"></category></entry><entry><title>Autospeccing your mocks</title><link href="http://testpy.org/auto-speccing/" rel="alternate"></link><updated>2014-02-03T00:00:00+02:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2014-02-03:auto-speccing/</id><summary type="html">&lt;p&gt;Auto-speccing can be done through the &lt;cite&gt;autospec&lt;/cite&gt; argument to patch, or the
+</summary><category term="factory_boy"></category><category term="unittest"></category></entry><entry><title>Autospeccing your mocks</title><link href="http://blog.danclaudiupop.com/auto-speccing/" rel="alternate"></link><updated>2014-02-03T00:00:00+02:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:blog.danclaudiupop.com,2014-02-03:auto-speccing/</id><summary type="html">&lt;p&gt;Auto-speccing can be done through the &lt;cite&gt;autospec&lt;/cite&gt; argument to patch, or the
 &lt;cite&gt;create_autospec&lt;/cite&gt; function. Auto-speccing creates mock objects that have the
 same attributes and methods as the objects they are replacing, and any
 functions and methods (including constructors) have the same call signature as
@@ -453,35 +257,7 @@ tests that are using mocks without autospeccing flag will continue to pass.&lt;/
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</summary><category term="mock"></category><category term="unittest"></category></entry><entry><title>On creativity</title><link href="http://testpy.org/on-creativity/" rel="alternate"></link><updated>2014-01-31T00:00:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2014-01-31:on-creativity/</id><summary type="html">&lt;p&gt;We all know that if we organize our work, things would go smoother and we would
-gain more time to focus on more important items, such as automation or load
-testing.  Or is it? Think about it… Everything is organized, everyone follows
-the rules, the project management team couldn’t be happier. But what about
-creativity? When do we have time to be creative and innovate? To change the
-course of the project by implementing an idea seemingly so crazy at first, that
-no one thought it could be a success.&lt;/p&gt;
-&lt;p&gt;Where would all major software companies be today, if they would have devoted
-their time to rewriting and implementing the rules, just to make sure
-everything goes as planned? Instead of thinking of new approaches, of how we
-could revolutionize the work we are doing, we spent a large part of our time
-following the same old rules, which do not benefit neither the project, nor the
-people working on the project.&lt;/p&gt;
-&lt;p&gt;Let’s take for example test cases management tools. I understand that they are
-able to provide reports, and colored graphs (really difficult to understand at
-times), and we all know managers do like graphs. But are these reports useful
-to someone (at least in agile environments)? Is someone actually spending time
-to look at the reports and analyze them? I doubt it. Managers are interested in
-results. And while they like to see some reports from time to time, I think
-they would be more happy knowing the product is well tested, regardless of the
-test cases management tool used.&lt;/p&gt;
-&lt;p&gt;Instead of this very watterfall-ish approach, I would suggest investing more
-time in automation testing and documenting the scripts, so that everyone
-involved in the project, including non-technical people, knows what is being
-tested. BDD-like tools provide this functionality out of the box, via Gherkin
-language. As for other tools, make sure to document the scripts so they can
-serve as a living documentation.&lt;/p&gt;
-&lt;p&gt;Let’s step out of the line from time to time, and embrace creativity more!&lt;/p&gt;
-</summary><category term="agile"></category></entry><entry><title>Headless selenium tests in django with xvfbwrapper</title><link href="http://testpy.org/headless-selenium-tests-in-django-with-xvfbwrapper/" rel="alternate"></link><updated>2013-11-29T00:00:00+02:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-11-29:headless-selenium-tests-in-django-with-xvfbwrapper/</id><summary type="html">&lt;p&gt;Install dependencies:&lt;/p&gt;
+</summary><category term="mock"></category><category term="unittest"></category></entry><entry><title>Headless selenium tests in django with xvfbwrapper</title><link href="http://blog.danclaudiupop.com/headless-selenium-tests-in-django-with-xvfbwrapper/" rel="alternate"></link><updated>2013-11-29T00:00:00+02:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-11-29:headless-selenium-tests-in-django-with-xvfbwrapper/</id><summary type="html">&lt;p&gt;Install dependencies:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install xvfb&lt;/tt&gt;&lt;/li&gt;
 &lt;li&gt;&lt;tt class="docutils literal"&gt;pip install xvfbwrapper&lt;/tt&gt;&lt;/li&gt;
@@ -507,7 +283,10 @@ headless display.&lt;/p&gt;
         &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SeleniumTestCase&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tearDownClass&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;cls&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xvfb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</summary><category term="functional"></category><category term="django"></category><category term="headless"></category><category term="xvfb"></category><category term="selenium"></category></entry><entry><title>10 pragmatic guidelines to maximize test usefulness</title><link href="http://testpy.org/10-pragmatic-guidelines-to-maximize-test-usefulness/" rel="alternate"></link><updated>2013-11-05T00:00:00+02:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-11-05:10-pragmatic-guidelines-to-maximize-test-usefulness/</id><summary type="html">&lt;iframe width="420" height="315" src="//www.youtube.com/embed/91-LiEb3sPE" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;div class="section" id="abstract"&gt;
+</summary><category term="functional"></category><category term="django"></category><category term="headless"></category><category term="xvfb"></category><category term="selenium"></category></entry><entry><title>10 pragmatic guidelines to maximize test usefulness</title><link href="http://blog.danclaudiupop.com/10-pragmatic-guidelines-to-maximize-test-usefulness/" rel="alternate"></link><updated>2013-11-05T00:00:00+02:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-11-05:10-pragmatic-guidelines-to-maximize-test-usefulness/</id><summary type="html">&lt;iframe width="420" height="315" src="//www.youtube.com/embed/91-LiEb3sPE" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="abstract"&gt;
 &lt;h2&gt;ABSTRACT&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;WHAT MAKES GOOD TESTS?&lt;/strong&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -543,11 +322,11 @@ headless display.&lt;/p&gt;
 &lt;li&gt;Don't use setupClass() or tearDownClass()&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary><category term="django"></category><category term="talks"></category></entry><entry><title>Stop treating testers as failed developers</title><link href="http://testpy.org/stop-treating-testers-as-failed-developers/" rel="alternate"></link><updated>2013-10-16T11:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-10-16:stop-treating-testers-as-failed-developers/</id><summary type="html">&lt;p&gt;&lt;em&gt;&amp;quot;Stop treating testers as failed developers when developers are failed
+</summary><category term="django"></category><category term="talks"></category></entry><entry><title>Stop treating testers as failed developers</title><link href="http://blog.danclaudiupop.com/stop-treating-testers-as-failed-developers/" rel="alternate"></link><updated>2013-10-16T11:30:00+03:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-10-16:stop-treating-testers-as-failed-developers/</id><summary type="html">&lt;p&gt;&lt;em&gt;&amp;quot;Stop treating testers as failed developers when developers are failed
 testers&amp;quot;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Thanks to &lt;a class="reference external" href="https://github.com/limpangel"&gt;Angel Ramboi&lt;/a&gt; who took the picture
 at PyCon Ireland 2013. This is &lt;a class="reference external" href="https://github.com/AutomatedTester"&gt;David Burns&lt;/a&gt;' keynote.&lt;/p&gt;
-&lt;a href="http://www.flickr.com/photos/105549603@N05/10305606266/"&gt;&lt;img src="http://farm8.staticflickr.com/7411/10305606266_3138beee0d_b.jpg" width="1024" height="768" alt="IMG_20131013_130435"&gt;&lt;/a&gt;</summary><category term="tester"></category><category term="developer"></category></entry><entry><title>Command line JSON parser via jq</title><link href="http://testpy.org/command-line-json-parser-via-jq/" rel="alternate"></link><updated>2013-10-14T22:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-10-14:command-line-json-parser-via-jq/</id><summary type="html">&lt;p&gt;A command-line JSON parser can be handy when you test or debug JSON web
+&lt;a href="http://www.flickr.com/photos/105549603@N05/10305606266/"&gt;&lt;img src="http://farm8.staticflickr.com/7411/10305606266_3138beee0d_b.jpg" alt="IMG_20131013_130435"&gt;&lt;/a&gt;</summary><category term="tester"></category><category term="developer"></category></entry><entry><title>Command line JSON parser via jq</title><link href="http://blog.danclaudiupop.com/command-line-json-parser-via-jq/" rel="alternate"></link><updated>2013-10-14T22:30:00+03:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-10-14:command-line-json-parser-via-jq/</id><summary type="html">&lt;p&gt;A command-line JSON parser can be handy when you test or debug JSON web
 services. Unfortunately inspecting JSON responses via command line are hard to
 read and not easy to manipulate with traditional Unix utilities.&lt;/p&gt;
 &lt;p&gt;Today I stumbled on &lt;a class="reference external" href="http://stedolan.github.io/jq/"&gt;jq&lt;/a&gt;, via &lt;a class="reference external" href="https://github.com/limpangel"&gt;Angel Ramboi&lt;/a&gt;. &lt;tt class="docutils literal"&gt;jq&lt;/tt&gt; is a lightweight and flexible
@@ -555,82 +334,85 @@ command-line JSON processor.&lt;/p&gt;
 &lt;p&gt;Download the desired binary and then &lt;tt class="docutils literal"&gt;chmod +x ./jq&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;I've prepared a sample json so we can see how easily it is to inspect and
 manipulate JSON strings.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;
 
 &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;last&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;sex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;M&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;registered&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;interests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Reading&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Mountain Biking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hacking&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;favorites&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Blue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;quot;sport&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Soccer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;quot;food&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Spaghetti&amp;quot;&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;last&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;sex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;M&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;registered&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;interests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Reading&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Mountain Biking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hacking&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;favorites&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Blue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;sport&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Soccer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;food&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Spaghetti&amp;quot;&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;skills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;skills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
         &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
             &lt;span class="p"&gt;]&lt;/span&gt;
         &lt;span class="p"&gt;},&lt;/span&gt;
         &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GO&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;84&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;GO&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;84&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
             &lt;span class="p"&gt;]&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Simple filtering:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.skills&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.category&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.skills[].category&amp;#39;&lt;/span&gt;
 
-&lt;span class="err"&gt;Python&lt;/span&gt;
-&lt;span class="err"&gt;Go&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt;
+&lt;span class="n"&gt;Go&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Filtering with index:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;skills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;.name,&lt;/span&gt; &lt;span class="err"&gt;.score&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.[&amp;quot;skills&amp;quot;][0][&amp;quot;tests&amp;quot;][1] | .name, .score&amp;#39;&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
 &lt;span class="mi"&gt;96&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;...or a different flavour:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.skills&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;.tests&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;.name,&lt;/span&gt; &lt;span class="err"&gt;.score&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.skills[0].tests[1] | .name, .score&amp;#39;&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;
 &lt;span class="mi"&gt;96&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Built-in operators:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.interests&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;length&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.interests | length&amp;#39;&lt;/span&gt;
 
 &lt;span class="mi"&gt;3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Manipulate JSON string:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;sample.json&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;./jq&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;if&lt;/span&gt; &lt;span class="err"&gt;.registered&lt;/span&gt; &lt;span class="err"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="err"&gt;then&lt;/span&gt; &lt;span class="err"&gt;.skills&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.tests&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="err"&gt;.score&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="err"&gt;else&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt; &lt;span class="err"&gt;end&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;new_sample.json&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;jq&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;if .registered == true then .skills[].tests[].score = 1000 else null end&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;new_sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Head on and read the &lt;a class="reference external" href="http://stedolan.github.io/jq/manual/"&gt;jq manual&lt;/a&gt; if you
 want to include it in your tester toolbox.&lt;/p&gt;
-</summary><category term="unix"></category></entry><entry><title>Using tail to explore logs</title><link href="http://testpy.org/using-tail-to-explore-logs/" rel="alternate"></link><updated>2013-10-03T12:30:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-10-03:using-tail-to-explore-logs/</id><summary type="html">&lt;p&gt;When I am testing, I always keep an eye on the logs because they are a valuable
+</summary><category term="unix"></category></entry><entry><title>Using tail to explore logs</title><link href="http://blog.danclaudiupop.com/using-tail-to-explore-logs/" rel="alternate"></link><updated>2013-10-03T12:30:00+03:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-10-03:using-tail-to-explore-logs/</id><summary type="html">&lt;p&gt;When I am testing, I always keep an eye on the logs because they are a valuable
 resource for finding problems on the system. They can act as an early warning
 system. The &lt;tt class="docutils literal"&gt;tail&lt;/tt&gt; commnand alongside with &lt;tt class="docutils literal"&gt;view&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;vim&lt;/tt&gt; are great ways
 to explore big log entries.&lt;/p&gt;
-&lt;p&gt;There is a slightly difference between the &lt;tt class="docutils literal"&gt;tail &lt;span class="pre"&gt;-f&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;tailf&lt;/tt&gt; commands.
-With &lt;tt class="docutils literal"&gt;tail &lt;span class="pre"&gt;-f&lt;/span&gt;&lt;/tt&gt; you can basically do multitail like this:&lt;/p&gt;
+&lt;p&gt;Some simple examples:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;web_app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;*.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;while &lt;tt class="docutils literal"&gt;tailf&lt;/tt&gt; does not allow you to do multitail.&lt;/p&gt;
-&lt;p&gt;Ofcourse when there is too much noise you can pipe the output.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;web_app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="n"&gt;ERROR&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;... or get and read log from remote host&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;remoteUser&lt;/span&gt;&lt;span class="nd"&gt;@remoteHost&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;tail -f /var/log/app/app.log&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;tee&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</summary><category term="unix"></category></entry><entry><title>After Romanian Testing Conference 2013</title><link href="http://testpy.org/rtc/" rel="alternate"></link><updated>2013-05-24T00:00:00+03:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2013-05-24:rtc/</id><summary type="html">&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
+&lt;p&gt;&lt;em&gt;less is more&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;More convenient way to monitor logs is by using less. &lt;tt class="docutils literal"&gt;less + F app.log&lt;/tt&gt;
+allows you to switch between watch mode and navigation mode with &lt;tt class="docutils literal"&gt;ctrl+c&lt;/tt&gt; and
+back to watching mode with &lt;tt class="docutils literal"&gt;F&lt;/tt&gt;. Very helpul when you need to search, find
+occurrences, create marks etc.&lt;/p&gt;
+</summary><category term="unix"></category></entry><entry><title>After Romanian Testing Conference 2013</title><link href="http://blog.danclaudiupop.com/rtc/" rel="alternate"></link><updated>2013-05-24T00:00:00+03:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-05-24:rtc/</id><summary type="html">&lt;p&gt;It’s been awhile since myself and my colleague Dan Claudiu Pop have had our
 presentation at RTC, but given that this experience has had an impact on our
 testing perspective, we decided to write a few lines on how it was and what it
 meant to us.&lt;/p&gt;
@@ -659,7 +441,7 @@ on a project. But as long as everybody has understood our message -
 communication and collaboration is everything  - then we definitely can say we
 are on the right track.&lt;/p&gt;
 &lt;p&gt;You can see the presentation here - &lt;a class="reference external" href="http://testpy.github.io/RTC-presentation/"&gt;http://testpy.github.io/RTC-presentation/&lt;/a&gt;&lt;/p&gt;
-</summary><category term="rtc"></category><category term="presentation"></category></entry><entry><title>Functional tests with django-webtest</title><link href="http://testpy.org/functional-tests-with-django-webtest/" rel="alternate"></link><updated>2013-04-25T00:00:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-04-25:functional-tests-with-django-webtest/</id><summary type="html">&lt;p&gt;I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
+</summary><category term="rtc"></category><category term="presentation"></category></entry><entry><title>Functional tests with django-webtest</title><link href="http://blog.danclaudiupop.com/functional-tests-with-django-webtest/" rel="alternate"></link><updated>2013-04-25T00:00:00+03:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:blog.danclaudiupop.com,2013-04-25:functional-tests-with-django-webtest/</id><summary type="html">&lt;p&gt;I’ve been watching both presentations that Carl Meyer held at Pycon 2012/13 and
 I highly recommend them if you want a deep dive into writing tests with django.
 They outline some very good principles for writing effective and maintainable
 tests. They also highlight a suite of test utilities and frameworks which help
@@ -698,29 +480,7 @@ For that purpose you normally use selenium.&lt;/p&gt;
 automated tests with django-webtest. It uses nose test suite runner since i
 don’t want to to import all my tests into tests/__init__.py and for rest of the
 goodness that nose offers.&lt;/p&gt;
-</summary><category term="functional"></category><category term="django-webtest"></category></entry><entry><title>Writing tests with django and selenium</title><link href="http://testpy.org/writing-tests-with-django-and-selenium/" rel="alternate"></link><updated>2013-04-25T00:00:00+03:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2013-04-25:writing-tests-with-django-and-selenium/</id><summary type="html">&lt;p&gt;Getting our Selenium tests to run faster can be complicated at times, because
-there are a number of factors to be taken into consideration. Debugging these
-tests is time consuming and the end result is almost always the same one - a
-large part of the tests needs to be refactored.&lt;/p&gt;
-&lt;p&gt;Luckily, for projects implemented with Django, we have the possibility to
-explore a wide range of testing solutions, backed up by an active internet
-community. Instead of always trying to use Selenium as a standalone solution,
-we could analyze the possibility of having those tests integrated in our Django
-project, and hence, be able to run with a simple command, all tests. By all
-tests, I mean unit tests and functional tests.&lt;/p&gt;
-&lt;p&gt;For a practical example, please have a look at this &lt;a class="reference external" href="https://github.com/ramonasuciu/django_selenium_tests"&gt;github&lt;/a&gt; repo. This is just an
-example of how Selenium tests can be integrated with Django, with the use of
-&lt;tt class="docutils literal"&gt;LiveServerTestCase&lt;/tt&gt; class. Make sure to run &lt;tt class="docutils literal"&gt;pip install &lt;span class="pre"&gt;-r&lt;/span&gt;
-requirements.txt&lt;/tt&gt; in a virtualenv and you’re good to go.&lt;/p&gt;
-&lt;p&gt;The application used for testing is &lt;a class="reference external" href="https://bitbucket.org/ubernostrum/django-registration/"&gt;django-registration&lt;/a&gt;, which provides
-enough support for developing functional tests. We inserted a js library
-(password_strength_plugin.js) to better illustrate the need of Selenium
-(JS/CSS/HTML focused) automated tests.&lt;/p&gt;
-&lt;p&gt;The advantages of this approach are numerous - you are able to test the
-build as well, not only the deploy. Tests are faster, and, if you decide to
-write your tests using a page object pattern method, then debugging will become
-easier, as you’ll be able to faster track failures and their causes.&lt;/p&gt;
-</summary><category term="functional"></category><category term="django"></category><category term="selenium"></category></entry><entry><title>Lettuce and django test client</title><link href="http://testpy.org/lettuce-and-django-test-client/" rel="alternate"></link><updated>2013-02-01T00:00:00+02:00</updated><author><name>Dan Claudiu Pop</name></author><id>tag:testpy.org,2013-02-01:lettuce-and-django-test-client/</id><summary type="html">&lt;p&gt;When running a functional test, you fire up “browser” and do the &amp;quot;same&amp;quot; actions
+</summary><category term="functional"></category><category term="django-webtest"></category></entry><entry><title>Lettuce and django test client</title><link href="http://blog.danclaudiupop.com/lettuce-and-django-test-client/" rel="alternate"></link><updated>2013-02-01T00:00:00+02:00</updated><author><name>danclaudiupop</name></author><id>tag:blog.danclaudiupop.com,2013-02-01:lettuce-and-django-test-client/</id><summary type="html">&lt;p&gt;When running a functional test, you fire up “browser” and do the &amp;quot;same&amp;quot; actions
 as a real user (or API client). There are different “browsers” for testing your
 applications, some of them are real, like selenium and some of them are less
 real, like django test client. Depending on the context, each of them has its
@@ -733,8 +493,6 @@ rendered HTML alongside with behavior of Web pages. Write selenium tests for
 Ajax, other JS/server interactions.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;A complete test suite should contain both test types.&lt;/p&gt;
-&lt;div class="section" id="functional-tests-and-django"&gt;
-&lt;h2&gt;Functional tests and Django&lt;/h2&gt;
 &lt;p&gt;Write functional/integration/system (has more names than it needs) tests for
 views. Unit testing the view is hard because views have many dependencies
 (templates, db, middleware, url routing etc).&lt;/p&gt;
@@ -742,23 +500,21 @@ views. Unit testing the view is hard because views have many dependencies
 have fewer than you have now. See the &lt;a class="reference external" href="https://github.com/kmike/django-webtest"&gt;software testing pyramid&lt;/a&gt; by Alister Scott which provides
 solid approach to automated testing and shows the mix of testing a team should
 aim for.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Functional tests:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Functional tests:&lt;/em&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;test that the whole integrated system works, catch regressions&lt;/li&gt;
 &lt;li&gt;they tend to be slow&lt;/li&gt;
 &lt;li&gt;will catch bugs that unit tests will not, but it's harder to debug&lt;/li&gt;
 &lt;li&gt;write fewer (more unit tests)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;So what can you test with django-test client ?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;So what can you test with django-test client ?&lt;/em&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;the correct view is executed for a given url&lt;/li&gt;
 &lt;li&gt;simulate post, get, head, put etc. requests&lt;/li&gt;
 &lt;li&gt;the returned content has the expected values (you can use beautiful soup,
 lxml or html5lib for parsing the content)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="example"&gt;
-&lt;h2&gt;Example&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Register&lt;/span&gt;
     &lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="n"&gt;order&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;access&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt;
     &lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;should&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;able&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;register&lt;/span&gt;
@@ -825,15 +581,15 @@ lxml or html5lib for parsing the content)&lt;/li&gt;
     &lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;activation_url&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;follow&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;assert_equals&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="what-s-next"&gt;
-&lt;h2&gt;What's next ?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What's next ?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Well ... WebTest  :)&lt;/p&gt;
-&lt;iframe width="420" height="315" src="//www.youtube.com/embed/ickNQcNXiS4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;p&gt;Be a good person and write functional tests. Functional testing is something
+&lt;iframe width="420" height="315" src="//www.youtube.com/embed/ickNQcNXiS4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Be a good person and write functional tests. Functional testing is something
 that every app needs, no testing strategy is complete without high-level tests
 to ensure the entire programming system works together.&lt;/p&gt;
-&lt;/div&gt;
-</summary><category term="functional"></category><category term="lettuce"></category><category term="django test client"></category><category term="selenium"></category></entry><entry><title>Book review: Explore it! by Elisabeth Hendrickson</title><link href="http://testpy.org/explore-it/" rel="alternate"></link><updated>2013-01-07T10:20:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:testpy.org,2013-01-07:explore-it/</id><summary type="html">&lt;p&gt;There are many ways to test a software product. There are many methodologies
+</summary><category term="functional"></category><category term="lettuce"></category><category term="django test client"></category><category term="selenium"></category></entry><entry><title>Book review: Explore it! by Elisabeth Hendrickson</title><link href="http://blog.danclaudiupop.com/explore-it/" rel="alternate"></link><updated>2013-01-07T10:20:00+02:00</updated><author><name>Ramona Suciu</name></author><id>tag:blog.danclaudiupop.com,2013-01-07:explore-it/</id><summary type="html">&lt;p&gt;There are many ways to test a software product. There are many methodologies
 that could help in testing that software product, so that the final release
 contains as less bugs as possible. We are not at the point where we could say
 that we have found the solution for bug free applications. But we are at the
